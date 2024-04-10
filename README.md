@@ -5,6 +5,8 @@ This Project was developed by *João Santos* (<up202205794@up.pt>), *Marta Silva
 
 ## Folder structure
 
+Inspired by: [crjoseabraham/php-mvc](https://github.com/crjoseabraham/php-mvc)
+
 ```text
 /ltw-project-2024-ltw05g05
     utils/              # utility functions, constants used frequently
