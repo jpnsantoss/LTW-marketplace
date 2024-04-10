@@ -1,0 +1,19 @@
+{
+  "name": "ltw/marketplace",
+  "authors": [
+    {
+      "name": "João Santos",
+      "email": "jpnsantos14@gmail.com"
+    }
+  ],
+  "autoload": {
+    "files": [
+      "config/constants.php",
+      "config/utilities.php"
+    ],
+    "classmap": [
+      "src/"
+    ]
+  },
+  "require": {}
+}
