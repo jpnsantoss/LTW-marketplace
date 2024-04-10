@@ -135,7 +135,6 @@ class Router
      */
     private function capitalizeAction(string $action): string
     {
-        print_r("teste2");
         $action = explode('-', $action);
 
         for ($i = 1; $i < count($action); $i++) {
