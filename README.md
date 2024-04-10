@@ -22,3 +22,5 @@ This Project was developed by *João Santos* (<up202205794@up.pt>), *Marta Silva
     .gitignore          # Files/folders to be ignored by version control
     composer.json       # Composer dependency file
 ```
+
+Inspired by: [crjoseabraham/php-mvc](https://github.com/crjoseabraham/php-mvc)
