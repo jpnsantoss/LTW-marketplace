@@ -24,5 +24,3 @@ Inspired by: [crjoseabraham/php-mvc](https://github.com/crjoseabraham/php-mvc)
     .gitignore          # Files/folders to be ignored by version control
     composer.json       # Composer dependency file
 ```
-
-Inspired by: [crjoseabraham/php-mvc](https://github.com/crjoseabraham/php-mvc)
