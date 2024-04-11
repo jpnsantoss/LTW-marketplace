@@ -5,3 +5,20 @@ html {
 form {
   display: inline-block;
 }
+
+.auth-container {
+  width: 100%;
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.auth-form {
+  max-width: 40%;
+  margin-top: 2rem;
+}
+.auth-submit {
+  text-align: center;
+}
