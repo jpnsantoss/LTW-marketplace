@@ -19,6 +19,20 @@ form {
   max-width: 40%;
   margin-top: 2rem;
 }
+
 .auth-submit {
   text-align: center;
+}
+
+.highlight {
+  background-color: black;
+  padding: 1rem;
+  margin: 1rem 0;
+  color: white;
+}
+
+@media screen and (max-width: 768px) {
+  .auth-form {
+    max-width: 80%;
+  }
 }

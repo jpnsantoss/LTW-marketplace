@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Open+Sans");
+@import url("https://fonts.googleapis.com/css?family=Inter");
 @import url("https://fonts.googleapis.com/css?family=Droid+Sans+Mono");
 @import url("https://fonts.googleapis.com/icon?family=Material+Icons");
 
@@ -23,7 +23,7 @@ label {
   margin: 0;
   padding: 0;
   border: 0;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Inter", sans-serif;
   font-weight: 400;
   color: #2d3239;
   line-height: 1.42857143;
@@ -587,9 +587,6 @@ select:-moz-focusring {
   }
 
   /* Navbar */
-  .navbar {
-    height: 40px;
-  }
   .navbar .dropdown {
     display: none;
   }
