@@ -4,6 +4,10 @@ namespace Controllers;
 
 class View
 {
+    public function test()
+    {
+        view('Test/usage');
+    }
     public function register()
     {
         view('Auth/register');
