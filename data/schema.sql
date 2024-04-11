@@ -4,7 +4,6 @@ CREATE TABLE users (
   hashed_password TEXT NOT NULL,
   full_name TEXT NOT NULL,
   email TEXT UNIQUE NOT NULL,
-  seller INTEGER NOT NULL DEFAULT 0,
   created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
