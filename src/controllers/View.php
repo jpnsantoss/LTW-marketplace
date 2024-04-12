@@ -22,7 +22,11 @@ class View
     }
     public function profile()
     {
-        view('Profile/index');
+        if (isLoggedIn()) {
+            view('Profile/index');
+        } else {
+            header('location: ' . URLROOT . '/login', true, 303);
+        }
     }
     public function createProduct()
     {
