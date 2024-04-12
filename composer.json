@@ -8,8 +8,9 @@
   ],
   "autoload": {
     "files": [
-      "config/constants.php",
-      "config/utilities.php"
+      "utils/constants.php",
+      "utils/router_helpers.php",
+      "utils/validator_helpers.php"
     ],
     "classmap": [
       "src/"

@@ -12,11 +12,6 @@ CREATE TABLE sellers (
   FOREIGN KEY(user_id) REFERENCES users(id)
 );
 
-CREATE TABLE buyers (
-  user_id INTEGER UNIQUE NOT NULL,
-  FOREIGN KEY(user_id) REFERENCES users(id)
-);
-
 CREATE TABLE admins (
   user_id INTEGER UNIQUE NOT NULL,
   FOREIGN KEY(user_id) REFERENCES users(id)
