@@ -1,7 +1,7 @@
 <?php
 
 // Static pages routes
-$router->addRoute('', ['controller' => 'View', 'action' => 'test']);
+$router->addRoute('', ['controller' => 'View', 'action' => 'register']);
 $router->addRoute('register', ['controller' => 'View', 'action' => 'register']);
 $router->addRoute('login', ['controller' => 'View', 'action' => 'login']);
 $router->addRoute('home', ['controller' => 'View', 'action' => 'home']);
