@@ -7,3 +7,8 @@ define('URLROOT', 'http://localhost:8000');
 define('SITENAME', 'LWT Marketplace');
 
 define('DATABASE_NAME', 'marketplace.db');
+
+
+// Error Messages
+define('ALREADY_EXISTS', 'Already exists');
+define('SOMETHING_WENT_WRONG', 'Something went wrong');
