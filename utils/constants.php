@@ -13,3 +13,4 @@ define('DATABASE_NAME', 'marketplace.db');
 define('ALREADY_EXISTS', 'Already exists');
 define('SOMETHING_WENT_WRONG', 'Something went wrong');
 define('NOT_FOUND', 'Not found');
+define('UNAUTHORIZED_ACCESS', 'Unauthorized access');
