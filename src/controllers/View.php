@@ -4,10 +4,6 @@ namespace Controllers;
 
 class View
 {
-    public function test()
-    {
-        view('Test/usage');
-    }
     public function register()
     {
         view('Auth/register');
@@ -18,7 +14,11 @@ class View
     }
     public function home()
     {
-        view('Home/index');
+        if (isLoggedIn()) {
+            view('Home/index');
+        } else {
+            header('location: ' . URLROOT . '/login', true, 303);
+        }
     }
     public function profile()
     {

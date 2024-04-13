@@ -52,10 +52,10 @@ class User
         $this->db->bind(':email', $email);
         $user = $this->db->single();
 
-        // Convert the stdClass object to an array
-        $user = get_object_vars($user);
-
         if ($user) {
+            // Convert the stdClass object to an array
+            $user = get_object_vars($user);
+
             // Check if the user is an admin
             $this->db->query('SELECT * FROM admins WHERE user_id = :user_id');
             $this->db->bind(':user_id', $user['id']);
