@@ -48,15 +48,4 @@ class View
     {
         view('Chat/index');
     }
-
-    public function admin()
-    {
-        if (isLoggedIn() && isAdmin()) {
-            view('Admin/index');
-        } else {
-            print_r('You are not authorized to view this page');
-            // print session
-            print_r($_SESSION);
-        }
-    }
 }

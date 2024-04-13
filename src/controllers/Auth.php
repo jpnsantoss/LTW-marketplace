@@ -2,7 +2,7 @@
 
 namespace Controllers;
 
-use \Models\User;
+use \Models\UserModel;
 
 class Auth
 {
@@ -10,7 +10,7 @@ class Auth
 
     public function __construct()
     {
-        $this->user = new User;
+        $this->user = new UserModel;
     }
 
     public function register()
