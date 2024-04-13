@@ -2,7 +2,7 @@
 
 namespace Controllers;
 
-use \Models\User;
+use \Models\UserModel;
 
 class Auth
 {
@@ -10,7 +10,7 @@ class Auth
 
     public function __construct()
     {
-        $this->user = new User;
+        $this->user = new UserModel;
     }
 
     public function register()
@@ -50,7 +50,7 @@ class Auth
                 $_SESSION['user'] = $user;
 
                 // Redirect the user to the home page or dashboard
-                header('location: ' . URLROOT . '/home', true, 303);
+                header('location: ' . URLROOT . '/', true, 303);
             } else {
                 die("Incorrect password");
             }

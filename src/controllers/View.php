@@ -4,21 +4,29 @@ namespace Controllers;
 
 class View
 {
-    public function test()
-    {
-        view('Test/usage');
-    }
     public function register()
     {
-        view('Auth/register');
+        if (isLoggedIn()) {
+            header('location: ' . URLROOT . '/', true, 303);
+        } else {
+            view('Auth/register');
+        }
     }
     public function login()
     {
-        view('Auth/login');
+        if (isLoggedIn()) {
+            header('location: ' . URLROOT . '/', true, 303);
+        } else {
+            view('Auth/login');
+        }
     }
     public function home()
     {
-        view('Home/index');
+        if (isLoggedIn()) {
+            view('Home/index');
+        } else {
+            header('location: ' . URLROOT . '/login', true, 303);
+        }
     }
     public function profile()
     {
