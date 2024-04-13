@@ -34,15 +34,4 @@ class Admin
             'conditions' => $this->condition->getConditions(),
         ]);
     }
-
-    public function createCategory()
-    {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $name = $_POST['name'];
-            if ($this->category->createCategory($name))
-                header('location: ' . URLROOT . '/admin', true, 303);
-            else
-                die(SOMETHING_WENT_WRONG);
-        }
-    }
 }

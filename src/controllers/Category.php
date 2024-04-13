@@ -14,6 +14,10 @@ class Category
 
     public function create()
     {
+        if (!isLoggedIn() || !isAdmin()) {
+            header('location: ' . URLROOT . '/', true, 303);
+            die(UNAUTHORIZED_ACCESS);
+        }
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $name = $_POST['name'];
             if ($this->category->createCategory($name))
@@ -25,6 +29,10 @@ class Category
 
     public function delete($params)
     {
+        if (!isLoggedIn() || !isAdmin()) {
+            header('location: ' . URLROOT . '/', true, 303);
+            die(UNAUTHORIZED_ACCESS);
+        }
         $id = $params['id'];
         $this->category->deleteCategory($id);
         header('location: ' . URLROOT . '/admin', true, 303);
