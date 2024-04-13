@@ -6,11 +6,19 @@ class View
 {
     public function register()
     {
-        view('Auth/register');
+        if (isLoggedIn()) {
+            header('location: ' . URLROOT . '/', true, 303);
+        } else {
+            view('Auth/register');
+        }
     }
     public function login()
     {
-        view('Auth/login');
+        if (isLoggedIn()) {
+            header('location: ' . URLROOT . '/', true, 303);
+        } else {
+            view('Auth/login');
+        }
     }
     public function home()
     {
@@ -39,5 +47,16 @@ class View
     public function chat()
     {
         view('Chat/index');
+    }
+
+    public function admin()
+    {
+        if (isLoggedIn() && isAdmin()) {
+            view('Admin/index');
+        } else {
+            print_r('You are not authorized to view this page');
+            // print session
+            print_r($_SESSION);
+        }
     }
 }
