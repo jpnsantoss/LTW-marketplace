@@ -63,3 +63,10 @@ h5,
 h6 {
   font-weight: bold;
 }
+
+i.icon {
+  font-family: "Material Icons";
+  font-style: normal;
+  vertical-align: bottom;
+  font-feature-settings: "liga" 1;
+}
