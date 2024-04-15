@@ -29,6 +29,8 @@ class Auth
                 header('location: ' . URLROOT . '/login', true, 303);
             else
                 die(SOMETHING_WENT_WRONG);
+        } else {
+            die(UNAUTHORIZED_ACCESS);
         }
     }
 
@@ -54,12 +56,18 @@ class Auth
             } else {
                 die("Incorrect password");
             }
+        } else {
+            die(UNAUTHORIZED_ACCESS);
         }
     }
     public  function logout()
     {
-        session_start();
-        session_destroy();
-        header('location: ' . URLROOT . '/login', true, 303);
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            session_start();
+            session_destroy();
+            header('location: ' . URLROOT . '/login', true, 303);
+        } else {
+            die(UNAUTHORIZED_ACCESS);
+        }
     }
 }

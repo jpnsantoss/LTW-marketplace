@@ -33,9 +33,12 @@ function getNavbar()
                     <li class="dropdown">
                         <a href="#"><i class="icon">person</i> Account</a>
                         <ul>
+                            <?php if (isAdmin()) : ?>
+                                <li><a href="/admin">Admin</a></li>
+                            <?php endif; ?>
                             <li><a href="#">Profile</a></li>
                             <li><a href="#">Settings</a></li>
-                            <li><a href="#">Logout</a></li>
+                            <li><a href="#" id="logout">Logout</a></li>
                         </ul>
                     </li>
 

@@ -1,3 +1,4 @@
+// Mobile navigation
 document.getElementById('menu-button').addEventListener('click', function () {
     var menuLinks = document.getElementById('menu-links');
     if (menuLinks.style.opacity === '0') {
@@ -9,6 +10,7 @@ document.getElementById('menu-button').addEventListener('click', function () {
     }
 });
 
+// Dropdown menu
 document.querySelector('.dropdown').addEventListener('click', function (event) {
     event.stopPropagation();
     this.querySelector('ul').classList.toggle('show');
@@ -25,4 +27,22 @@ window.addEventListener('click', function (event) {
             }
         }
     }
+});
+
+var urlRoot = 'http://localhost:8000';
+document.getElementById('logout').addEventListener('click', function (event) {
+    event.preventDefault();
+    console.log("teste")
+
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', urlRoot + '/auth/logout', true);
+
+    console.log('Sending request to ' + urlRoot + '/auth/logout')
+    xhr.onload = function () {
+        if (this.status == 200) {
+            // Redirect to the login page (or wherever you want to redirect after logout)
+            window.location.href = urlRoot;
+        }
+    };
+    xhr.send();
 });
