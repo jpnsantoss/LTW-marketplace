@@ -18,11 +18,13 @@ function getNavbar()
 { ?>
     <header>
         <nav>
-            <ul>
-                <li><a href="/">LTW Marketplace</a></li>
-            </ul>
-            <button><i class="icon">menu</i></button>
-            <div>
+            <div class="nav-mobile">
+                <ul>
+                    <li><a href="/">LTW Marketplace</a></li>
+                </ul>
+                <button id="menu-button"><i class="icon">menu</i></button>
+            </div>
+            <div id="menu-links">
                 <ul>
                     <li><a href="#"><i class="icon">chat_bubble</i> Messages</a></li>
                     <li><a href="#"><i class="icon">favorite</i> Wishlist</a></li>

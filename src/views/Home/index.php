@@ -7,3 +7,7 @@ getNavbar();
 <form action="<?php echo URLROOT; ?>/auth/logout" method="post">
     <input type="submit" value="Logout">
 </form>
+
+<?php
+getScript('navbar.js');
+?>
