@@ -1,5 +1,7 @@
-<?php require_once APPROOT . '/src/views/Layout/header.php'; ?>
-
+<?php 
+    require_once APPROOT . '/src/views/Common/common.php'; 
+    getHead(array('/css/style.css'), "Users");
+?>
 <h1>Users</h1>
 
 <form action="<?= URLROOT; ?>/user/add-user" method="POST">
@@ -16,5 +18,3 @@
         </li>
     <?php endforeach; ?>
 </ul>
-
-<?php require_once APPROOT . '/src/views/include/footer.php'; ?>

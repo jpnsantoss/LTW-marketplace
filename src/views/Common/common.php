@@ -1,4 +1,20 @@
-<header>
+<?php function getHead($styles, $title){?>
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <?php foreach($styles as $style){ ?>
+        <link rel="stylesheet" href="<?=$style?>">
+        <?php } ?>
+        <title><?=$title?></title>
+    </head>
+<?php }
+
+function getNavbar(){ ?>
+    <header>
     <nav class="navbar">
         <ul class="nav">
             <li><a href="#home">LTW Marketplace</a></li>
@@ -15,3 +31,9 @@
         </div>
     </nav>
 </header>
+<?php }
+
+function getScript($script){?>
+    <script src="<?= URLROOT ?>/js/<?=$script?>"></script>
+<?php } 
+?>
