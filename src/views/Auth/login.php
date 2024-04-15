@@ -1,7 +1,7 @@
 <?php 
 require_once APPROOT . '/src/views/Common/common.php'; 
 $styles = array('/css/style.css', '/css/auth.css');
-getHead($styles, "Login") 
+getHead($styles, "Log In") 
 ?>
 
 <main class="container auth-container">

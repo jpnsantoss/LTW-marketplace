@@ -1,3 +1,5 @@
-<?php require_once APPROOT . '/src/views/Layout/header.php'; ?>
+<?php 
+require_once APPROOT . '/src/views/Common/common.php'; 
+getHead(array('/css/style.css', '/css/auth.css'), "Cart"); 
+?>
 <p>Cart</p>
-<?php require_once APPROOT . '/src/views/Layout/footer.php'; ?>
