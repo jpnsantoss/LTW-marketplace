@@ -1,13 +1,14 @@
 <?php 
     require_once APPROOT . '/src/views/Common/common.php'; 
     getHead(array('/css/style.css', 'css/form.css'), "Add Item Category"); 
+    getNavbar();
 ?>
 
 
 <!-- create item -->
 <body>
     <section>
-        <h1>Items</h1>
+        <h1>Sell Item:</h1>
         <form action="<?= URLROOT; ?>/item/create" method="post">
             <label for="brand">Brand</label>
             <input type="text" name="brand" id="brand">
@@ -37,8 +38,8 @@
         </form>
     
     <!-- list items -->
-    
-        <ul>
+        <h1>Items for sale:</h1>            
+        <ul class="listing">
             <?php foreach ($data["items"] as $item) : ?>
                 <li>
                     <?= $item->name; ?> &emsp;
@@ -56,7 +57,7 @@
     </section>
     <section>
 
-        <h1>Categories</h1>
+        <h1>Add new category:</h1>
 
         <!-- create category -->
         <form action="<?= URLROOT; ?>/category/create" method="post">
@@ -65,8 +66,8 @@
             <button type="submit">Add Category</button>
         </form>
     <!-- list categories -->
-
-        <ul>
+        <h1>Categories:</h1>
+        <ul class="listing">
             <?php foreach ($data["categories"] as $category) : ?>
                 <li>
                     <?= $category->name; ?> &emsp;
@@ -80,7 +81,7 @@
     </section>
     <section>
 
-        <h1>Sizes</h1>
+        <h1>Add new size:</h1>
     
         <!-- create size -->
         <form action="<?= URLROOT; ?>/size/create" method="post">
@@ -90,7 +91,8 @@
         </form>
 
         <!-- list sizes -->
-        <ul>
+        <h1>Sizes:</h1>
+        <ul class="listing">
             <?php foreach ($data["sizes"] as $size) : ?>
                 <li>
                     <?= $size->name; ?> &emsp;
@@ -105,7 +107,7 @@
 
     <section>
     
-        <h1>Conditions</h1>
+        <h1>Add new condition:</h1>
 
         <!-- create condition -->
     
@@ -116,8 +118,8 @@
         </form>
 
         <!-- list conditions -->
-
-        <ul>
+        <h1>Conditions:</h1>
+        <ul class="listing">
             <?php foreach ($data["conditions"] as $condition) : ?>
                 <li>
                     <?= $condition->name; ?> &emsp;
