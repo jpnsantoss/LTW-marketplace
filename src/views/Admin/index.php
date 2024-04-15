@@ -10,6 +10,8 @@
     <section>
         <h1>Sell Item:</h1>
         <form action="<?= URLROOT; ?>/item/create" method="post">
+            <label for="title">Title</label>
+            <input type="text" name="title" id="title">
             <label for="brand">Brand</label>
             <input type="text" name="brand" id="brand">
             <label for="model">Model</label>
@@ -34,9 +36,13 @@
                     <option value="<?= $condition->id; ?>"><?= $condition->name; ?></option>
                 <?php endforeach; ?>
             </select>
+            <label for="image">Image</label>
+            <input type="file" name="image" id="image" enctype="multipart/form-data">>
+            <br>
+            <br>
             <button type="submit">Add Item</button>
         </form>
-    
+        <?php if(isAdmin()) : ?>
     <!-- list items -->
         <h1>Items for sale:</h1>            
         <ul class="listing">
@@ -56,7 +62,6 @@
         </ul>
     </section>
     <section>
-
         <h1>Add new category:</h1>
 
         <!-- create category -->
@@ -131,5 +136,5 @@
             <?php endforeach; ?>
         </ul>
     </section>
-
+    <?php endif; ?>
 </body>
