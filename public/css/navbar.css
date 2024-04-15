@@ -1,0 +1,59 @@
+header {
+  width: 100%;
+  background-color: var(--primary);
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Reset the list styles */
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+/* Style the list items */
+nav li {
+  float: left;
+}
+/* Style the list items */
+.highlight {
+  background-color: white;
+  color: var(--primary);
+}
+
+/* Style the links */
+nav li a {
+  display: block;
+  color: white;
+  text-align: center;
+  font-size: 1.1rem;
+  text-decoration: none;
+  float: left;
+  padding: 0.8rem 1.5rem;
+  margin: 0.8rem;
+  border-radius: 10px;
+}
+
+/* Change the color on hover */
+nav li a:hover {
+  opacity: 0.8;
+  transition: 0.3s;
+}
+
+/* Hide the menu button and the div containing the additional links */
+nav button {
+  display: none;
+}
+
+/* Align the additional links to the right */
+nav li:last-child {
+  float: right;
+}
