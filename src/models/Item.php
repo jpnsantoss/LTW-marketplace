@@ -19,10 +19,9 @@ class ItemModel
         return $this->db->resultSet();
     }
 
-    public function createItem($userRequest, $image): bool
+    public function createItem($userRequest): bool
     {
-        $this->db->query("INSERT INTO items (`brand`, `model`, `price`, `category_id`, `size_id`, `condition_id`, `seller_id`, `image_path`) VALUES (:brand, :model, :price, :category_id, :size_id, :condition_id, :seller_id, :image_path)");
-
+        $this->db->query("INSERT INTO items (`brand`, `model`, `price`, `category_id`, `size_id`, `condition_id`, `seller_id`) VALUES (:brand, :model, :price, :category_id, :size_id, :condition_id, :seller_id)");
         foreach ($userRequest as $key => $value) {
             $this->db->bind(':' . $key, $value);
         }

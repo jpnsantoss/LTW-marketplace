@@ -19,14 +19,12 @@ CREATE TABLE admins (
 
 CREATE TABLE items (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
-  title_id TEXT NOT NULL,
   category_id INTEGER NOT NULL,
   size_id INTEGER NOT NULL,
   condition_id TEXT NOT NULL,
   price INTEGER NOT NULL,
   brand TEXT NOT NULL,
   model TEXT NOT NULL,
-  image_path TEXT NOT NULL,
   seller_id INTEGER NOT NULL,
   created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   FOREIGN KEY(category_id) REFERENCES categories(id),
