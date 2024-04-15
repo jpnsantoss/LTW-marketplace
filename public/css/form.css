@@ -2,3 +2,131 @@ section{
 	float:left;
 	clear:both;
 }
+
+/* style.css */
+
+/* Estilos para o cabeçalho */
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
+    text-align: center;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0; /* Remova as margens padrão do corpo */
+}
+
+.navbar {
+	width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.nav {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav li {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+
+.nav a {
+    color: #fff;
+    text-decoration: none;
+}
+
+section {
+    width: 100%; /* Adicione uma largura máxima aos itens */
+    max-width: 600px; /* Defina a largura máxima para evitar que os elementos se espalhem demais */
+    margin-bottom: 20px;
+	margin-top: 20px;
+}
+/* Estilos para os formulários */
+form {
+	margin-top: 0px;
+	background-color: #f9f9f9;	
+	padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="number"],
+select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #555;
+}
+
+.listing {
+    list-style: none;
+    padding: 0;
+}
+
+.listing li {
+    display: flex; /* Usa o modelo de caixa flexível */
+    justify-content: space-between; /* Alinha os itens horizontalmente */
+    align-items: center; /* Alinha os itens verticalmente */
+    background-color: #f9f9f9; /* Cor de fundo do retângulo */
+    padding-left: 10px;
+	padding-right: 20px;
+	padding-bottom: 0px;
+	padding-top: 0px; /* Espaçamento interno */
+    margin-bottom: 10px; /* Espaçamento inferior entre os itens */
+    border-radius: 8px; /* Borda arredondada */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.listing li form{
+	padding: 0px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+h1{
+margin-bottom: 0px;}
+
+input[type="submit"] {
+    padding: 5px 10px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #555;
+}
