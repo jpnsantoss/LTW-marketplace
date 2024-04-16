@@ -21,6 +21,15 @@ class Item
         ]);
     }
 
+    public  function details()
+    {
+       
+            session_start();
+            session_destroy();
+            header('location: ' . URLROOT . '/details', true, 303);
+        
+    }
+
     public function create()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {

@@ -1,13 +1,13 @@
 <?php
 
 // Static pages routes
-//$router->addRoute('', ['controller' => 'View', 'action' => 'home']);
 $router->addRoute('register', ['controller' => 'View', 'action' => 'register']);
 $router->addRoute('login', ['controller' => 'View', 'action' => 'login']);
 $router->addRoute('profile', ['controller' => 'View', 'action' => 'profile']);
 $router->addRoute('create', ['controller' => 'View', 'action' => 'createProduct']);
 $router->addRoute('cart', ['controller' => 'View', 'action' => 'cart']);
 $router->addRoute('chat', ['controller' => 'View', 'action' => 'chat']);
+$router->addRoute('details', ['controller' => 'View', 'action' => 'details']);
 
 $router->addRoute('admin', ['controller' => 'Admin', 'action' => 'index']);
 $router -> addRoute('', ['controller' => 'Item', 'action' => 'index']);

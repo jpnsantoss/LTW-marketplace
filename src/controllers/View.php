@@ -40,6 +40,10 @@ class View
     {
         view('CreateProduct/index');
     }
+
+    public function details(){
+        view('ProductDetails/index');
+    }
     public function cart()
     {
         view('Cart/index');
