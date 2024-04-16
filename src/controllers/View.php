@@ -41,6 +41,7 @@ class View
         view('CreateProduct/index');
     }
 
+
     public function details(){
         view('ProductDetails/index');
     }
@@ -48,6 +49,8 @@ class View
     {
         view('Cart/index');
     }
+
+
     public function chat()
     {
         view('Chat/index');
