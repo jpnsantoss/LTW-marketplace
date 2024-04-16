@@ -40,10 +40,6 @@ class View
     {
         view('CreateProduct/index');
     }
-    public function cart()
-    {
-        view('Cart/index');
-    }
     public function chat()
     {
         view('Chat/index');

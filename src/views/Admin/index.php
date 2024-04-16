@@ -9,6 +9,8 @@
     <section>
         <h1>Items</h1>
         <form action="<?= URLROOT; ?>/item/create" method="post">
+            <label for="name">Name</label>
+            <input type="text" name="name" id="name">
             <label for="brand">Brand</label>
             <input type="text" name="brand" id="brand">
             <label for="model">Model</label>
@@ -70,7 +72,6 @@
             <?php foreach ($data["categories"] as $category) : ?>
                 <li>
                     <?= $category->name; ?> &emsp;
-
                     <form action="<?= URLROOT; ?>/category/<?= $category->id; ?>/delete" method="post">
                         <input type="submit" value="Delete">
                     </form>
