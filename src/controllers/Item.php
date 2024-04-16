@@ -74,3 +74,4 @@ class Item
             die(UNAUTHORIZED_ACCESS);
         }
     }
+}
