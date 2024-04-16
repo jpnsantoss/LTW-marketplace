@@ -20,6 +20,7 @@ class Item
                 die(UNAUTHORIZED_ACCESS);
             }
             $itemRequest = [
+                'name' => $_POST['name'],
                 'brand' => $_POST['brand'],
                 'model' => $_POST['model'],
                 'price' => $_POST['price'],
@@ -31,7 +32,7 @@ class Item
 
             print_r($itemRequest);
             if ($this->size->createItem($itemRequest))
-                header('location: ' . URLROOT . '/admin', true, 303);
+                header('location: ' . URLROOT . '/myItems', true, 303);
             else
                 die(SOMETHING_WENT_WRONG);
         } else {
@@ -53,4 +54,3 @@ class Item
             die(UNAUTHORIZED_ACCESS);
         }
     }
-}

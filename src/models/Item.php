@@ -21,7 +21,7 @@ class ItemModel
 
     public function createItem($userRequest): bool
     {
-        $this->db->query("INSERT INTO items (`brand`, `model`, `price`, `category_id`, `size_id`, `condition_id`, `seller_id`) VALUES (:brand, :model, :price, :category_id, :size_id, :condition_id, :seller_id)");
+        $this->db->query("INSERT INTO items (`name`,`brand`, `model`, `price`, `category_id`, `size_id`, `condition_id`, `seller_id`) VALUES (:name, :brand, :model, :price, :category_id, :size_id, :condition_id, :seller_id)");
         foreach ($userRequest as $key => $value) {
             $this->db->bind(':' . $key, $value);
         }
