@@ -14,11 +14,11 @@ class Item
 
     public function create()
     {
-        if (!isLoggedIn() || !isSeller()) {
-            header('location: ' . URLROOT . '/', true, 303);
-            die(UNAUTHORIZED_ACCESS);
-        }
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if (!isLoggedIn() || !isSeller()) {
+                header('location: ' . URLROOT . '/', true, 303);
+                die(UNAUTHORIZED_ACCESS);
+            }
             $itemRequest = [
                 'name' => $_POST['name'],
                 'brand' => $_POST['brand'],
@@ -35,18 +35,22 @@ class Item
                 header('location: ' . URLROOT . '/myItems', true, 303);
             else
                 die(SOMETHING_WENT_WRONG);
+        } else {
+            die(UNAUTHORIZED_ACCESS);
         }
     }
 
     public function delete($params)
     {
-        if (!isLoggedIn() || !isAdmin()) {
-            header('location: ' . URLROOT . '/', true, 303);
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if (!isLoggedIn() || !isAdmin()) {
+                header('location: ' . URLROOT . '/', true, 303);
+                die(UNAUTHORIZED_ACCESS);
+            }
+            $id = $params['id'];
+            $this->size->deleteItem($id);
+            header('location: ' . URLROOT . '/admin', true, 303);
+        } else {
             die(UNAUTHORIZED_ACCESS);
         }
-        $id = $params['id'];
-        $this->size->deleteItem($id);
-        header('location: ' . URLROOT . '/admin', true, 303);
     }
-    //perguntar ao joão se eu pus isto no sítio certo
-}

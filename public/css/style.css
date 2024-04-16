@@ -1,15 +1,25 @@
 @import url("https://fonts.googleapis.com/css?family=Open+Sans");
 @import url("https://fonts.googleapis.com/icon?family=Material+Icons");
-@import url('https://fonts.googleapis.com/css2?family=Geologica:wght@100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Geologica:wght@100..900&display=swap");
 
-body {
-  font-family: Geologica;
+:root {
+  --primary: #50394c;
+  --secondary: #f18973;
+  --accent: #ffef96;
+  --background: #f9f6ee;
+  --foreground: #232b2b;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: Geologica, Arial, sans-serif;
-  color: black;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
+body {
+  background-color: var(--background);
+  font-family: "Geologica", sans-serif;
+  color: var(--foreground);
 }
 
 /* Font sizes */
@@ -31,7 +41,12 @@ p {
 }
 
 /* Line heights */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   line-height: 1.2;
 }
 
@@ -40,26 +55,18 @@ p {
 }
 
 /* Other styles */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-weight: bold;
 }
 
-:root {
-    --brown: #50394c;
-    --salmon: #f18973;
-    --dark-salmon: #bc5a45;
-    --nice-yellow: #ffef96;
-    --background: #F9F6EE;
-    --text: #232b2b;
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  background-color: var(--background);
-  font-family: "Open Sans", sans-serif;
+i.icon {
+  font-family: "Material Icons";
+  font-style: normal;
+  vertical-align: bottom;
+  font-feature-settings: "liga" 1;
 }
