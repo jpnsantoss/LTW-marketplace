@@ -1,6 +1,8 @@
 header {
   width: 100%;
   background-color: var(--primary);
+  margin-bottom: 15px;
+  margin-left: 0px;
 }
 
 nav {

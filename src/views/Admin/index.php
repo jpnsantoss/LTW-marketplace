@@ -1,12 +1,12 @@
 <?php 
     require_once APPROOT . '/src/views/Common/common.php'; 
-    getHead(array('/css/style.css', 'css/form.css'), "Add Item Category"); 
+    getHead(array('/css/style.css', '/css/form.css', '/css/navbar.css'), "Add Item Category"); 
     getNavbar();
 ?>
 
 
 <!-- create item -->
-<body>
+<body class="admin">
     <section>
         <h1>Sell Item:</h1>
         <form action="<?= URLROOT; ?>/item/create" method="post">
@@ -40,7 +40,7 @@
             <input type="file" name="image" id="image" enctype="multipart/form-data">>
             <br>
             <br>
-            <button type="submit">Add Item</button>
+            <button class="button" type="submit">Add Item</button>
         </form>
         <?php if(isAdmin()) : ?>
     <!-- list items -->
@@ -54,7 +54,7 @@
                     <?= $item->size_name; ?> &emsp;
                     <?= $item->condition_name; ?> &emsp;
 
-                    <form action="<?= URLROOT; ?>/item/<?= $item->id; ?>/delete" method="post">
+                    <form class ="button" action="<?= URLROOT; ?>/item/<?= $item->id; ?>/delete" method="post">
                         <input type="submit" value="Delete">
                     </form>
                 </li>
