@@ -1,6 +1,6 @@
 <?php
 require_once APPROOT . '/src/views/Common/common.php';
-getHead(array('/css/style.css', '/css/navbar.css', 'css/home.css', 'css/form.css'), "Home");
+getHead(array('/css/style.css', '/css/navbar.css', 'css/home.css'), "Home");
 ?>
 
 <body>
@@ -45,23 +45,23 @@ getHead(array('/css/style.css', '/css/navbar.css', 'css/home.css', 'css/form.css
                 </div>
             </form>
         </section>
-    
-        <section class="home">
-          <h1>Items for sale:</h1>
-          <ul class = "listing-column">
-            <?php foreach ($data["items"] as $item) : ?>
-                  <li>
-                    <button class="item-button" data-item-id="<?= $item->id; ?>">
-                      <h3> <?= $item->model; ?> &emsp; </h3>
-                      <p> <?= $item->brand; ?> &emsp; </p>
-                      <p> <?= $item->price; ?> € &emsp; </p>
 
-                    </button>
-                  </li>
-              <?php endforeach; ?>
-          </ul>
+        <section class="home">
+            <h1>Items for sale:</h1>
+            <ul class="listing-column">
+                <?php foreach ($data["items"] as $item) : ?>
+                    <li>
+                        <button class="item-button" data-item-id="<?= $item->id; ?>">
+                            <h3> <?= $item->model; ?> &emsp; </h3>
+                            <p> <?= $item->brand; ?> &emsp; </p>
+                            <p> <?= $item->price; ?> € &emsp; </p>
+
+                        </button>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
         </section>
-</main>
+    </main>
 </body>
 
 <?php
