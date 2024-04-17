@@ -1,17 +1,16 @@
-<?php 
-    require_once APPROOT . '/src/views/Common/common.php'; 
-    getHead(array('/css/style.css', '/css/form.css', '/css/navbar.css'), "Add Item Category"); 
-    getNavbar();
+<?php
+require_once APPROOT . '/src/views/Common/common.php';
+getHead(array('/css/style.css', '/css/form.css', '/css/navbar.css'), "Add Item Category");
+getNavbar();
 ?>
 
 
 <!-- create item -->
+
 <body class="admin">
     <section>
         <h1>Sell Item:</h1>
-        <form action="<?= URLROOT; ?>/item/create" method="post">
-            <label for="name">Name</label>
-            <input type="text" name="name" id="name">n
+        <form action="<?= URLROOT; ?>/item/create" method="post" enctype="multipart/form-data">
             <label for="brand">Brand</label>
             <input type="text" name="brand" id="brand">
             <label for="model">Model</label>
@@ -36,30 +35,31 @@
                     <option value="<?= $condition->id; ?>"><?= $condition->name; ?></option>
                 <?php endforeach; ?>
             </select>
-            <label for="image">Image</label>
-            <input type="file" name="image" id="image" enctype="multipart/form-data">>
+            <label for="images">Images</label>
+            <input type="file" name="images[]" id="images" multiple>
             <br>
             <br>
             <button class="button" type="submit">Add Item</button>
         </form>
-        <?php if(isAdmin()) : ?>
-    <!-- list items -->
-        <h1>Items for sale:</h1>            
-        <ul class="listing">
-            <?php foreach ($data["items"] as $item) : ?>
-                <li>
-                    <?= $item->name; ?> &emsp;
-                    <?= $item->price; ?> &emsp;
-                    <?= $item->category_name; ?> &emsp;
-                    <?= $item->size_name; ?> &emsp;
-                    <?= $item->condition_name; ?> &emsp;
+        <?php if (isAdmin()) : ?>
+            <!-- list items -->
+            <h1>Items for sale:</h1>
+            <ul class="listing">
+                <?php foreach ($data["items"] as $item) : ?>
+                    <li>
+                        <?= $item->name; ?> &emsp;
+                        <?= $item->price; ?> &emsp;
+                        <?= $item->category_name; ?> &emsp;
+                        <?= $item->size_name; ?> &emsp;
+                        <?= $item->condition_name; ?> &emsp;
 
-                    <form class ="button" action="<?= URLROOT; ?>/item/<?= $item->id; ?>/delete" method="post">
-                        <input type="submit" value="Delete">
-                    </form>
-                </li>
-            <?php endforeach; ?>
-        </ul>
+
+                        <form class="button" action="<?= URLROOT; ?>/item/<?= $item->id; ?>/delete" method="post">
+                            <input type="submit" value="Delete">
+                        </form>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
     </section>
     <section>
         <h1>Add new category:</h1>
@@ -70,7 +70,7 @@
             <input type="text" name="name" id="name">
             <button type="submit">Add Category</button>
         </form>
-    <!-- list categories -->
+        <!-- list categories -->
         <h1>Categories:</h1>
         <ul class="listing">
             <?php foreach ($data["categories"] as $category) : ?>
@@ -86,7 +86,7 @@
     <section>
 
         <h1>Add new size:</h1>
-    
+
         <!-- create size -->
         <form action="<?= URLROOT; ?>/size/create" method="post">
             <label for="name">Size Name</label>
@@ -110,11 +110,11 @@
     </section>
 
     <section>
-    
+
         <h1>Add new condition:</h1>
 
         <!-- create condition -->
-    
+
         <form action="<?= URLROOT; ?>/condition/create" method="post">
             <label for="name">Condition Name</label>
             <input type="text" name="name" id="name">
@@ -135,5 +135,5 @@
             <?php endforeach; ?>
         </ul>
     </section>
-    <?php endif; ?>
+<?php endif; ?>
 </body>
