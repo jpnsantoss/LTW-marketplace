@@ -138,7 +138,6 @@ nav li:last-child {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin-bottom: 0.8rem;
   }
 
   .highlight {

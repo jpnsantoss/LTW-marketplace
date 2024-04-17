@@ -45,6 +45,15 @@ getHead(array('/css/style.css', '/css/navbar.css', 'css/home.css'), "Home");
                 </div>
             </form>
         </section>
+
+        <section class="posts">
+            <h2>Welcome to the LTW Marketplace!</h2>
+            <?php foreach ($data["items"] as $item) : ?>
+                <article>
+                    <?= $item->brand; ?>
+                </article>
+            <?php endforeach; ?>
+        </section>
     </main>
 </body>
 

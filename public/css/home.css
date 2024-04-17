@@ -5,7 +5,7 @@
 .search form {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 4rem 0;
+  padding: 4rem 0.5rem;
   display: flex;
   flex-direction: column;
   gap: 2rem;
@@ -72,4 +72,23 @@
 .price-input {
   display: flex;
   gap: 1rem;
+}
+
+.posts {
+  margin: 5rem auto;
+  max-width: 1400px;
+  padding: 0.5rem;
+}
+
+.posts h2 {
+  text-align: center;
+}
+
+@media screen and (max-width: 768px) {
+  .search-main {
+    flex-direction: column;
+  }
+  .search-filters {
+    flex-direction: column;
+  }
 }
