@@ -1,8 +1,6 @@
 header {
   width: 100%;
   background-color: var(--primary);
-  margin-bottom: 15px;
-  margin-left: 0px;
 }
 
 nav {
@@ -140,7 +138,6 @@ nav li:last-child {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin-bottom: 0.8rem;
   }
 
   .highlight {

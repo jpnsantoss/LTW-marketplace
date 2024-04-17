@@ -12,22 +12,11 @@ class Item
         $this->item = new ItemModel;
     }
 
-    public function index()
-    {
-        view('Home/index', [
-        
-            'items' => $this->item->getItems(),
-            
-        ]);
-    }
-
     public  function details()
     {
-       
-            session_start();
-            session_destroy();
-            header('location: ' . URLROOT . '/details', true, 303);
-        
+        session_start();
+        session_destroy();
+        header('location: ' . URLROOT . '/details', true, 303);
     }
 
     public function create()

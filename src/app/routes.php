@@ -1,6 +1,7 @@
 <?php
 
 // Static pages routes
+$router->addRoute('', ['controller' => 'Home', 'action' => 'index']);
 $router->addRoute('register', ['controller' => 'View', 'action' => 'register']);
 $router->addRoute('login', ['controller' => 'View', 'action' => 'login']);
 $router->addRoute('profile', ['controller' => 'View', 'action' => 'profile']);
@@ -10,7 +11,6 @@ $router->addRoute('chat', ['controller' => 'View', 'action' => 'chat']);
 $router->addRoute('details', ['controller' => 'View', 'action' => 'details']);
 
 $router->addRoute('admin', ['controller' => 'Admin', 'action' => 'index']);
-$router -> addRoute('', ['controller' => 'Item', 'action' => 'index']);
 
 
 // Routes in main controllers/ folder (Namespace \Controllers)
