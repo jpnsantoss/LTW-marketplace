@@ -46,16 +46,20 @@ getHead(array('/css/style.css', '/css/navbar.css', 'css/home.css'), "Home");
             </form>
         </section>
 
-        <section class="home">
+        <section class="home-items">
             <h1>Items for sale:</h1>
-            <ul class="listing-column">
+            <ul class="listing-items">
                 <?php foreach ($data["items"] as $item) : ?>
                     <li>
                         <button class="item-button" data-item-id="<?= $item->id; ?>">
-                            <h3> <?= $item->model; ?> &emsp; </h3>
+                            
+                        <img src="<?= $item->image_urls[0] ?>" alt="Item image" id="item-image">
+                        <div class="item-info">
+                            <h4> <?= $item->category_name; ?> &emsp; </h4>
+                            <h2> <?= $item->model; ?> &emsp; </h2>
                             <p> <?= $item->brand; ?> &emsp; </p>
-                            <p> <?= $item->price; ?> € &emsp; </p>
-
+                            <h3> <?= $item->price; ?> € &emsp; </h3>
+                </div> 
                         </button>
                     </li>
                 <?php endforeach; ?>

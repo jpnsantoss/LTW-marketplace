@@ -48,7 +48,7 @@ getNavbar();
                 <?php foreach ($data["items"] as $item) : ?>
                     <li>
                         <?= $item->name; ?> &emsp;
-                        <?= $item->price; ?> &emsp;
+                        <?= $item->price; ?> € &emsp;
                         <?= $item->category_name; ?> &emsp;
                         <?= $item->size_name; ?> &emsp;
                         <?= $item->condition_name; ?> &emsp;

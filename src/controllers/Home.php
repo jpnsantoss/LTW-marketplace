@@ -28,6 +28,11 @@ class Home
 
     public function index()
     {
-        echo json_encode($this->item->getItems());
+        //echo json_encode($this->item->getItems());
+        view('Home/index', [
+        
+            'items' => $this->item->getItems(),
+            
+        ]);
     }
 }
