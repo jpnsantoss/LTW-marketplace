@@ -6,10 +6,28 @@ use Models\ItemModel;
 
 class Item
 {
-    private $size;
+    private $item;
     public function __construct()
     {
-        $this->size = new ItemModel;
+        $this->item = new ItemModel;
+    }
+
+    public function index()
+    {
+        view('Home/index', [
+        
+            'items' => $this->item->getItems(),
+            
+        ]);
+    }
+
+    public  function details()
+    {
+       
+            session_start();
+            session_destroy();
+            header('location: ' . URLROOT . '/details', true, 303);
+        
     }
 
     public function create()
@@ -20,6 +38,7 @@ class Item
                 die(UNAUTHORIZED_ACCESS);
             }
             $itemRequest = [
+                'name' => $_POST['name'],
                 'brand' => $_POST['brand'],
                 'model' => $_POST['model'],
                 'price' => $_POST['price'],
@@ -30,8 +49,10 @@ class Item
             ];
 
             print_r($itemRequest);
-            if ($this->size->createItem($itemRequest))
+
+            if ($this->item->createItem($itemRequest))
                 header('location: ' . URLROOT . '/admin', true, 303);
+
             else
                 die(SOMETHING_WENT_WRONG);
         } else {
@@ -47,7 +68,7 @@ class Item
                 die(UNAUTHORIZED_ACCESS);
             }
             $id = $params['id'];
-            $this->size->deleteItem($id);
+            $this->item->deleteItem($id);
             header('location: ' . URLROOT . '/admin', true, 303);
         } else {
             die(UNAUTHORIZED_ACCESS);
