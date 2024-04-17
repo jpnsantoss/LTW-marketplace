@@ -46,9 +46,9 @@ getHead(array('/css/style.css', '/css/navbar.css', 'css/home.css'), "Home");
             </form>
         </section>
 
-        <section class="home">
+        <section class="home-items">
             <h1>Items for sale:</h1>
-            <ul class="listing-column">
+            <ul class="listing-items">
                 <?php foreach ($data["items"] as $item) : ?>
                     <li>
                         <button class="item-button" data-item-id="<?= $item->id; ?>">
