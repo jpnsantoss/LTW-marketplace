@@ -3,13 +3,16 @@
 namespace Controllers;
 
 use Models\ItemModel;
+use Models\ImageModel;
 
 class Item
 {
     private $item;
+    private $imageModel;
     public function __construct()
     {
         $this->item = new ItemModel;
+        $this->imageModel = new ImageModel;
     }
 
     public  function details()
@@ -27,7 +30,6 @@ class Item
                 die(UNAUTHORIZED_ACCESS);
             }
             $itemRequest = [
-                'name' => $_POST['name'],
                 'brand' => $_POST['brand'],
                 'model' => $_POST['model'],
                 'price' => $_POST['price'],
@@ -36,18 +38,44 @@ class Item
                 'size_id' => $_POST['size'],
                 'seller_id' => $_SESSION['user']['id']
             ];
+            $item_id = $this->item->createItem($itemRequest);
+            if ($item_id !== false) {
+                if (isset($_FILES['images'])) {
+                    $post_images = $this->uploadImages($_FILES['images'], $item_id);
 
-            print_r($itemRequest);
-
-            if ($this->item->createItem($itemRequest))
+                    foreach ($post_images as $image) {
+                        $this->imageModel->createImage($image, $item_id);
+                    }
+                }
                 header('location: ' . URLROOT . '/admin', true, 303);
-
-            else
+            } else
                 die(SOMETHING_WENT_WRONG);
         } else {
             die(UNAUTHORIZED_ACCESS);
         }
     }
+
+
+
+    private function uploadImages($images, $itemId)
+    {
+        $targetDir = "/images/uploads/";
+        $absoluteDir = APPROOT . "/public" . $targetDir;
+        $targetFiles = [];
+        foreach ($images['tmp_name'] as $key => $tmp_name) {
+            $fileExtension = pathinfo($images['name'][$key], PATHINFO_EXTENSION);
+            $newFileName = $itemId . '_' . time() . '_' . $key . '.' . $fileExtension;
+            $absoluteFile = $absoluteDir . $newFileName;
+            $targetFile = $targetDir . $newFileName;
+
+            if (move_uploaded_file($tmp_name, $absoluteFile)) {
+                $targetFiles[] = $targetFile;
+            }
+        }
+        return $targetFiles;
+    }
+
+
 
     public function delete($params)
     {

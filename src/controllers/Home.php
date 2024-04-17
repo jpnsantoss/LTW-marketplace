@@ -25,13 +25,9 @@ class Home
         $this->image = new ImageModel;
     }
 
+
     public function index()
     {
-        view('Home/index', [
-            'categories' => $this->category->getCategories(),
-            'sizes' => $this->size->getSizes(),
-            'items' => $this->item->getItems(),
-            'conditions' => $this->condition->getConditions(),
-        ]);
+        echo json_encode($this->item->getItems());
     }
 }
