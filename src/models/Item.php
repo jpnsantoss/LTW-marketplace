@@ -43,7 +43,6 @@ class ItemModel
     }
 
 
-
     public function createItem($userRequest)
     {
         $this->db->query("INSERT INTO items (`brand`, `model`, `price`, `category_id`, `size_id`, `condition_id`, `seller_id`) VALUES (:brand, :model, :price, :category_id, :size_id, :condition_id, :seller_id)");

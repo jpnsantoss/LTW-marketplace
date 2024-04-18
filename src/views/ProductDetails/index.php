@@ -5,19 +5,16 @@
 ?>
 
 <body>
-<ul class="listing">
-    <?php foreach ($data["items"] as $item) : ?>
-        <li>
-            <?= $item->name; ?> &emsp;
-            <?= $item->price; ?> &emsp;
-            <?= $item->category_name; ?> &emsp;
-            <?= $item->size_name; ?> &emsp;
-            <?= $item->condition_name; ?> &emsp;
+<p> ProductDetails </p>
+<div>
+<pre>
+        <?php echo var_dump($data["item"]); ?>
+    </pre>
+        
+        <p>Preço: <?= $data["item"]->price ?></p>
 
-            <form action="<?= URLROOT; ?>/item/<?= $item->id; ?>/delete" method="post">
-                <input type="submit" value="Delete">
-            </form>
-        </li>
-    <?php endforeach; ?>
-</ul>
+        <!-- Exibir imagens do item -->
+        <h3>Imagens do Item</h3>
+       
+    </div>
 </body>
