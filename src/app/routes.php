@@ -10,11 +10,11 @@ $router->addRoute('cart', ['controller' => 'View', 'action' => 'cart']);
 $router->addRoute('chat', ['controller' => 'View', 'action' => 'chat']);
 //$router->addRoute('details', ['controller' => 'Home', 'action' => 'details']);
 
-//$router->addRoute('admin', ['controller' => 'Admin', 'action' => 'index']);
-$router->addRoute('{controller}/{action}}', [
+$router->addRoute('admin', ['controller' => 'Admin', 'action' => 'index']);
+/*$router->addRoute('{controller}/{action}}', [
     'controller' => 'Admin',
     'action' => 'index'
-]);
+]);*/
 
 $router->addRoute('{controller}/{action}/{id:\d+}', [
     'controller' => 'Home',
