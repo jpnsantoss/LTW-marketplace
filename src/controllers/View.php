@@ -42,9 +42,6 @@ class View
     }
 
 
-    public function details(){
-        view('ProductDetails/index');
-    }
     public function cart()
     {
         view('Cart/index');

@@ -82,7 +82,7 @@ getNavbar();
             <ul class="listing-items">
                 <?php foreach ($data["items"] as $item) : ?>
                     <li>
-                        <button class="item-button" data-item-id="<?= $item->id; ?>">
+                        <button class="item-button" data-item-id="<?= $item->id; ?>"onclick="redirectToDetails(<?= $item->id; ?>)">
                             
                         <img src="<?= $item->image_urls[0] ?>" alt="Item image" id="item-image">
                         <div class="item-info">
@@ -90,11 +90,19 @@ getNavbar();
                             <h2> <?= $item->model; ?> &emsp; </h2>
                             <p> <?= $item->brand; ?> &emsp; </p>
                             <h3> <?= $item->price; ?> € &emsp; </h3>
+                            
                 </div> 
                         </button>
+                        <script>
+    function redirectToDetails(itemId) {
+        // Redireciona para a rota details com o ID do item
+        window.location.href = '/home/details/' + itemId;
+    }
+</script>
                     </li>
                 <?php endforeach; ?>
             </ul>
+            
         </section>
     </main>
 </body>

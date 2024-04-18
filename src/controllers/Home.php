@@ -35,4 +35,33 @@ class Home
             
         ]);
     }
+    public function details($id)
+    {
+        $itemId = intval($id['id']);
+
+        $items = $this->item->getItems();
+        foreach ($items as $i) {
+           
+            if ($i->id == $itemId) {
+                view('ProductDetails/index', [
+                    'item' => $i
+                ]);
+                
+                break;
+            }
+            
+        }
+        
+      
+       /* if (isset($item)) {
+            // Se o item foi encontrado, passa-o para a view
+            view('ProductDetails/index', [
+                'item' => $item
+            ]);
+        } else {
+            // Se o item não foi encontrado, exibe uma mensagem de erro
+            echo "Item não encontrado";
+        }*/
+    }
+
 }
