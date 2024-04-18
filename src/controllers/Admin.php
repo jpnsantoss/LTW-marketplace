@@ -7,6 +7,8 @@ use \Models\SizeModel;
 use \Models\ItemModel;
 use \Models\ConditionModel;
 use \Models\ImageModel;
+use \Models\UserModel;
+
 
 class Admin
 {
@@ -15,6 +17,7 @@ class Admin
     private $item;
     private $condition;
     private $image;
+    private $user;
 
     public function __construct()
     {
@@ -23,6 +26,7 @@ class Admin
         $this->item = new ItemModel;
         $this->condition = new ConditionModel;
         $this->image = new ImageModel;
+        $this->user = new UserModel;
     }
 
     public function index()
@@ -31,7 +35,13 @@ class Admin
             'categories' => $this->category->getCategories(),
             'sizes' => $this->size->getSizes(),
             'items' => $this->item->getItems(),
-            'conditions' => $this->condition->getConditions(),
+            'conditions' => $this->condition->getConditions()
+        ]);           
+    }
+
+    public function users(){
+        view('Admin/users', [
+            'users' => $this->user->getUsersAndSellerInfo()
         ]);
     }
 }

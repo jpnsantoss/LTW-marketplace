@@ -20,7 +20,6 @@ class Item
                 die(UNAUTHORIZED_ACCESS);
             }
             $itemRequest = [
-                'name' => $_POST['name'],
                 'brand' => $_POST['brand'],
                 'model' => $_POST['model'],
                 'price' => $_POST['price'],
@@ -54,3 +53,4 @@ class Item
             die(UNAUTHORIZED_ACCESS);
         }
     }
+}

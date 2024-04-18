@@ -15,7 +15,19 @@ class UserModel
 
     public function getUsers(): array
     {
-        $this->db->query("SELECT * FROM users");
+        $this->db->query("SELECT * FROM users ");
+        return $this->db->resultSet();
+    }
+
+    public function getUsersAndSellerInfo(): array
+    {
+        $this->db->query("SELECT * FROM users LEFT JOIN sellers ON users.id = sellers.user_id");
+        return $this->db->resultSet();
+    }
+
+    public function getSellers(): array
+    {
+        $this->db->query("SELECT * FROM users JOIN sellers ON users.id = sellers.user_id");
         return $this->db->resultSet();
     }
 
@@ -72,5 +84,11 @@ class UserModel
         }
 
         return $user;
+    }
+
+    public function promoteToSeller($user)
+    {
+        $this->db->query('INSERT INTO sellers (user_id) VALUES (?)');
+        return $this->db->execute($user['id']);
     }
 }
