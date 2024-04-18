@@ -11,6 +11,7 @@ $router->addRoute('chat', ['controller' => 'View', 'action' => 'chat']);
 $router->addRoute('details', ['controller' => 'View', 'action' => 'details']);
 
 $router->addRoute('admin', ['controller' => 'Admin', 'action' => 'index']);
+$router->addRoute('admin', ['controller' => 'Admin', 'action' => 'users']);
 
 
 // Routes in main controllers/ folder (Namespace \Controllers)
