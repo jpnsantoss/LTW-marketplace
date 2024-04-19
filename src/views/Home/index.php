@@ -50,9 +50,12 @@ getHead(array('/css/style.css', '/css/navbar.css', '/css/home.css'), "Home");
             <h1>Items for sale:</h1>
             <ul class="listing-items">
                 <?php foreach ($data["items"] as $item) : ?>
+                    
                     <li>
+
                         <button class="item-button" data-item-id="<?= $item->id; ?>"onclick="redirectToDetails(<?= $item->id; ?>)">
-                            
+                        
+
                         <img src="<?= $item->image_urls[0] ?>" alt="Item image" id="item-image">
                         <div class="item-info">
                             <h4> <?= $item->category_name; ?> &emsp; </h4>

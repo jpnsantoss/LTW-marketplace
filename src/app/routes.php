@@ -11,7 +11,7 @@ $router->addRoute('chat', ['controller' => 'View', 'action' => 'chat']);
 //$router->addRoute('details', ['controller' => 'Home', 'action' => 'details']);
 
 $router->addRoute('admin', ['controller' => 'Admin', 'action' => 'index']);
-$router->addRoute('admin', ['controller' => 'Admin', 'action' => 'users']);
+$router->addRoute('adminPromote', ['controller' => 'Admin', 'action' => 'users']);
 
 
 $router->addRoute('{controller}/{action}/{id:\d+}', [

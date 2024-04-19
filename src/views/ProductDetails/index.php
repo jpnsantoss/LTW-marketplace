@@ -7,7 +7,10 @@
 <body>
 <div class="item-container">
     <div class="item-image">
-        <img src="<?= $data["item"]->image_urls[0] ?>" alt="Item image">
+        <img id="item-image" src="<?= $data["item"]->image_urls[0] ?>" alt="Item image">
+        <button id="previous-button">&#10094;</button>
+        <button id="next-button" >&#10095;</button>
+
     </div>
     <div class="item-details">
         <h2><?= $data["item"]->model; ?></h2>
@@ -28,4 +31,32 @@
 </div>
         </div>
 </div>
+
+
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+    const images = <?= json_encode($data["item"]->image_urls) ?>;
+    const imgElement = document.getElementById("item-image");
+    const nextButton = document.getElementById("next-button");
+    const previousButton = document.getElementById("previous-button");
+    let currentIndex = 0;
+
+    function showNextImage() {
+        currentIndex = (currentIndex + 1) % images.length;
+        imgElement.src = images[currentIndex];
+    }
+
+    function showPreviousImage() {
+        currentIndex = (currentIndex - 1 + images.length) % images.length;
+        imgElement.src = images[currentIndex];
+    }
+
+    nextButton.addEventListener("click", showNextImage);
+    previousButton.addEventListener("click", showPreviousImage);
+});
+
+
+    </script>
+
 </body>
