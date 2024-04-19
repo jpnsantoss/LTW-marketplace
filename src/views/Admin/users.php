@@ -27,13 +27,14 @@
                 <td><?=$user['hashed_password']?></td>
                 <td><?=$isSeller?></td>
                 <td><?=$user['created_at']?></td>
-                <?php if ($isSeller == 'Yes') { ?>
-                    <td class=button><button type="submit">Promote to seller<button></td> 
+                <?php if ($isSeller == 'No') { ?>
+                    <td class ="button"><button type="submit" class="promote-button" data-user-id="<?= $user['id'] ?>">Promote to seller</button></td>
                 <?php } else { ?>
-                    <td class=button><button type="submit">See Items<button></td> 
+                    <td class="button"><button type="submit">See Items<button></td> 
                 <?php } ?>
         
             </tr>
         <?php } ?>
     </table> 
+    <?php getScript('promote.js'); ?>
 </body>

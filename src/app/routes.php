@@ -13,21 +13,16 @@ $router->addRoute('chat', ['controller' => 'View', 'action' => 'chat']);
 $router->addRoute('admin', ['controller' => 'Admin', 'action' => 'index']);
 $router->addRoute('admin', ['controller' => 'Admin', 'action' => 'users']);
 
-
 $router->addRoute('{controller}/{action}/{id:\d+}', [
     'controller' => 'Home',
     'action' => 'details'
 ]);
 
-
-
-
-
 // Routes in main controllers/ folder (Namespace \Controllers)
 $router->addRoute('{controller}/{action}');
 $router->addRoute('{controller}/{action}/{id:\d+}');
 $router->addRoute('{controller}/{id:\d+}/{action}');
-
+$router->addRoute('admin/promoteUserToSeller/{id:\d+}', ['controller' => 'Admin', 'action' => 'promoteUserToSeller']);
 // Examples:
 // 
 // $router->addRoute('{controller}/{action}');
