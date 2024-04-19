@@ -41,6 +41,7 @@
 }
 
 .item-buttons button {
+    display: inline-block;
   width: 100%;
   margin-bottom: 7px;
   padding:8px 20px; /* Adiciona preenchimento interno aos botões */
