@@ -28,12 +28,14 @@ class Home
 
     public function index()
     {
-        //echo json_encode($this->item->getItems());
-        view('Home/index', [
-        
-            'items' => $this->item->getItems(),
-            
-        ]);
+        if (isLoggedIn()) {
+            view('Home/index', [
+
+                'items' => $this->item->getItems(),
+            ]);
+        } else {
+            header('location: ' . URLROOT . '/login', true, 303);
+        }
     }
     public function details($id)
     {
@@ -41,19 +43,18 @@ class Home
 
         $items = $this->item->getItems();
         foreach ($items as $i) {
-           
+
             if ($i->id == $itemId) {
                 view('ProductDetails/index', [
                     'item' => $i
                 ]);
-                
+
                 break;
             }
-            
         }
-        
-      
-       /* if (isset($item)) {
+
+
+        /* if (isset($item)) {
             // Se o item foi encontrado, passa-o para a view
             view('ProductDetails/index', [
                 'item' => $item
@@ -63,5 +64,4 @@ class Home
             echo "Item não encontrado";
         }*/
     }
-
 }
