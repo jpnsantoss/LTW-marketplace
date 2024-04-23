@@ -54,6 +54,7 @@ getHead(array('/css/style.css', '/css/navbar.css', '/css/home.css'), "Home");
                         <a href="/">
                             <img src="<?= $item->image_urls[0] ?>" alt="Item image" id="item-image">
                         </a>
+
                         <div class="item-info">
                             <div>
                                 <div class="item-header">
