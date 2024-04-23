@@ -39,7 +39,11 @@ class ImageModel
 
         if ($image) {
             $image = get_object_vars($image);
-            unlink(URLROOT . '/images/uploads' . $image['url']);
+            $file_with_path = $_SERVER['DOCUMENT_ROOT'] . $image['url'];
+
+            if (file_exists($file_with_path)) {
+                unlink($file_with_path);
+            }
             $this->db->query('DELETE FROM images WHERE id = :id');
             $this->db->bind(':id', $image['id']);
             if ($this->db->execute()) return true;
