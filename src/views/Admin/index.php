@@ -47,7 +47,8 @@ getNavbar();
             <ul class="listing">
                 <?php foreach ($data["items"] as $item) : ?>
                     <li>
-                        <?= $item->name; ?> &emsp;
+                        <?= $item->brand; ?> &emsp;
+                        <?= $item->model; ?> &emsp;
                         <?= $item->price; ?> € &emsp;
                         <?= $item->category_name; ?> &emsp;
                         <?= $item->size_name; ?> &emsp;
