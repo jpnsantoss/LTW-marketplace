@@ -51,7 +51,7 @@ getHead(array('/css/style.css', '/css/navbar.css', '/css/home.css'), "Home");
             <div class="listing-items">
                 <?php foreach ($data["items"] as $item) : ?>
                     <article class="item-card">
-                        <a href="/">
+                        <a href="/home/details/<?= $item->id ?>">
                             <img src="<?= $item->image_urls[0] ?>" alt="Item image" id="item-image">
                         </a>
 
@@ -61,13 +61,17 @@ getHead(array('/css/style.css', '/css/navbar.css', '/css/home.css'), "Home");
                                     <p> <?= $item->brand; ?></p>
                                     <span class="category"> <?= $item->category_name; ?></span>
                                 </div>
-                                <h3> <?= $item->model; ?></h3>
+
+                                <a href="/home/details/<?= $item->id ?>">
+                                    <?= $item->model; ?>
+                                </a>
+
                             </div>
                             <div class="item-footer">
                                 <h3><?= $item->price; ?> €</h3>
                                 <div>
                                     <button><i class="icon">favorite</i></button>
-                                    <button><i class="icon">cart</i> Add to cart</button>
+                                    <button><i class="icon">shopping_cart</i> Add to cart</button>
                                 </div>
                             </div>
 
