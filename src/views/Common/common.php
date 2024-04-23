@@ -27,7 +27,7 @@ function getNavbar()
             <div id="menu-links">
                 <ul>
                     <li><a href="#"><i class="icon">chat_bubble</i> Messages</a></li>
-                    <li><a href="#"><i class="icon">favorite</i> Wishlist</a></li>
+                    <li><a href="/wishList"><i class="icon">favorite</i> Wishlist</a></li>
 
 
                     <li class="dropdown">

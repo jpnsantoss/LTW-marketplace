@@ -2,31 +2,32 @@
 
 namespace Controllers;
 
-use Models\WishListModel;
+use Models\CartModel;
 
-class WishList{
+class Cart{
 
-    private $wishList;
+    private $cart;
 
-    public function __construct(){
-        $this->wishList = new WishListModel;
+    public function __construct()
+    {
+        $this->cart = new Cart;
     }
 
-    public function addtoWishList() : bool
+    public function addtoCart() : bool
     {
         if (!isLoggedIn()) {
             header('location: ' . URLROOT . '/', true, 303);
             die(UNAUTHORIZED_ACCESS);
         }
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $wishListRequest = [
+            $cartRequest = [
                 'user_id' => $_SESSION['user']['id'],
                 //not teste'product_id' => $_POST['id'] //ou get??
             ];
 
-            print_r($wishListRequest);
-            if ($this->userList->addtoWishList($wishlistRequest)){
-                header('location: ' . URLROOT . '/wishList', true, 303);
+            print_r($cartRequest);
+            if ($this->userCart->addtoCart($cartRequest)){
+                header('location: ' . URLROOT . '/cart', true, 303);
                 return true;
             }else{
                 die(SOMETHING_WENT_WRONG);
@@ -37,8 +38,8 @@ class WishList{
     
     public function index()
     {
-        view('wishList/index', [
-            'items' => getWishlist($_SESSION['user']['id'])
+        view('Cart/index', [
+            'items' => getCart($_SESSION['user']['id'])
         ]);
     }
 }

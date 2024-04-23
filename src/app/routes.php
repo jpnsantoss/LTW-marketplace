@@ -6,7 +6,7 @@ $router->addRoute('register', ['controller' => 'View', 'action' => 'register']);
 $router->addRoute('login', ['controller' => 'View', 'action' => 'login']);
 $router->addRoute('profile', ['controller' => 'View', 'action' => 'profile']);
 $router->addRoute('create', ['controller' => 'View', 'action' => 'createProduct']);
-$router->addRoute('cart', ['controller' => 'View', 'action' => 'cart']);
+$router->addRoute('cart', ['controller' => 'Cart', 'action' => 'index']);
 $router->addRoute('wishList', ['controller' => 'WishList', 'action' => 'index']);
 $router->addRoute('chat', ['controller' => 'View', 'action' => 'chat']);
 //$router->addRoute('details', ['controller' => 'Home', 'action' => 'details']);
