@@ -142,6 +142,13 @@
   font-family: "Open Sans", sans-serif;
 }
 
+.item-info a {
+  color: var(--foreground);
+  text-decoration: none;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
 .item-header {
   display: flex;
   justify-content: space-between;
