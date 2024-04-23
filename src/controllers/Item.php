@@ -79,6 +79,16 @@ class Item
                 die(UNAUTHORIZED_ACCESS);
             }
             $id = $params['id'];
+
+            $images = $this->imageModel->findImages($id);
+
+            foreach ($images as $image) {
+                if (!$this->imageModel->deleteImage($image->id)) {
+                    die("deleting image failed.");
+                };
+            }
+
+
             $this->item->deleteItem($id);
             header('location: ' . URLROOT . '/admin', true, 303);
         } else {
@@ -86,4 +96,3 @@ class Item
         }
     }
 }
-
