@@ -19,7 +19,7 @@ header{
     margin: 20px;
 }
 
-.admin{
+.forms{
     display: flex;
     flex-direction: column;
     align-items: center;

@@ -1,6 +1,6 @@
 <?php 
     require_once APPROOT . '/src/views/Common/common.php'; 
-    getHead(array('/css/style.css'), "Profile"); 
+    getHead(array('/css/style.css', '/css/navbar.css'), "Profile"); 
     getNavbar();
 ?>
 <p>Profile</p>
