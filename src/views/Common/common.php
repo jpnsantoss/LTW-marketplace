@@ -44,7 +44,7 @@ function getNavbar()
 
 
                     <?php if (isSeller()) : ?>
-                        <li><a href="#" class="highlight">Post Items</a></li>
+                        <li><a href="/create" class="highlight">Post Items</a></li>
                     <?php else : ?>
                         <li><a href="#" class="highlight">Become a Seller</a></li>
                     <?php endif; ?>
