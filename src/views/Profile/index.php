@@ -1,6 +1,6 @@
 <?php 
     require_once APPROOT . '/src/views/Common/common.php'; 
-    getHead(array('/css/style.css', '/css/navbar.css'), "Profile"); 
+    getHead(array('/css/style.css', '/css/navbar.css', '/css/profile.css'), "Profile"); 
     getNavbar();
 ?>
 
@@ -15,14 +15,17 @@
 $user = $_SESSION['user'];
 ?>
 
-<body>
-    <h1>Welcome, <?php echo $user['username']; ?>!</h1>
-    <h2> Current info </h2>
-    <p>Email: <?php echo $user['email']; ?></p>
+<body class="forms">
+    <section>
+    <h1>Your profile</h1>
     
-    <p>Full name: <?php echo $user['full_name']; ?></p>
-    <p>Date: <?php echo $user['created_at']; ?></p>
-    <!-- Outras informações do perfil podem ser exibidas aqui -->
+    <form>
+        <h2> Current info: </h2>
+        <p>Username: <?php echo $user['username']; ?></p>
+        <p>Email: <?php echo $user['email']; ?></p>
+        <p>Full name: <?php echo $user['full_name']; ?></p>
+        <p>Date: <?php echo $user['created_at']; ?></p>
+    </form>
 
     <h2>Edit Profile:</h2>
 
@@ -58,7 +61,7 @@ $user = $_SESSION['user'];
     <button class="button" type="submit">Submit</button>
     </form>
 
-    <a href="#" id="logout">Logout</a>
+</section>
 </body>
 
 <?php
