@@ -4,8 +4,8 @@
 $router->addRoute('', ['controller' => 'Home', 'action' => 'index']);
 $router->addRoute('register', ['controller' => 'View', 'action' => 'register']);
 $router->addRoute('login', ['controller' => 'View', 'action' => 'login']);
-$router->addRoute('profile', ['controller' => 'View', 'action' => 'profile']);
-$router->addRoute('create', ['controller' => 'View', 'action' => 'createProduct']);
+$router->addRoute('profile', ['controller' => 'Home', 'action' => 'profile']);
+$router->addRoute('create', ['controller' => 'Admin', 'action' => 'additem']);
 $router->addRoute('cart', ['controller' => 'View', 'action' => 'cart']);
 $router->addRoute('chat', ['controller' => 'View', 'action' => 'chat']);
 

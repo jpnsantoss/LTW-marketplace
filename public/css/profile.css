@@ -54,3 +54,57 @@ select {
 .button:hover {
     background-color: #555;
 }
+
+.item-container {
+    position: relative;
+    width: 600px;
+    height: 300px; /* largura desejada para o contêiner do item */
+}
+
+.item-image {
+    position: relative;
+}
+
+#item-image {
+    margin-top: 20px;
+    max-width: 100%; /* a imagem do item se ajustará automaticamente ao tamanho do contêiner */
+    max-height: 200px;
+    padding-left: 200px;
+    /* a altura da imagem será ajustada automaticamente para manter a proporção */
+}
+
+#previous-button,
+#next-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    font-size: 24px;
+    color: rgb(12, 12, 12);
+    cursor: pointer;
+    z-index: 1; /* as setas de navegação estarão acima da imagem */
+}
+
+#previous-button {
+    left: 10px; /* posição da seta de navegação esquerda */
+}
+
+#next-button {
+    right: 10px; /* posição da seta de navegação direita */
+}
+
+.buttondelete {
+    background-color: black; /* Cor de fundo preto */
+    color: white; /* Cor do texto branco */
+    border: none; /* Remover borda */
+    padding: 10px 20px; /* Adicionar preenchimento */
+    cursor: pointer; /* Cursor do mouse em forma de mão */
+    border-radius: 5px; /* Borda arredondada */
+}
+
+/* Estilo do botão de exclusão quando o cursor passa por cima */
+.buttondelete:hover {
+    background-color: darkred; /* Cor de fundo vermelho escuro quando hover */
+    color: white; /* Cor do texto branco quando hover */
+}

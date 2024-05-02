@@ -37,6 +37,21 @@ class Home
             header('location: ' . URLROOT . '/login', true, 303);
         }
     }
+
+    public function profile()
+    {
+        if (isLoggedIn()) {
+            view('Profile/index', [
+                'items' => $this->item->getItems(),
+        ]);
+        } else {
+            header('location: ' . URLROOT . '/login', true, 303);
+        }
+    }
+
+   
+
+
     public function details($id)
     {
         $itemId = intval($id['id']);

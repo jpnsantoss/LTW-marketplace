@@ -39,6 +39,18 @@ class Admin
         ]);           
     }
 
+
+    public function additem()
+    {
+        view('CreateProduct/index', [
+            'categories' => $this->category->getCategories(),
+            'sizes' => $this->size->getSizes(),
+            'items' => $this->item->getItems(),
+            'conditions' => $this->condition->getConditions()
+        ]);           
+    }
+    
+
     public function users(){
         view('Admin/users', [
             'users' => $this->user->getUsersAndSellerInfo()
