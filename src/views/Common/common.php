@@ -36,7 +36,7 @@ function getNavbar()
                             <?php if (isAdmin()) : ?>
                                 <li><a href="/admin">Admin</a></li>
                             <?php endif; ?>
-                            <li><a href="#">Profile</a></li>
+                            <li><a href="/profile">Profile</a></li>
                             <li><a href="#">Settings</a></li>
                             <li><a href="#" id="logout">Logout</a></li>
                         </ul>
