@@ -37,8 +37,8 @@ class WishList{
     
     public function index()
     {
-        view('wishList/index', [
-            'items' => getWishlist($_SESSION['user']['id'])
+        view('WishList/index', [
+            'items' => $this->wishList->getWishlist($_SESSION['user']['id'])
         ]);
     }
 }

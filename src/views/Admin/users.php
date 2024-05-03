@@ -28,7 +28,11 @@
                 <td><?=$isSeller?></td>
                 <td><?=$user['created_at']?></td>
                 <?php if ($isSeller == 'No') { ?>
-                    <td class ="button"><button type="submit" class="promote-button" data-user-id="<?= $user['id'] ?>">Promote to seller</button></td>
+                    <td class ="button">
+                    <form action="<?= URLROOT ?>/admin/<?=$user['id']?>/promote-user-to-seller" method="get">
+                         <button type="submit" class="promote-button">Promote to seller</button>
+                    </form>
+                    </td>
                 <?php } else { ?>
                     <td class="button"><button type="submit">See Items<button></td> 
                 <?php } ?>

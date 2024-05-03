@@ -29,14 +29,12 @@ class Admin
         $this->user = new UserModel;
     }
 
-public function promoteUserToSeller(){
+public function promoteUserToSeller($id){
 
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    
-        $userId = $_POST['userId'];
-    
-        $success = $this->user->promoteToSeller($userId);
-    
+    if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+        
+        $success = $this->user->promoteToSeller($id);
+        
         if ($success) {
             http_response_code(200);
             echo json_encode(['message' => 'User promoted to seller successfully!']);
@@ -49,7 +47,8 @@ public function promoteUserToSeller(){
         http_response_code(405);
         echo json_encode(['message' => 'Method Not Allowed']);
     }
-    
+
+    header('location: ' . URLROOT. '/Admin/users');
 }
 
     public function index()

@@ -86,8 +86,12 @@ class UserModel
         return $user;
     }
 
-    public function promoteToSeller($userId) {
-        $this->db->query('INSERT INTO sellers (user_id) VALUES (?)');
-        return $this->db->execute($userId);
+    public function promoteToSeller($id) : bool
+    {
+        $user_id = $id['id'];
+        $this->db->query('INSERT INTO sellers(user_id) VALUES (:user_id)');
+        $this->db->bind(':user_id', $user_id);
+
+        return $this->db->execute();
     }
 }

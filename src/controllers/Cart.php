@@ -10,7 +10,7 @@ class Cart{
 
     public function __construct()
     {
-        $this->cart = new Cart;
+        $this->cart = new CartModel;
     }
 
     public function addtoCart() : bool
@@ -39,7 +39,7 @@ class Cart{
     public function index()
     {
         view('Cart/index', [
-            'items' => getCart($_SESSION['user']['id'])
+            'items' => $this->cart->getCart($_SESSION['user']['id'])
         ]);
     }
 }

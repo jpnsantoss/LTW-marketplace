@@ -13,11 +13,11 @@ class WishListModel{
     {
         $this->db = new Database;
     }
-    public function getWishList($user): array
+    public function getWishList($user_id)
     {
-        $stmt = $this->db->prepare("SELECT * FROM items JOIN wishlist ON items.item_id = wishlist.product_id WHERE wishlist.user_id = ?");
-        $stmt->execute([$user]);
-        return $stmt->resultSet();
+        $this->db->query("SELECT * FROM items JOIN wishlist ON items.id = wishlist.product_id WHERE wishlist.user_id = :user_id");
+        $this->db->bind(':user_id', $user_id);
+        return ($this->db->single());
     }
 
     public function addToWishList($data): bool

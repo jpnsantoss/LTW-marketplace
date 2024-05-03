@@ -7,7 +7,7 @@ $router->addRoute('login', ['controller' => 'View', 'action' => 'login']);
 $router->addRoute('profile', ['controller' => 'View', 'action' => 'profile']);
 $router->addRoute('create', ['controller' => 'View', 'action' => 'createProduct']);
 $router->addRoute('cart', ['controller' => 'Cart', 'action' => 'index']);
-$router->addRoute('wishList', ['controller' => 'WishList', 'action' => 'index']);
+$router->addRoute('wishlist', ['controller' => 'WishList', 'action' => 'index']);
 $router->addRoute('chat', ['controller' => 'View', 'action' => 'chat']);
 //$router->addRoute('details', ['controller' => 'Home', 'action' => 'details']);
 
@@ -23,7 +23,6 @@ $router->addRoute('{controller}/{action}/{id:\d+}', [
 $router->addRoute('{controller}/{action}');
 $router->addRoute('{controller}/{action}/{id:\d+}');
 $router->addRoute('{controller}/{id:\d+}/{action}');
-$router->addRoute('admin/promoteUserToSeller/{id:\d+}', ['controller' => 'Admin', 'action' => 'promoteUserToSeller']);
 $router->addRoute('WishList/{id:\d+}', ['controller' => 'WishList', 'action' => 'addToWishList']);
 
 // Examples:

@@ -80,6 +80,15 @@ CREATE TABLE wishlist (
   FOREIGN KEY(product_id) REFERENCES items(id)
 );
 
+CREATE TABLE cart (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  user_id INTEGER NOT NULL,
+  product_id INTEGER NOT NULL,
+  added_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY(user_id) REFERENCES buyers(user_id),
+  FOREIGN KEY(product_id) REFERENCES items(id)
+);
+
 CREATE TABLE messages (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   buyer_id INTEGER NOT NULL,
@@ -104,3 +113,5 @@ CREATE INDEX wishlist_index_10 ON wishlist (product_id);
 CREATE INDEX messages_index_11 ON messages (buyer_id);
 CREATE INDEX messages_index_12 ON messages (seller_id);
 CREATE INDEX messages_index_13 ON messages (buyer_id, seller_id);
+CREATE INDEX cart_index_14 ON cart (user_id);
+CREATE INDEX cart_index_15 ON cart (product_id);

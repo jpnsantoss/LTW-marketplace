@@ -27,8 +27,7 @@ function getNavbar()
             <div id="menu-links">
                 <ul>
                     <li><a href="#"><i class="icon">chat_bubble</i> Messages</a></li>
-                    <li><a href="/wishList"><i class="icon">favorite</i> Wishlist</a></li>
-
+                    <li><a href="/wishlist"><i class="icon">favorite</i> Wishlist</a></li>
 
                     <li class="dropdown">
                         <a href="#"><i class="icon">person</i> Account</a>
@@ -36,18 +35,17 @@ function getNavbar()
                             <?php if (isAdmin()) : ?>
                                 <li><a href="/admin">Admin</a></li>
                             <?php endif; ?>
+                            <?php if (isSeller()) : ?>
+                                <li><a href="/admin">Post Items</a></li>
+                            <?php endif; ?>
+                            
                             <li><a href="#">Profile</a></li>
                             <li><a href="#">Settings</a></li>
                             <li><a href="#" id="logout">Logout</a></li>
                         </ul>
                     </li>
 
-
-                    <?php if (isSeller()) : ?>
-                        <li><a href="#" class="highlight">Post Items</a></li>
-                    <?php else : ?>
-                        <li><a href="#" class="highlight">Become a Seller</a></li>
-                    <?php endif; ?>
+                    <li><a href="/cart" class="highlight">Cart</a></li>
                 </ul>
             </div>
         </nav>
