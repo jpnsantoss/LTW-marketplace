@@ -21,7 +21,7 @@ $user = $_SESSION['user'];
     <section>
     <h1>Your profile</h1>
     
-    <form>
+    <form class="current-info">
         <h2> Current info: </h2>
         <p>Username: <?php echo $user['username']; ?></p>
         <p>Email: <?php echo $user['email']; ?></p>
@@ -29,26 +29,76 @@ $user = $_SESSION['user'];
         <p>Date: <?php echo $user['created_at']; ?></p>
     </form>
 
+    <div class="edit-profile">
+    <h2>Edit Profile:</h2>
+    <h2>Change Password</h2>
+
+    <form class="label">
+
+    <form  action="<?= URLROOT; ?>/auth/changeemail" method="post">
+        <label for="email">New email: </label>
+        <br>
+        <input type="text" name="email" id="email">
+        
+    <button class="button" type="submit">Submit</button>
+    
+<br>
+    
+
+    <form action="<?= URLROOT; ?>/auth/changeusername" method="post">
+        <label for="username">New username: </label>
+        
+        <input type="text" name="username" id="username">
+        
+    <button class="button" type="submit">Submit</button>
+    <br>
+
+    <form  action="<?= URLROOT; ?>/auth/changefullname" method="post">
+        <label for="username">New name: </label>
+        <br>
+        <input type="text" name="fullname" id="fullname">
+        
+    <button class="button" type="submit">Submit</button>
+    </form>
+    
+
+</form>
+    <form class= "password" action="<?= URLROOT; ?>/auth/changepassword" method="post">
+        <label for="current_password">Current password: </label>
+        <input type="text" name="current_password" id="current_password">
+
+        <label for="new_password">New password: </label>
+        <input type="text" name="new_password" id="new_password">
+
+        <label for="confirm_password">Confirm password: </label>
+        <input type="text" name="confirm_password" id="confirm_password">
+        <br>
+    <button class="button" type="submit">Submit</button>
+    </form>
+
+</div>
+
     <h2> Your products: </h2>
 
     
-        
+    <div class="item-wrapper">
     <?php foreach ($data["items"] as $item) : ?>
 
         <div class="item-container">
+            
         <div class="item-image">
         <img id="item-image" src="<?= $item->image_urls[0] ?>" alt="Item image">
         <button id="previous-button">&#10094;</button>
         <button id="next-button" >&#10095;</button>
 
     </div>
-    <form>
+    <form class="edit-product">
         <?php if ($item->seller_id == $user['id']) { ?>
             <h3><?php echo $item->brand; ?> : <?php echo $item->model; ?></h3>
             <br>
 
 
-        <form action="<?= URLROOT ?>/item/updateitem" method="post">
+        <form class="edit-product" action="<?= URLROOT ?>/item/updateitem" method="post">
 
             <label for="brand">Brand:</label>
             <input type="text" id="brand" name="brand" value="<?php echo $item->brand; ?>" required>
@@ -70,7 +120,7 @@ $user = $_SESSION['user'];
             <label for="condition_id">Condition ID:</label>
             <input type="text" id="condition_id" name="condition_id" value="<?php echo $item->condition_id; ?>" required>
 
-            
+            <br>
             
 
             <!-- Adicione campos para quaisquer outros campos que você deseja atualizar -->
@@ -80,7 +130,7 @@ $user = $_SESSION['user'];
             <form class="buttondelete" action="<?= URLROOT; ?>/item/<?= $item->id; ?>/deleteuseritem" method="post">
     <input type="submit" value="Delete">
 </form>
-                            
+        </div>
                         </form>
         </form>
         
@@ -89,42 +139,11 @@ $user = $_SESSION['user'];
 
         <?php } ?>
         <?php endforeach; ?>
+        </div>
     
 
     
-    <h2>Edit Profile:</h2>
-
-    <form action="<?= URLROOT; ?>/auth/changeemail" method="post">
-        <label for="email">New email: </label>
-        <input type="text" name="email" id="email">
-    <button class="button" type="submit">Submit</button>
-    </form>
-
-    <form action="<?= URLROOT; ?>/auth/changeusername" method="post">
-        <label for="username">New username: </label>
-        <input type="text" name="username" id="username">
-    <button class="button" type="submit">Submit</button>
-    </form>
-
-    <form action="<?= URLROOT; ?>/auth/changefullname" method="post">
-        <label for="username">New name: </label>
-        <input type="text" name="fullname" id="fullname">
-    <button class="button" type="submit">Submit</button>
-    </form>
-
-
-    <h2>Change Password</h2>
-    <form action="<?= URLROOT; ?>/auth/changepassword" method="post">
-        <label for="current_password">Current password: </label>
-        <input type="text" name="current_password" id="current_password">
-
-        <label for="new_password">New password: </label>
-        <input type="text" name="new_password" id="new_password">
-
-        <label for="confirm_password">Confirm password: </label>
-        <input type="text" name="confirm_password" id="confirm_password">
-    <button class="button" type="submit">Submit</button>
-    </form>
+    
 
 
 </section>

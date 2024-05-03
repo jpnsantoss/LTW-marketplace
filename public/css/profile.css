@@ -18,7 +18,7 @@ section {
 	margin-top: 20px;
 }
 
-form {
+.current-info, .edit-product {
 	margin-top: 10px;
 	background-color: #f9f9f9;	
 	padding: 20px;
@@ -27,19 +27,26 @@ form {
 	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-label {
-    display: block;
+.label {
+    background-color: #f9f9f9;	
+	padding: 20px;
+    border-radius: 8px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     margin-bottom: 5px;
 }
 
-input[type="text"],
-input[type="number"],
+input[type="submit"],
 select {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
+    padding: 10px 20px;
+    background-color: #333;
+    color: #fff;
+    border: 10px;
     border-radius: 4px;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover{
+    background-color: #555;
 }
 
 .button {
@@ -49,17 +56,57 @@ select {
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    margin-top: 10px;
 }
 
 .button:hover {
     background-color: #555;
 }
 
-.item-container {
-    position: relative;
-    width: 600px;
-    height: 300px; /* largura desejada para o contêiner do item */
+
+.item-wrapper {
+    max-height: auto;
+    display: grid;
+    grid-template-columns: 3fr 3fr;
+    /*gap: 3rem;*/
 }
+
+.item-container {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    gap: 1.5rem;
+    font-family: "Open Sans", sans-serif;
+  }
+
+.edit-profile {
+    max-height: auto;
+    display: grid;
+    grid-template-columns: 3fr 3fr;
+    grid-template-rows: 30px auto; 
+    grid-auto-rows: auto;
+    /*gap: 3rem;*/
+  }
+.password{
+    grid-column: 2 / span 1; /* Começa na segunda coluna e se estende por três colunas */
+    grid-row: 2 / span 3;
+    display: flex;
+    flex-direction: column;
+    font-family: "Open Sans", sans-serif;
+    background-color: #f9f9f9;	
+	padding: 20px;
+    border-radius: 8px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 5px;
+
+}
+
+form .label {
+    margin-top: 0;
+    flex-direction: column;
+    
+    font-family: "Open Sans", sans-serif;
+  }
 
 .item-image {
     position: relative;
@@ -67,10 +114,9 @@ select {
 
 #item-image {
     margin-top: 20px;
-    max-width: 100%; /* a imagem do item se ajustará automaticamente ao tamanho do contêiner */
+    max-width: 100%; 
     max-height: 200px;
-    padding-left: 200px;
-    /* a altura da imagem será ajustada automaticamente para manter a proporção */
+    margin-left: 40px;
 }
 
 #previous-button,
@@ -94,17 +140,4 @@ select {
     right: 10px; /* posição da seta de navegação direita */
 }
 
-.buttondelete {
-    background-color: black; /* Cor de fundo preto */
-    color: white; /* Cor do texto branco */
-    border: none; /* Remover borda */
-    padding: 10px 20px; /* Adicionar preenchimento */
-    cursor: pointer; /* Cursor do mouse em forma de mão */
-    border-radius: 5px; /* Borda arredondada */
-}
 
-/* Estilo do botão de exclusão quando o cursor passa por cima */
-.buttondelete:hover {
-    background-color: darkred; /* Cor de fundo vermelho escuro quando hover */
-    color: white; /* Cor do texto branco quando hover */
-}
