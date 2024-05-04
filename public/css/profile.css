@@ -38,6 +38,7 @@ section {
     
 }
 
+
 input[type="submit"],
 select {
     padding: 10px 20px;
@@ -91,7 +92,8 @@ input[type="submit"]:hover{
 .item-container {
     display: flex;
     flex-direction: column;
-    padding: 10px;
+    padding-right: 20px;
+    padding-left: 20px;
     gap: 1.5rem;
     font-family: "Open Sans", sans-serif;
   }
@@ -106,9 +108,50 @@ input[type="submit"]:hover{
     padding-bottom: 10px;
     /*gap: 3rem;*/
   }
+
+.email{
+    grid-column: 1 / span 1;
+    grid-row: 2 /span 1;
+    background-color: #f9f9f9;	
+	padding: 5px;
+    border-radius: 8px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+   padding-left: 15px;
+    font-family: "Open Sans", sans-serif;
+    margin-right: 10px;
+}
+
+.username{
+    padding-left: 20px;
+    grid-column: 1/ span 1;
+    grid-row: 3 / span 1;
+    background-color: #f9f9f9;	
+	padding: 5px;
+    border-radius: 8px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding-left: 15px;
+    font-family: "Open Sans", sans-serif;
+    margin-right: 10px;
+}
+
+.fullname{
+    
+    grid-column: 1/ span 1;
+    grid-row: 4 / span 1;
+    background-color: #f9f9f9;	
+	padding: 5px;
+    border-radius: 8px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 0px;
+    padding-left: 15px;
+    font-family: "Open Sans", sans-serif;
+    margin-right: 10px;
+    
+}
+
 .password{
     grid-column: 2 / span 1; /* Começa na segunda coluna e se estende por três colunas */
-    
+    grid-row: 2 /span 3;
     display: flex;
     flex-direction: column;
     font-family: "Open Sans", sans-serif;
