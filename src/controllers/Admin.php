@@ -50,6 +50,19 @@ class Admin
         ]);           
     }
     
+    public function profile()
+    {
+        if (isLoggedIn()) {
+            view('Profile/index', [
+                'categories' => $this->category->getCategories(),
+                'sizes' => $this->size->getSizes(),
+                'items' => $this->item->getItems(),
+                'conditions' => $this->condition->getConditions()
+        ]);
+        } else {
+            header('location: ' . URLROOT . '/login', true, 303);
+        }
+    }
 
     public function users(){
         view('Admin/users', [

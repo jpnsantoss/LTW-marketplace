@@ -131,6 +131,9 @@ class Item
                 'price' => $_POST['price'], // Novo preço do item
                 'brand' => $_POST['brand'],
                 'model' => $_POST['model'],
+                'category_id' => $_POST['category'],
+                'size_id' => $_POST['size'],
+                'condition_id' => $_POST['condition'],
                 // Adicione quaisquer outros campos que você deseja atualizar aqui
             ];
     
@@ -143,5 +146,7 @@ class Item
             }
         }
     }
+
+
     
 }

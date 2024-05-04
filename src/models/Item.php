@@ -94,6 +94,34 @@ class ItemModel
         return false;
     }
 
+    public function changePrice($productData){
+        
+        
+        // Monta os dados do produto
+        $productId = $productData['item_id'];
+        $newPrice = $productData['price'];
+    
+        // Atualiza o preço do produto no banco de dados
+        $this->db->query('UPDATE items SET model = :price WHERE id = 16');
+        //$this->db->bind(':item_id', $productData['item_id']);
+        $this->db->bind(':price', $productData['price']);
+    
+        // Retorna true se a atualização foi bem-sucedida, false caso contrário
+        return $this->db->execute();
+    }
+
+    
+    public function changeEmail($email){
+
+        $this->db->query('UPDATE users SET email = :email WHERE id = :user_id');
+        $this->db->bind(':user_id', $email['user_id']);
+        $this->db->bind(':email', $email['email']);
+
+        return $this->db->execute();
+
+}
+    
+
 
     public function updateItem($itemData) {
         // Verifica se o usuário está logado
@@ -129,18 +157,7 @@ class ItemModel
         // Retorna true se a atualização foi bem-sucedida, false caso contrário
         return $this->db->execute();
     }
-    
 
-
-    public function changeEmail($email){
-
-        $this->db->query('UPDATE users SET email = :email WHERE id = :user_id');
-        $this->db->bind(':user_id', $email['user_id']);
-        $this->db->bind(':email', $email['email']);
-
-        return $this->db->execute();
-
-}
     
 
 }
