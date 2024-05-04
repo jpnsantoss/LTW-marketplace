@@ -77,6 +77,34 @@ $user = $_SESSION['user'];
 
 </div>
 
+
+
+
+
+
+<h2> Shipping Forms: </h2>
+<?php foreach ($data["transactions"] as $transaction) : ?>
+    <?php if ($transaction->seller_id == $user['id']) { ?>
+            <h3>Seller name: <?php echo $user->name; ?></h3>
+            <?php } ?>
+
+            <?php foreach ($data["items"] as $item) : ?>
+              <?php  if ($transaction->product_id == $item->id) { ?>
+            <h3>Item: <?php echo $item->model; ?> : <?php echo $item->brand; ?></h3>
+            <?php } ?>
+            <?php foreach ($data["users"] as $buyer) : ?>
+              <?php  if ($buyer->id == $transaction->buyer_id) { ?>
+            <h3>Buyer name: <?php echo $buyer->name; ?> : <?php echo $buyer->id; ?></h3>
+            <?php } ?>
+
+            <?php endforeach; ?>
+        <?php endforeach; ?>
+        <?php endforeach; ?>
+
+
+
+
+
     <h2> Your products: </h2>
 
     <div class="item-wrapper">

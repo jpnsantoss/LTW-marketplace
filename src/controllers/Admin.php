@@ -8,6 +8,8 @@ use \Models\ItemModel;
 use \Models\ConditionModel;
 use \Models\ImageModel;
 use \Models\UserModel;
+use \Models\TransactionsModel;
+
 
 
 class Admin
@@ -18,6 +20,7 @@ class Admin
     private $condition;
     private $image;
     private $user;
+    private $transaction;
 
     public function __construct()
     {
@@ -27,6 +30,7 @@ class Admin
         $this->condition = new ConditionModel;
         $this->image = new ImageModel;
         $this->user = new UserModel;
+        $this->transaction = new TransactionsModel;
     }
 
     public function index()
@@ -57,7 +61,9 @@ class Admin
                 'categories' => $this->category->getCategories(),
                 'sizes' => $this->size->getSizes(),
                 'items' => $this->item->getItems(),
-                'conditions' => $this->condition->getConditions()
+                'conditions' => $this->condition->getConditions(),
+                'transactions' => $this->transaction->getTransactions(),
+                'users' => $this->user->getUsers(),
         ]);
         } else {
             header('location: ' . URLROOT . '/login', true, 303);
