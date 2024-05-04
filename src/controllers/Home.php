@@ -50,7 +50,7 @@ class Home
                 break;
             }
             
-        }
+    }
         
       
        /* if (isset($item)) {

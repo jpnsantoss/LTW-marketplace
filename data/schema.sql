@@ -77,8 +77,10 @@ CREATE TABLE wishlist (
   product_id INTEGER NOT NULL,
   added_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   FOREIGN KEY(user_id) REFERENCES buyers(user_id),
-  FOREIGN KEY(product_id) REFERENCES items(id)
+  FOREIGN KEY(product_id) REFERENCES items(id),
+  UNIQUE(user_id, product_id)
 );
+
 
 CREATE TABLE cart (
   id INTEGER PRIMARY KEY AUTOINCREMENT,

@@ -14,7 +14,11 @@
             <p><?= $data["item"]->brand; ?><p>
             <h4>Price:</h4><h3> <?= $data["item"]->price; ?> €</h3>
             <div class="item-buttons">
-                <button class="add-to-wishlist">Add to Wishlist</button>
+                
+            <form action="<?= URLROOT ?>/WishList/<?= $data["item"]->id; ?>/add-to-wish-list" method="get">
+                <button type="submit" class="add-to-wishlist">Add to Wishlist</button>
+            </form>
+
                 <button class="add-to-cart">Add to Cart</button>
             </div>
         </div>
@@ -31,5 +35,4 @@
             </div>
         </div>
     </div>
-    <?php getScript('addtowishlist.js');?>
 </body>

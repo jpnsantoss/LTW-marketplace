@@ -13,6 +13,7 @@ $router->addRoute('chat', ['controller' => 'View', 'action' => 'chat']);
 
 $router->addRoute('admin', ['controller' => 'Admin', 'action' => 'index']);
 $router->addRoute('admin', ['controller' => 'Admin', 'action' => 'users']);
+$router->addRoute('admin', ['controller' => 'Admin', 'action' => 'users']);
 
 $router->addRoute('{controller}/{action}/{id:\d+}', [
     'controller' => 'Home',
@@ -23,7 +24,9 @@ $router->addRoute('{controller}/{action}/{id:\d+}', [
 $router->addRoute('{controller}/{action}');
 $router->addRoute('{controller}/{action}/{id:\d+}');
 $router->addRoute('{controller}/{id:\d+}/{action}');
-$router->addRoute('WishList/{id:\d+}', ['controller' => 'WishList', 'action' => 'addToWishList']);
+
+
+//$router->addRoute('WishList/{id:\d+}', ['controller' => 'WishList', 'action' => 'addToWishList']);
 
 // Examples:
 // 

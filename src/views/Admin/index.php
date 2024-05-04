@@ -39,7 +39,7 @@ getNavbar();
             <input type="file" name="images[]" id="images" multiple>
             <br>
             <br>
-            <button class="button" type="submit">Add Item</button>
+            <button class="button" type="submit">tem</button>
         </form>
         <?php if (isAdmin()) : ?>
             <!-- list items -->
