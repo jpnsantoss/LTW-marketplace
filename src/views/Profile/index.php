@@ -63,13 +63,13 @@ $user = $_SESSION['user'];
     
     <form class = "password" action="<?= URLROOT; ?>/auth/changepassword" method="post">
         <label for="current_password">Current password: </label>
-        <input type="text" name="current_password" id="current_password">
+        <input type="password" name="current_password" id="current_password">
 
         <label for="new_password">New password: </label>
-        <input type="text" name="new_password" id="new_password">
+        <input type="password" name="new_password" id="new_password">
 
         <label for="confirm_password">Confirm password: </label>
-        <input type="text" name="confirm_password" id="confirm_password">
+        <input type="password" name="confirm_password" id="confirm_password">
     <button class="button" type="submit">Submit</button>
     </form>
 
@@ -109,14 +109,14 @@ $user = $_SESSION['user'];
 
             <input type="hidden" name="item_id" value="<?php echo $item->id; ?>">
 
-            <h4>Product Category: </h4>
+            <h4 class="h">Product Category: </h4>
 
             <?php foreach ($data["categories"] as $category) : ?>
                 <?php if ($category->id == $item->category_id) : ?>
-                    <p><?php echo $category->name; ?></p>
+                    <p class="pp"><?php echo $category->name; ?></p>
                 <?php endif; ?>
             <?php endforeach; ?>
-
+<br>
             
             <label for="category">Change Category</label>
             <select name="category" id="category">
@@ -125,13 +125,14 @@ $user = $_SESSION['user'];
                 <?php endforeach; ?>
             </select>
 
-            <h4>Product Size: </h4>
+            <h4 class="h">Product Size: </h4>
 
             <?php foreach ($data["sizes"] as $size) : ?>
                 <?php if ($size->id == $item->size_id) : ?>
-                    <p><?php echo $size->name; ?></p>
+                    <p class="pp"><?php echo $size->name; ?></p>
                 <?php endif; ?>
-            <?php endforeach; ?>            
+            <?php endforeach; ?> 
+            <br>           
 
             <label for="size">Change Size</label>
             <select name="size" id="size">
@@ -140,13 +141,14 @@ $user = $_SESSION['user'];
                 <?php endforeach; ?>
             </select>
 
-            <h4>Product Condition: </h4>
+            <h4 class="h">Product Condition: </h4>
 
             <?php foreach ($data["conditions"] as $condition) : ?>
                 <?php if ($condition->id == $item->condition_id) : ?>
-                    <p><?php echo $condition->name; ?></p>
+                    <p class="pp"><?php echo $condition->name; ?></p>
                 <?php endif; ?>
             <?php endforeach; ?>
+            <br>
 
             <label for="condition">Change Condition</label>
             <select name="condition" id="condition">
