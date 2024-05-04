@@ -28,14 +28,10 @@ class View
             header('location: ' . URLROOT . '/login', true, 303);
         }
     }
-    public function profile()
-    {
-        if (isLoggedIn()) {
-            view('Profile/index');
-        } else {
-            header('location: ' . URLROOT . '/login', true, 303);
-        }
-    }
+
+
+
+
     public function createProduct()
     {
         view('CreateProduct/index');

@@ -8,7 +8,6 @@ getNavbar();
 
 <body class="forms">
     <section>
-       
             <!-- list items -->
             <h1>Items for sale:</h1>
             <ul class="listing">
