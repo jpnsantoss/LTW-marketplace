@@ -35,7 +35,7 @@ getNavbar();
                 <h4>User: <?= $data["item"]->seller_name; ?></h4>
 
                 <div class="item-buttons">
-                    <button class="send-message">Send Message</button>
+                    <a href="<?= URLROOT ?>/chat/index/<?= $data["item"]->id ?>" class="send-message">Send Message</a>
                 </div>
             </div>
         </div>

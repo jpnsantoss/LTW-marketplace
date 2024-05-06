@@ -16,7 +16,6 @@ class Admin
     private $size;
     private $item;
     private $condition;
-    private $image;
     private $user;
 
     public function __construct()
@@ -25,7 +24,6 @@ class Admin
         $this->size = new SizeModel;
         $this->item = new ItemModel;
         $this->condition = new ConditionModel;
-        $this->image = new ImageModel;
         $this->user = new UserModel;
     }
 
@@ -36,10 +34,11 @@ class Admin
             'sizes' => $this->size->getSizes(),
             'items' => $this->item->getItems(),
             'conditions' => $this->condition->getConditions()
-        ]);           
+        ]);
     }
 
-    public function users(){
+    public function users()
+    {
         view('Admin/users', [
             'users' => $this->user->getUsersAndSellerInfo()
         ]);

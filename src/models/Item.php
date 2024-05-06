@@ -42,6 +42,33 @@ class ItemModel
         return $items;
     }
 
+    public function getItem($id)
+    {
+        $this->db->query("
+    SELECT items.*, 
+           categories.name as category_name, 
+           sizes.name as size_name, 
+           conditions.name as condition_name, 
+           users.username as seller_name,
+           GROUP_CONCAT(images.url) as image_urls
+    FROM items
+    LEFT JOIN categories ON items.category_id = categories.id
+    LEFT JOIN sizes ON items.size_id = sizes.id
+    LEFT JOIN conditions ON items.condition_id = conditions.id
+    LEFT JOIN sellers ON items.seller_id = sellers.user_id
+    LEFT JOIN users ON sellers.user_id = users.id
+    LEFT JOIN images ON items.id = images.item_id
+    WHERE items.id = :id
+    GROUP BY items.id
+    ");
+        $this->db->bind(':id', $id);
+        $item = $this->db->single();
+
+        $item->image_urls = explode(',', $item->image_urls);
+
+        return $item;
+    }
+
 
     public function createItem($userRequest)
     {
@@ -63,5 +90,4 @@ class ItemModel
         if ($this->db->execute()) return true;
         return false;
     }
-
 }
