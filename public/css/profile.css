@@ -18,7 +18,7 @@ section {
 	margin-top: 20px;
 }
 
-form {
+.current-info, .edit-product {
 	margin-top: 10px;
 	background-color: #f9f9f9;	
 	padding: 20px;
@@ -27,21 +27,72 @@ form {
 	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-label {
-    display: block;
+.label {
+    display: inline-block;
+    background-color: #f9f9f9;	
+	padding: 20px;
+    border-radius: 8px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 5px;
+    font-family: "Open Sans", sans-serif;
+    margin-right: 10px;
+    
+}
+
+
+input[type="submit"]
+ {
+    padding: 10px 20px;
+    background-color: #333;
+    color: #fff;
+    border: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+input[type="text"], input[type="password"] {
+    display: inline-block; 
+    width: 200px; 
+    padding: 5px;
+    box-sizing: border-box; 
+    margin-bottom: 5px;
+}
+ input[type="password"] {
+    display: inline-block; 
+    width: 250px; 
+    padding: 5px;
+    box-sizing: border-box; 
     margin-bottom: 5px;
 }
 
-input[type="text"],
-input[type="number"],
+input[type="submit"]:hover{
+    background-color: #555;
+}
 select {
-    width: 100%;
-    padding: 8px;
+    width: 200px; 
+    padding: 5px; 
+    font-size: 14px;
     margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+}
+.h{
+    display: inline-block;
+    margin-top: 10px;
+    font-size: 15px;
+    margin-bottom: 5px;
+    margin-right: 7px;
 }
 
+.pp{
+    display: inline-block;
+    font-size: 15px;
+    text-decoration: underline;
+   margin-bottom: 5px;
+}
+
+/* Estilo para as opções dos selects */
+option {
+    font-size: 14px; /* Tamanho da fonte */
+}
 .button {
     padding: 10px 20px;
     background-color: #333;
@@ -49,8 +100,147 @@ select {
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    margin-top: 10px;
 }
 
 .button:hover {
     background-color: #555;
 }
+
+.button-submit {
+    padding: 5px 10px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.button-submit:hover {
+    background-color: #555;
+}
+
+
+.item-wrapper {
+    max-height: auto;
+    display: grid;
+    grid-template-columns: 3fr 3fr;
+    /*gap: 3rem;*/
+}
+
+.item-container {
+    display: flex;
+    flex-direction: column;
+    padding-right: 20px;
+    padding-left: 20px;
+    gap: 1.5rem;
+    font-family: "Open Sans", sans-serif;
+  }
+
+.edit-profile {
+    max-height: auto;
+    display: grid;
+    grid-template-columns: 3fr 3fr;
+    grid-template-rows: 30px auto; 
+    grid-auto-rows: auto;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    /*gap: 3rem;*/
+  }
+
+.email{
+    grid-column: 1 / span 1;
+    grid-row: 2 /span 1;
+    background-color: #f9f9f9;	
+	padding: 5px;
+    border-radius: 8px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+   padding-left: 15px;
+    font-family: "Open Sans", sans-serif;
+    margin-right: 10px;
+}
+
+.username{
+    padding-left: 20px;
+    grid-column: 1/ span 1;
+    grid-row: 3 / span 1;
+    background-color: #f9f9f9;	
+	padding: 5px;
+    border-radius: 8px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding-left: 15px;
+    font-family: "Open Sans", sans-serif;
+    margin-right: 10px;
+}
+
+.fullname{
+    
+    grid-column: 1/ span 1;
+    grid-row: 4 / span 1;
+    background-color: #f9f9f9;	
+	padding: 5px;
+    border-radius: 8px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 0px;
+    padding-left: 15px;
+    font-family: "Open Sans", sans-serif;
+    margin-right: 10px;
+    
+}
+
+.password{
+    grid-column: 2 / span 1; /* Começa na segunda coluna e se estende por três colunas */
+    grid-row: 2 /span 3;
+    display: flex;
+    flex-direction: column;
+    font-family: "Open Sans", sans-serif;
+    background-color: #f9f9f9;	
+	padding: 20px;
+    border-radius: 8px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 5px;
+    margin-left: 0px;
+
+}
+
+form .label {
+    margin-top: 0;
+    flex-direction: column;
+    margin-right: 10px;
+    font-family: "Open Sans", sans-serif;
+  }
+
+.item-image {
+    position: relative;
+}
+
+#item-image {
+    margin-top: 20px;
+    max-width: 100%; 
+    max-height: 200px;
+    margin-left: 40px;
+}
+
+#previous-button,
+#next-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    font-size: 24px;
+    color: rgb(12, 12, 12);
+    cursor: pointer;
+    z-index: 1; /* as setas de navegação estarão acima da imagem */
+}
+
+#previous-button {
+    left: 10px; /* posição da seta de navegação esquerda */
+}
+
+#next-button {
+    right: 10px; /* posição da seta de navegação direita */
+}
+
+
