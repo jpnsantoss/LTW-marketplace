@@ -6,7 +6,6 @@ use \Models\CategoryModel;
 use \Models\SizeModel;
 use \Models\ItemModel;
 use \Models\ConditionModel;
-use \Models\ImageModel;
 use \Models\UserModel;
 use \Models\TransactionsModel;
 
@@ -18,7 +17,6 @@ class Admin
     private $size;
     private $item;
     private $condition;
-    private $image;
     private $user;
     private $transaction;
 
@@ -28,7 +26,6 @@ class Admin
         $this->size = new SizeModel;
         $this->item = new ItemModel;
         $this->condition = new ConditionModel;
-        $this->image = new ImageModel;
         $this->user = new UserModel;
         $this->transaction = new TransactionsModel;
     }
@@ -40,7 +37,7 @@ class Admin
             'sizes' => $this->size->getSizes(),
             'items' => $this->item->getItems(),
             'conditions' => $this->condition->getConditions()
-        ]);           
+        ]);
     }
 
 
@@ -51,9 +48,9 @@ class Admin
             'sizes' => $this->size->getSizes(),
             'items' => $this->item->getItems(),
             'conditions' => $this->condition->getConditions()
-        ]);           
+        ]);
     }
-    
+
     public function profile()
     {
         if (isLoggedIn()) {
@@ -64,13 +61,14 @@ class Admin
                 'conditions' => $this->condition->getConditions(),
                 'transactions' => $this->transaction->getTransactions(),
                 'users' => $this->user->getUsers(),
-        ]);
+            ]);
         } else {
             header('location: ' . URLROOT . '/login', true, 303);
         }
     }
 
-    public function users(){
+    public function users()
+    {
         view('Admin/users', [
             'users' => $this->user->getUsersAndSellerInfo()
         ]);

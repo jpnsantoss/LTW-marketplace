@@ -15,8 +15,6 @@ class Item
         $this->imageModel = new ImageModel;
     }
 
-
-
     public function create()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -122,10 +120,11 @@ class Item
         }
     }
 
-    public function updateitem(){
+    public function updateitem()
+    {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        
-    
+
+
             $itemData = [
                 'item_id' => $_POST['item_id'], // O ID do item que você deseja atualizar
                 'price' => $_POST['price'], // Novo preço do item
@@ -136,17 +135,14 @@ class Item
                 'condition_id' => $_POST['condition'],
                 // Adicione quaisquer outros campos que você deseja atualizar aqui
             ];
-    
+
             if ($this->item->updateItem($itemData)) {
-                
+
                 header('location: ' . URLROOT . '/profile', true, 303);
             } else {
-                
+
                 header('location: ' . URLROOT . '/', true, 303);
             }
         }
     }
-
-
-    
 }

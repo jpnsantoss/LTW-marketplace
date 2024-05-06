@@ -72,7 +72,8 @@ class Auth
     }
 
 
-    public function changeemail(){
+    public function changeemail()
+    {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (!isLoggedIn()) {
                 header('location: ' . URLROOT . '/', true, 303);
@@ -83,19 +84,20 @@ class Auth
                 'user_id' => $_SESSION['user']['id'],
             ];
 
-            
-            if($this->user->changeEmail($email)){
-                
+
+            if ($this->user->changeEmail($email)) {
+
                 $_SESSION['user']['email'] = $email['email'];
 
-            header('location: ' . URLROOT . '/profile', true, 303);}
-            else{
+                header('location: ' . URLROOT . '/profile', true, 303);
+            } else {
                 header('location: ' . URLROOT . '/', true, 303);
             }
+        }
     }
-}
 
-    public function changeusername(){
+    public function changeusername()
+    {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (!isLoggedIn()) {
                 header('location: ' . URLROOT . '/', true, 303);
@@ -106,92 +108,86 @@ class Auth
                 'user_id' => $_SESSION['user']['id'],
             ];
 
-            
-            if($this->user->changeUsername($change)){
-                
+
+            if ($this->user->changeUsername($change)) {
+
                 $_SESSION['user']['username'] = $change['username'];
 
-            header('location: ' . URLROOT . '/profile', true, 303);}
-            else{
+                header('location: ' . URLROOT . '/profile', true, 303);
+            } else {
                 header('location: ' . URLROOT . '/', true, 303);
             }
+        }
     }
-}
 
-public function changefullname(){
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        if (!isLoggedIn()) {
-            header('location: ' . URLROOT . '/', true, 303);
-            die(UNAUTHORIZED_ACCESS);
+    public function changefullname()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if (!isLoggedIn()) {
+                header('location: ' . URLROOT . '/', true, 303);
+                die(UNAUTHORIZED_ACCESS);
+            }
+            $change = [
+                'fullname' => $_POST['fullname'],
+                'user_id' => $_SESSION['user']['id'],
+            ];
+
+
+            if ($this->user->changeFullname($change)) {
+
+                $_SESSION['user']['full_name'] = $change['fullname'];
+
+                header('location: ' . URLROOT . '/profile', true, 303);
+            } else {
+                header('location: ' . URLROOT . '/', true, 303);
+            }
         }
-        $change = [
-            'fullname' => $_POST['fullname'],
-            'user_id' => $_SESSION['user']['id'],
-        ];
+    }
 
-        
-        if($this->user->changeFullname($change)){
-            
-            $_SESSION['user']['full_name'] = $change['fullname'];
+    public function changepassword()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if (!isLoggedIn()) {
+                header('location: ' . URLROOT . '/', true, 303);
+                die(UNAUTHORIZED_ACCESS);
+            }
 
-        header('location: ' . URLROOT . '/profile', true, 303);}
-        else{
-            header('location: ' . URLROOT . '/', true, 303);
-        }
-}
-}
+            $current_password = $_POST['current_password'];
+            $new_password = $_POST['new_password'];
+            $confirm_password = $_POST['confirm_password'];
 
-public function changepassword(){
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        if (!isLoggedIn()) {
-            header('location: ' . URLROOT . '/', true, 303);
-            die(UNAUTHORIZED_ACCESS);
-        }
+            if ($new_password !== $confirm_password) {
+                echo "As senhas não coincidem.";
+                exit;
+            }
 
-        $current_password = $_POST['current_password'];
-        $new_password = $_POST['new_password'];
-        $confirm_password = $_POST['confirm_password'];
-        
-        if ($new_password !== $confirm_password) {
-            echo "As senhas não coincidem.";
-            exit;
-        }
-        
-        $change = [
-            'current_password' => password_hash($_POST['current_password'], PASSWORD_DEFAULT),
-            'hashed_password' => password_hash($_POST['new_password'], PASSWORD_DEFAULT),
-            'user_id' => $_SESSION['user']['id'],
-        ];
-        
+            $change = [
+                'current_password' => password_hash($_POST['current_password'], PASSWORD_DEFAULT),
+                'hashed_password' => password_hash($_POST['new_password'], PASSWORD_DEFAULT),
+                'user_id' => $_SESSION['user']['id'],
+            ];
+
 
             if (!password_verify($current_password, $_SESSION['user']['hashed_password'])) {
-                
+
                 echo "Current password incorrect";
 
                 // Redirect the user to the home page or dashboard
                 exit;
-            } 
-
-            else{
-
-                
+            } else {
 
 
-                if($this->user->changePassword($change)){
-            
+
+
+                if ($this->user->changePassword($change)) {
+
                     $_SESSION['user']['hashed_password'] = $change['hashed_password'];
-        
-                header('location: ' . URLROOT . '/profile', true, 303);}
-                else{
+
+                    header('location: ' . URLROOT . '/profile', true, 303);
+                } else {
                     header('location: ' . URLROOT . '/', true, 303);
                 }
-
             }
-
-
-        
-        
-}
-}
-
+        }
+    }
 }

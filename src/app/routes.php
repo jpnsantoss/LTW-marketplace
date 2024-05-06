@@ -9,20 +9,8 @@ $router->addRoute('create', ['controller' => 'Admin', 'action' => 'additem']);
 $router->addRoute('cart', ['controller' => 'View', 'action' => 'cart']);
 $router->addRoute('chat', ['controller' => 'View', 'action' => 'chat']);
 
-//$router->addRoute('details', ['controller' => 'Home', 'action' => 'details']);
-
 $router->addRoute('admin', ['controller' => 'Admin', 'action' => 'index']);
 $router->addRoute('adminPromote', ['controller' => 'Admin', 'action' => 'users']);
-
-
-$router->addRoute('{controller}/{action}/{id:\d+}', [
-    'controller' => 'Home',
-    'action' => 'details'
-]);
-
-
-
-
 
 // Routes in main controllers/ folder (Namespace \Controllers)
 $router->addRoute('{controller}/{action}');
