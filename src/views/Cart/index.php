@@ -6,15 +6,18 @@ getNavbar();
 
 <body>
     <h1>My Cart</h1>
-    <?php foreach ($data['items'] as $cartItem){ ?>
-        <a href="<?= URLROOT ?>/home/details<?= $cartItem['id']?>#">
-            <div class="wanted-item">
-                <p><?= $cartItem['brand']; ?></p>
-                <p><?= $cartItem['price']; ?></p>
-                <p><?= $cartItem['added_at']; ?></p>
-                <button class="remove" data-id="<?= $cartItem['id']?>">Remove</button>
+    <?php foreach ($data['items'] as $wishedItem) { ?>
+        <article>
+            <div class="desc">
+                <p><b>Model: </b><?= $wishedItem->model ?></p>
+                <p><b>Brand: </b><?= $wishedItem->brand ?></p>
+                <p><b>Price: </b><?= $wishedItem->price ?>€</p>
+                <p><b>Sold by: </b><?= $wishedItem->username ?></p>
             </div>
-        </a>
+            <img src="<?= $wishedItem->url ?>" alt="Image">
+            <button class="remove" data-id="<?= $wishedItem->id?>">Remove</button>
+            <button class="progress" data-id="<?= $wishedItem->id?>">Checkout item</button>
+        </article>
     <?php }?>
 
 </body>

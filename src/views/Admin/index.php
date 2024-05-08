@@ -136,4 +136,6 @@ getNavbar();
         </ul>
     </section>
 <?php endif; ?>
+
+        
 </body>

@@ -1,45 +1,60 @@
-/* Adjustments for the wish list page */
-body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  h1 {
-    margin-top: 20px;
-    margin-bottom: 30px;
-  }
-  
-  a {
-    text-decoration: none;
-    color: var(--foreground);
-  }
-  
-  /* Style for each wished item */
-  .wanted-item {
-    background-color: var(--muted);
-    padding: 20px;
-    border-radius: 8px;
-    margin-bottom: 20px;
-    width: 100%;
-    max-width: 600px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  .wanted-item p {
-    margin-bottom: 10px;
-  }
-  
-  .wanted-item button {
-    padding: 8px 16px;
-    margin-right: 10px;
-    background-color: var(--primary);
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .wanted-item button:hover {
-    background-color: var(--secondary);
-  }
+/* Components */
+
+.desc{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; 
+  margin-left: 10px;
+}
+article {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 3fr 1fr;
+  width: 100%;
+  max-width: 600px;
+  margin: 20px auto; /* Center the item horizontally */
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  overflow: hidden; /* Clear floats */
+}
+
+
+img {
+  border-radius: 8px;
+  width: 200px; 
+  height: 200px; 
+  object-fit: cover; 
+  border-radius: 8px;
+  justify-self: end;
+  margin-right: 10px;
+}
+.remove{
+  justify-self: end;
+  margin-right: 5px;
+}
+.progress{
+  justify-self: start;
+  margin-left: 5px;
+}
+button {
+  grid-row-start: 2;
+  padding: 15px 60px; 
+  margin-top: 10px;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  justify-self: center;
+  align-self: center;
+}
+
+.remove-from-wishlist:hover,
+.add-to-cart:hover {
+  background-color: #555;
+}
+
+h1{margin-top: 1em;
+margin-left: 1em;}

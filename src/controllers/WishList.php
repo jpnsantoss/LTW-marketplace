@@ -12,10 +12,10 @@ class WishList{
         $this->wishList = new WishListModel;
     }
 
-    public function addtoWishList($product_id) : bool
+    public function addToWishList($product_id) : bool
     {      
         if (!isLoggedIn()) {
-            header('location: ' . URLROOT . '/', true, 303);
+            header('location: ' . URLROOT . '/login', true, 303);
             die(UNAUTHORIZED_ACCESS);
         }
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
@@ -24,7 +24,7 @@ class WishList{
                 'product_id' => $product_id['id'],
             ];
 
-            if ($this->wishList->addtoWishList($wishListRequest)){
+            if ($this->wishList->addToWishList($wishListRequest)){
                 http_response_code(200);
                 echo json_encode(['message' => 'Item added to list successfully!']);   
                 header('location: ' . URLROOT . '/wishList', true, 303);
@@ -32,6 +32,7 @@ class WishList{
             }else{
                 http_response_code(500); 
                 echo json_encode(['message' => 'Failed to add item to Wishlist']);
+                header('location: ' . URLROOT . '/wishList', true, 303);
                 die(SOMETHING_WENT_WRONG);
                 return false;
             }
@@ -45,6 +46,10 @@ class WishList{
         if(isLoggedIn()){
             $userId = $_SESSION['user']['id'];
             view('WishList/index', [ 'items' => $this->wishList->getWishList($userId)]);
+        }
+        else{
+            header('location: ' . URLROOT . '/login', true, 303);
+            die(UNAUTHORIZED_ACCESS);
         }
     }
 }

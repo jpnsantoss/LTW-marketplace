@@ -5,24 +5,22 @@ getNavbar();
 ?>
 
 <body>
-    <h1>My Wish List</h1>
-    <?php foreach ($data['items'] as $wishedItem){ 
-        
-        $imageData = $wishedItem->url;
+    <h1>My Wishlist</h1>
 
-        $encodedImageData = base64_encode($imageData);
-        
-    ?>
-        <article class="wanted-item">
-            
-            <p><?= $wishedItem->brand ?></p>
-            <p><?= $wishedItem->price ?></p>
-            <p><?= $wishedItem->added_at ?></p>
-            <img src="<?= $wishedItem->image_urls[0] ?>" alt="Image">
-            <button class="remove-from-wishlist" data-id="<?= $wishedItem->id?>">Remove</button>
-            <button class="add-to-cart" data-id="<?= $wishedItem->id?>">Add to Cart</button>
-
+    <?php foreach ($data['items'] as $wishedItem) { ?>
         <article>
+            <div class="desc">
+                <p><b>Model: </b><?= $wishedItem->model ?></p>
+                <p><b>Brand: </b><?= $wishedItem->brand ?></p>
+                <p><b>Price: </b><?= $wishedItem->price ?>€</p>
+                <p><b>Sold by: </b><?= $wishedItem->username ?></p>
+            </div>
+            <img src="<?= $wishedItem->url ?>" alt="Image">
+            <button class="remove" data-id="<?= $wishedItem->id?>">Remove</button>
+            <form action="<?= URLROOT ?>/cart/<?= $wishedItem->id; ?>/add-to-cart" method="get">
+                <button type="submit" class="progress">Add to Cart</button>
+            </form>
+        </article>
     <?php }?>
 </body>
 
