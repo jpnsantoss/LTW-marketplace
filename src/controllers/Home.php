@@ -30,9 +30,9 @@ class Home
     {
         $filters = [
             'search' => $_GET['search'] ?? null,
-            'category_id' => $_GET['category'] ?? null,
-            'size_id' => $_GET['size'] ?? null,
-            'condition_id' => $_GET['condition'] ?? null,
+            'category_id' => $_GET['category_id'] ?? null,
+            'size_id' => $_GET['size_id'] ?? null,
+            'condition_id' => $_GET['condition_id'] ?? null,
         ];
 
         // Handle price filter separately
@@ -50,6 +50,9 @@ class Home
         if (isLoggedIn()) {
             view('Home/index', [
                 'items' => $this->item->getItems($filters),
+                'categories' => $this->category->getCategories(),
+                'sizes' => $this->size->getSizes(),
+                'conditions' => $this->condition->getConditions(),
             ]);
         } else {
             header('location: ' . URLROOT . '/login', true, 303);
