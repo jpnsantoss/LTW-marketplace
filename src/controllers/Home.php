@@ -28,10 +28,28 @@ class Home
 
     public function index()
     {
+        $filters = [
+            'search' => $_GET['search'] ?? null,
+            'category_id' => $_GET['category'] ?? null,
+            'size_id' => $_GET['size'] ?? null,
+            'condition_id' => $_GET['condition'] ?? null,
+        ];
+
+        // Handle price filter separately
+        if (isset($_GET['price_from'])) {
+            $filters['price'] = [$_GET['price_from'], $_GET['price_to'] ?? PHP_INT_MAX];
+        } elseif (isset($_GET['price_to'])) {
+            $filters['price'] = [0, $_GET['price_to']];
+        }
+
+        // Remove null filters
+        $filters = array_filter($filters, function ($value) {
+            return $value !== null;
+        });
+
         if (isLoggedIn()) {
             view('Home/index', [
-
-                'items' => $this->item->getItems(),
+                'items' => $this->item->getItems($filters),
             ]);
         } else {
             header('location: ' . URLROOT . '/login', true, 303);
@@ -43,13 +61,13 @@ class Home
         if (isLoggedIn()) {
             view('Profile/index', [
                 'items' => $this->item->getItems(),
-        ]);
+            ]);
         } else {
             header('location: ' . URLROOT . '/login', true, 303);
         }
     }
 
-   
+
 
 
     public function details($id)
