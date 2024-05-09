@@ -15,9 +15,16 @@ getNavbar();
                 <p><b>Sold by: </b><?= $wishedItem->username ?></p>
             </div>
             <img src="<?= $wishedItem->url ?>" alt="Image">
-            <button class="remove" data-id="<?= $wishedItem->id?>">Remove</button>
-            <button class="progress" data-id="<?= $wishedItem->id?>">Checkout item</button>
+            <form action="<?= URLROOT ?>/cart/<?= $wishedItem->item_id ?>/delete-item" method="get">
+                <button type="submit" class="remove">Remove</button>
+            </form>
+            <form action="<?= URLROOT ?>/#/<?= $wishedItem->item_id ?>/#" method="get">
+                <button type="submit" class="progress">Checkout Item</button>
+            </form>
         </article>
     <?php }?>
+    <form action="<?= URLROOT ?>#">
+        <button type="submit" class="checkout">CHECKOUT ALL</button>
+    </form>
 
 </body>

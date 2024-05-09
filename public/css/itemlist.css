@@ -31,7 +31,7 @@ img {
   margin-right: 10px;
 }
 .remove{
-  justify-self: end;
+  float: right;
   margin-right: 5px;
 }
 .progress{
@@ -41,7 +41,7 @@ img {
 button {
   grid-row-start: 2;
   padding: 15px 60px; 
-  margin-top: 10px;
+  margin-top: 20px;
   background-color: #333;
   color: #fff;
   border: none;
@@ -56,5 +56,17 @@ button {
   background-color: #555;
 }
 
-h1{margin-top: 1em;
-margin-left: 1em;}
+h1{
+  margin-top: 1.5em;
+  text-align: center;
+  margin-bottom: 1em;
+}
+
+.checkout{
+  font-weight: bold;
+  font-size: large;
+  text-align: center;
+  display: grid;
+  margin:auto;
+  padding: 20px 70px;
+}

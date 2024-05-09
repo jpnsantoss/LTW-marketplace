@@ -8,6 +8,7 @@ getNavbar();
     <h1>My Wishlist</h1>
 
     <?php foreach ($data['items'] as $wishedItem) { ?>
+        
         <article>
             <div class="desc">
                 <p><b>Model: </b><?= $wishedItem->model ?></p>
@@ -16,8 +17,10 @@ getNavbar();
                 <p><b>Sold by: </b><?= $wishedItem->username ?></p>
             </div>
             <img src="<?= $wishedItem->url ?>" alt="Image">
-            <button class="remove" data-id="<?= $wishedItem->id?>">Remove</button>
-            <form action="<?= URLROOT ?>/cart/<?= $wishedItem->id; ?>/add-to-cart" method="get">
+            <form action="<?= URLROOT ?>/WishList/<?= $wishedItem->item_id ?>/delete-item" method="get">
+                <button type="submit" class="remove">Remove</button>
+            </form>
+            <form action="<?= URLROOT ?>/cart/<?= $wishedItem->item_id; ?>/add-to-cart" method="get">
                 <button type="submit" class="progress">Add to Cart</button>
             </form>
         </article>

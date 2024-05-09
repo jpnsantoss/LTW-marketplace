@@ -30,10 +30,12 @@ class WishListModel{
         return ($this->db->execute());
     }
 
-    public function deleteItem($id, $user)
+    public function deleteItem($data)
     {
-        $this->db->query("DELETE FROM wishlist WHERE id = ? and user_id = ?");
-        if ($this->db->execute(array($id, $usr))) return true;
-        return false;
+        $this->db->query("DELETE FROM wishlist WHERE user_id = :user_id and product_id = :product_id");
+        foreach ($data as $key => $value) {
+            $this->db->bind(':' . $key, $value);
+        }
+        return ($this->db->execute());
     }
 }
