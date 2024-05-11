@@ -96,11 +96,11 @@ CREATE TABLE cart (
 CREATE TABLE messages (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   buyer_id INTEGER NOT NULL,
-  seller_id INTEGER NOT NULL,
+  product_id INTEGER NOT NULL,
   content TEXT NOT NULL,
   created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   FOREIGN KEY(buyer_id) REFERENCES buyers(user_id),
-  FOREIGN KEY(seller_id) REFERENCES sellers(user_id)
+  FOREIGN KEY(product_id) REFERENCES sellers(product_id)
 );
 
 CREATE INDEX items_index_0 ON items (category_id);

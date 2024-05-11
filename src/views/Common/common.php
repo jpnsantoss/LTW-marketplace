@@ -35,17 +35,20 @@ function getNavbar()
                             <?php if (isAdmin()) : ?>
                                 <li><a href="/admin">Admin</a></li>
                             <?php endif; ?>
-                            <?php if (isSeller()) : ?>
-                                <li><a href="/admin">Post Items</a></li>
-                            <?php endif; ?>
-                            
-                            <li><a href="#">Profile</a></li>
+                            <li><a href="/profile">Profile</a></li>
                             <li><a href="#">Settings</a></li>
                             <li><a href="#" id="logout">Logout</a></li>
                         </ul>
                     </li>
 
+
+                    <?php if (isSeller()) : ?>
+                        <li><a href="/create" class="highlight">Post Items</a></li>
+                    <?php else : ?>
+                        <li><a href="#" class="highlight">Become a Seller</a></li>
+                    <?php endif; ?>
                     <li><a href="/cart" class="highlight">Cart</a></li>
+
                 </ul>
             </div>
         </nav>

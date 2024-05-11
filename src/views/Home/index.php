@@ -47,31 +47,40 @@ getHead(array('/css/style.css', '/css/navbar.css', '/css/home.css'), "Home");
         </section>
 
         <section class="home-items">
-            <h1>Items for sale:</h1>
-            <ul class="listing-items">
+            <h2>Items for sale:</h2>
+            <div class="listing-items">
                 <?php foreach ($data["items"] as $item) : ?>
-                    <li>
-                        <button class="item-button" data-item-id="<?= $item->id; ?>"onclick="redirectToDetails(<?= $item->id; ?>)">
-                            
-                        <img src="<?= $item->image_urls[0] ?>" alt="Item image" id="item-image">
+                    <article class="item-card">
+                        <a href="/home/details/<?= $item->id ?>">
+                            <img src="<?= $item->image_urls[0] ?>" alt="Item image" id="item-image">
+                        </a>
+
                         <div class="item-info">
-                            <h4> <?= $item->category_name; ?> &emsp; </h4>
-                            <h2> <?= $item->model; ?> &emsp; </h2>
-                            <p> <?= $item->brand; ?> &emsp; </p>
-                            <h3> <?= $item->price; ?> € &emsp; </h3>
-                            
-                </div> 
-                        </button>
-                        <script>
-    function redirectToDetails(itemId) {
-        // Redireciona para a rota details com o ID do item
-        window.location.href = '/home/details/' + itemId;
-    }
-</script>
-                    </li>
+                            <div>
+                                <div class="item-header">
+                                    <p> <?= $item->brand; ?></p>
+                                    <span class="category"> <?= $item->category_name; ?></span>
+                                </div>
+
+                                <a href="/home/details/<?= $item->id ?>">
+                                    <?= $item->model; ?>
+                                </a>
+
+                            </div>
+                            <div class="item-footer">
+                                <h3><?= $item->price; ?> €</h3>
+                                <div>
+                                    <button><i class="icon">favorite</i></button>
+                                    <button><i class="icon">shopping_cart</i> Add to cart</button>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </article>
                 <?php endforeach; ?>
-            </ul>
-            
+            </div>
+
         </section>
     </main>
 </body>

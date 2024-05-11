@@ -23,4 +23,31 @@ class ImageModel
         }
         return false;
     }
+
+    public function findImages($id)
+    {
+        $this->db->query("SELECT * FROM images WHERE item_id = :id");
+        $this->db->bind(':id', $id);
+        return $this->db->resultSet();
+    }
+
+    public function deleteImage($id)
+    {
+        $this->db->query("SELECT * FROM images WHERE id = :id");
+        $this->db->bind(':id', $id);
+        $image = $this->db->single();
+
+        if ($image) {
+            $image = get_object_vars($image);
+            $file_with_path = $_SERVER['DOCUMENT_ROOT'] . $image['url'];
+
+            if (file_exists($file_with_path)) {
+                unlink($file_with_path);
+            }
+            $this->db->query('DELETE FROM images WHERE id = :id');
+            $this->db->bind(':id', $image['id']);
+            if ($this->db->execute()) return true;
+            return false;
+        }
+    }
 }

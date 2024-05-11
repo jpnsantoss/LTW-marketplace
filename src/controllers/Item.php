@@ -15,7 +15,6 @@ class Item
         $this->imageModel = new ImageModel;
     }
 
-
     public function create()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -41,7 +40,7 @@ class Item
                         $this->imageModel->createImage($image, $item_id);
                     }
                 }
-                header('location: ' . URLROOT . '/admin', true, 303);
+                header('location: ' . URLROOT . '/create', true, 303);
             } else
                 die(SOMETHING_WENT_WRONG);
         } else {
@@ -79,11 +78,71 @@ class Item
                 die(UNAUTHORIZED_ACCESS);
             }
             $id = $params['id'];
+
+            $images = $this->imageModel->findImages($id);
+
+            foreach ($images as $image) {
+                if (!$this->imageModel->deleteImage($image->id)) {
+                    die("deleting image failed.");
+                };
+            }
+
+
             $this->item->deleteItem($id);
             header('location: ' . URLROOT . '/admin', true, 303);
         } else {
             die(UNAUTHORIZED_ACCESS);
         }
     }
-}
 
+    public function deleteuseritem($params)
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if (!isLoggedIn() || !isAdmin()) {
+                header('location: ' . URLROOT . '/', true, 303);
+                die(UNAUTHORIZED_ACCESS);
+            }
+            $id = $params['id'];
+
+            $images = $this->imageModel->findImages($id);
+
+            foreach ($images as $image) {
+                if (!$this->imageModel->deleteImage($image->id)) {
+                    die("deleting image failed.");
+                };
+            }
+
+
+            $this->item->deleteItem($id);
+            header('location: ' . URLROOT . '/profile', true, 303);
+        } else {
+            die(UNAUTHORIZED_ACCESS);
+        }
+    }
+
+    public function updateitem()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+
+            $itemData = [
+                'item_id' => $_POST['item_id'], // O ID do item que você deseja atualizar
+                'price' => $_POST['price'], // Novo preço do item
+                'brand' => $_POST['brand'],
+                'model' => $_POST['model'],
+                'category_id' => $_POST['category'],
+                'size_id' => $_POST['size'],
+                'condition_id' => $_POST['condition'],
+                // Adicione quaisquer outros campos que você deseja atualizar aqui
+            ];
+
+            if ($this->item->updateItem($itemData)) {
+
+                header('location: ' . URLROOT . '/profile', true, 303);
+            } else {
+
+                header('location: ' . URLROOT . '/', true, 303);
+            }
+        }
+    }
+}

@@ -69,4 +69,124 @@ class Auth
             die(UNAUTHORIZED_ACCESS);
         }
     }
+
+
+    public function changeemail()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if (!isLoggedIn()) {
+                header('location: ' . URLROOT . '/', true, 303);
+                die(UNAUTHORIZED_ACCESS);
+            }
+            $email = [
+                'email' => $_POST['email'],
+                'user_id' => $_SESSION['user']['id'],
+            ];
+
+
+            if ($this->user->changeEmail($email)) {
+
+                $_SESSION['user']['email'] = $email['email'];
+
+                header('location: ' . URLROOT . '/profile', true, 303);
+            } else {
+                header('location: ' . URLROOT . '/', true, 303);
+            }
+        }
+    }
+
+    public function changeusername()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if (!isLoggedIn()) {
+                header('location: ' . URLROOT . '/', true, 303);
+                die(UNAUTHORIZED_ACCESS);
+            }
+            $change = [
+                'username' => $_POST['username'],
+                'user_id' => $_SESSION['user']['id'],
+            ];
+
+
+            if ($this->user->changeUsername($change)) {
+
+                $_SESSION['user']['username'] = $change['username'];
+
+                header('location: ' . URLROOT . '/profile', true, 303);
+            } else {
+                header('location: ' . URLROOT . '/', true, 303);
+            }
+        }
+    }
+
+    public function changefullname()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if (!isLoggedIn()) {
+                header('location: ' . URLROOT . '/', true, 303);
+                die(UNAUTHORIZED_ACCESS);
+            }
+            $change = [
+                'fullname' => $_POST['fullname'],
+                'user_id' => $_SESSION['user']['id'],
+            ];
+
+
+            if ($this->user->changeFullname($change)) {
+
+                $_SESSION['user']['full_name'] = $change['fullname'];
+
+                header('location: ' . URLROOT . '/profile', true, 303);
+            } else {
+                header('location: ' . URLROOT . '/', true, 303);
+            }
+        }
+    }
+
+    public function changepassword()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if (!isLoggedIn()) {
+                header('location: ' . URLROOT . '/', true, 303);
+                die(UNAUTHORIZED_ACCESS);
+            }
+
+            $current_password = $_POST['current_password'];
+            $new_password = $_POST['new_password'];
+            $confirm_password = $_POST['confirm_password'];
+
+            if ($new_password !== $confirm_password) {
+                echo "As senhas não coincidem.";
+                exit;
+            }
+
+            $change = [
+                'current_password' => password_hash($_POST['current_password'], PASSWORD_DEFAULT),
+                'hashed_password' => password_hash($_POST['new_password'], PASSWORD_DEFAULT),
+                'user_id' => $_SESSION['user']['id'],
+            ];
+
+
+            if (!password_verify($current_password, $_SESSION['user']['hashed_password'])) {
+
+                echo "Current password incorrect";
+
+                // Redirect the user to the home page or dashboard
+                exit;
+            } else {
+
+
+
+
+                if ($this->user->changePassword($change)) {
+
+                    $_SESSION['user']['hashed_password'] = $change['hashed_password'];
+
+                    header('location: ' . URLROOT . '/profile', true, 303);
+                } else {
+                    header('location: ' . URLROOT . '/', true, 303);
+                }
+            }
+        }
+    }
 }

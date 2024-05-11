@@ -101,4 +101,44 @@ class UserModel
         $this->db->bind(':user_id', $user_id);
         return $this->db->resultSet();
     }
+
+    public function changeEmail($email){
+
+            $this->db->query('UPDATE users SET email = :email WHERE id = :user_id');
+            $this->db->bind(':user_id', $email['user_id']);
+            $this->db->bind(':email', $email['email']);
+
+            return $this->db->execute();
+
+    }
+
+    public function changeUsername($change){
+
+        $this->db->query('UPDATE users SET username = :username WHERE id = :user_id');
+        $this->db->bind(':user_id', $change['user_id']);
+        $this->db->bind(':username', $change['username']);
+
+        return $this->db->execute();
+
+    }
+
+    public function changeFullname($change){
+
+        $this->db->query('UPDATE users SET full_name = :fullname WHERE id = :user_id');
+        $this->db->bind(':user_id', $change['user_id']);
+        $this->db->bind(':fullname', $change['fullname']);
+
+        return $this->db->execute();
+
+    }
+
+    public function changePassword($change){
+
+        $this->db->query('UPDATE users SET hashed_password = :hashed_password WHERE id = :user_id');
+        $this->db->bind(':user_id', $change['user_id']);
+        $this->db->bind(':hashed_password', $change['hashed_password']);
+
+        return $this->db->execute();
+
+    }
 }
