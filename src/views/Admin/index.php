@@ -135,6 +135,12 @@ getNavbar();
             <?php endforeach; ?>
         </ul>
     </section>
+    <section class="users">
+        <h1>Users:</h1>
+        <form method="POST" action="<?= URLROOT; ?>/Admin/users">  
+            <input type="submit" value="Manage users"/>  
+        </form>
+    </section>
 <?php endif; ?>
 
         

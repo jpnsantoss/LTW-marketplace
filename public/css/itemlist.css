@@ -70,3 +70,8 @@ h1{
   margin:auto;
   padding: 20px 70px;
 }
+
+.empty{
+  text-align: center;
+  font-size: xx-large;
+}

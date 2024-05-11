@@ -24,6 +24,8 @@ getNavbar();
                 <button type="submit" class="progress">Add to Cart</button>
             </form>
         </article>
-    <?php }?>
+        <?php } if(sizeof($data['items']) === 0){?>
+            <p class ="empty">Your wishlist is currently empty. </p>
+        <?php } ?>
 </body>
 

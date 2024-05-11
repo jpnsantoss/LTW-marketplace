@@ -94,4 +94,11 @@ class UserModel
 
         return $this->db->execute();
     }
+
+    public function getSellerItems($user_id)
+    {
+        $this->db->query('SELECT * from items join sellers on sellers.user_id = items.seller_id JOIN images ON items.id = images.item_id where sellers.user_id = :user_id');
+        $this->db->bind(':user_id', $user_id);
+        return $this->db->resultSet();
+    }
 }

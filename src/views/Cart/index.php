@@ -22,9 +22,12 @@ getNavbar();
                 <button type="submit" class="progress">Checkout Item</button>
             </form>
         </article>
-    <?php }?>
-    <form action="<?= URLROOT ?>#">
-        <button type="submit" class="checkout">CHECKOUT ALL</button>
-    </form>
+    <?php } if(sizeof($data['items'])===0){?>
+        <p class ="empty">You have no items to checkout!</p>
+    <?php } else {?>
+        <form action="<?= URLROOT ?>#">
+            <button type="submit" class="checkout">CHECKOUT ALL</button>
+        </form>    
+    <?php } ?>
 
 </body>
