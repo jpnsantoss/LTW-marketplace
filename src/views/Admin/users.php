@@ -27,13 +27,22 @@
                 <td><?=$user['hashed_password']?></td>
                 <td><?=$isSeller?></td>
                 <td><?=$user['created_at']?></td>
-                <?php if ($isSeller == 'Yes') { ?>
-                    <td class=button><button type="submit">Promote to seller<button></td> 
+                <?php if ($isSeller == 'No') { ?>
+                    <td class ="button">
+                        <form action="<?= URLROOT ?>/admin/<?=$user['id']?>/promote-user-to-seller" method="get">
+                            <button type="submit" class="promote-button">Promote to seller</button>
+                        </form>
+                    </td>
                 <?php } else { ?>
-                    <td class=button><button type="submit">See Items<button></td> 
+                    <td class="button">
+                        <form action="<?= URLROOT ?>/Admin/<?=$user['id']?>/userItems" method="get">
+                            <button type="submit" class="promote-button">See Items</button>
+                        </form>                    
+                    </td> 
                 <?php } ?>
         
             </tr>
         <?php } ?>
     </table> 
+    <?php getScript('promote.js'); ?>
 </body>

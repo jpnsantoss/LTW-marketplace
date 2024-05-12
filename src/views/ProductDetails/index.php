@@ -27,8 +27,12 @@ getNavbar();
                     <li>Condition: <?= $data["item"]->condition_name; ?></li>
                 </div>
                 <div class="item-buttons">
-                    <button class="primary-btn">Add to cart <i class="icon">shopping_cart</i></button>
-                    <button><i class="icon">favorite</i></button>
+                <form action="<?= URLROOT ?>/WishList/<?= $data["item"]->id; ?>/add-to-wish-list" method="get">
+                    <button type="submit" class="add-to-wishlist">Add to Wishlist</button>
+                </form>
+                <form action="<?= URLROOT ?>/cart/<?= $data["item"]->id; ?>/add-to-cart" method="get">
+                    <button type="submit" class="add-to-cart">Add to Cart</button>
+                </form>
                 </div>
             </div>
             <div class="user-info">

@@ -22,7 +22,6 @@ class Auth
                 'email' => $_POST['email'],
                 'hashed_password' => password_hash($_POST['password'], PASSWORD_DEFAULT)
             ];
-            print_r($registerRequest);
             if ($this->user->userExists($registerRequest['email'], $registerRequest['username']))
                 die(ALREADY_EXISTS);
             if ($this->user->createUser($registerRequest))
@@ -60,7 +59,7 @@ class Auth
             die(UNAUTHORIZED_ACCESS);
         }
     }
-    public  function logout()
+    public function logout()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             session_start();

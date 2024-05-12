@@ -21,7 +21,7 @@ th {
     color: #fff;
 }
 
-.button {
+.button{
     text-align: center;
 }
 
@@ -65,4 +65,8 @@ button[type="submit"] {
     border-radius: 20px;
     clear: right;
     transition: 0.2s ease all;
-  }
+}
+button[type="submit"]:active {
+    background-color: var(--secondary);
+    opacity: 0.8; 
+}
