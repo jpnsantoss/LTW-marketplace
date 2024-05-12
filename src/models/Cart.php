@@ -15,6 +15,14 @@ class CartModel{
         return $this->db->resultSet();
     }
 
+    public function getItem($item_id, $user_id){
+        $item_id = (int) $item_id;
+        $this->db->query("SELECT * FROM cart JOIN items ON items.id = cart.product_id JOIN images ON items.id = images.item_id JOIN users ON users.id = items.seller_id WHERE cart.product_id = :item_id AND cart.user_id = :user_id");
+        $this->db->bind(':item_id', $item_id);
+        $this->db->bind(':user_id', $user_id);
+        return $this->db->resultSet();
+    }
+    
     public function addToCart($data): bool
     {
         $this->db->query("INSERT OR IGNORE INTO cart ('user_id', 'product_id') VALUES (:user_id, :product_id)");
@@ -30,5 +38,13 @@ class CartModel{
             $this->db->bind(':' . $key, $value);
         }
         return ($this->db->execute());
+    }
+
+    public function setSold($id)
+    {   
+        //$this->db->query("SELECT sold_at from items WHERE items.id = :id");
+        $this->db->query("UPDATE items SET sold_at= CURRENT_TIMESTAMP WHERE items.id = :id AND sold_at IS NULL");
+        $this->db->bind(':id', $id);
+        return $this->db->execute();
     }
 }

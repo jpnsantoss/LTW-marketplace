@@ -172,6 +172,12 @@
   align-items: center;
 }
 
+.buttons{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .item-footer button {
   background: none;
   padding: 0.5rem 1rem;

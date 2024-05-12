@@ -19,14 +19,14 @@ getNavbar();
             <form action="<?= URLROOT ?>/cart/<?= $wishedItem->item_id ?>/delete-item" method="get">
                 <button type="submit" class="remove">Remove</button>
             </form>
-            <form action="<?= URLROOT ?>/#/<?= $wishedItem->item_id ?>/#" method="get">
+            <form action="<?= URLROOT ?>/cart/<?= $wishedItem->item_id ?>/checkout" method="get">
                 <button type="submit" class="progress">Checkout Item</button>
             </form>
         </article>
     <?php } if(sizeof($data['items']) === 0){?>
         <p class ="empty">You have no items to checkout!</p>
     <?php } else {?>
-        <form action="<?= URLROOT ?>#">
+        <form action="<?= URLROOT ?>/cart/checkout" method="post">
             <button type="submit" class="checkout">CHECKOUT ALL</button>
         </form>    
     <?php } ?>

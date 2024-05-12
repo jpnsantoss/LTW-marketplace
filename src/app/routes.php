@@ -11,6 +11,11 @@ $router->addRoute('wishlist', ['controller' => 'WishList', 'action' => 'index'])
 $router->addRoute('profile', ['controller' => 'Admin', 'action' => 'profile']);
 $router->addRoute('create', ['controller' => 'Admin', 'action' => 'additem']);;
 $router->addRoute('chat', ['controller' => 'View', 'action' => 'chat']);
+//$router->addRoute('checkout', ['controller' => 'Checkout', 'action' => 'index']);
+
+//$router->addRoute('checkout', ['controller' => 'View', 'action' => 'checkout']);
+$router->addRoute('checkout', ['controller' => 'Cart', 'action' => 'checkout']);
+$router->addRoute('conclusion', ['controller' => 'Cart', 'action' => 'conclusion']);
 
 $router->addRoute('admin', ['controller' => 'Admin', 'action' => 'index']);
 $router->addRoute('admin', ['controller' => 'Admin', 'action' => 'users']);

@@ -52,7 +52,9 @@ getHead(array('/css/style.css', '/css/navbar.css', '/css/home.css'), "Home");
                 <?php if (empty($data["items"])) : ?>
                     <p>No items found.</p>
                 <?php else : ?>
-                    <?php foreach ($data["items"] as $item) : ?>
+                    <?php foreach ($data["items"] as $item) : 
+                        if($item->sold_at === NULL) {?>
+                        
                         <article class="item-card">
                             <a href="/home/details/<?= $item->id ?>">
                                 <img src="<?= $item->image_urls[0] ?>" alt="Item image" id="item-image">
@@ -72,16 +74,20 @@ getHead(array('/css/style.css', '/css/navbar.css', '/css/home.css'), "Home");
                                 </div>
                                 <div class="item-footer">
                                     <h3><?= $item->price; ?> €</h3>
-                                    <div>
-                                        <button><i class="icon">favorite</i></button>
-                                        <button><i class="icon">shopping_cart</i> Add to cart</button>
+                                    <div class="buttons">
+                                        <form action="<?= URLROOT ?>/WishList/<?= $item->id ?>/add-to-wish-list" method="get">
+                                            <button type="submit"><i class="icon">favorite</i></button>
+                                        </form>
+                                        <form action="<?= URLROOT ?>/cart/<?= $item->id ?>/add-to-cart" method="get">
+                                            <button type="submit"><i class="icon">shopping_cart</i> Add to cart</button>
+                                        </form>
                                     </div>
                                 </div>
 
 
                             </div>
                         </article>
-                    <?php endforeach; ?>
+                    <?php } endforeach; ?>
                 <?php endif; ?>
             </div>
 
@@ -97,10 +103,8 @@ getHead(array('/css/style.css', '/css/navbar.css', '/css/home.css'), "Home");
             value === '' || (form[key].tagName === 'SELECT' && form[key].selectedIndex === 0) ? null : `${encodeURIComponent(key)}=${encodeURIComponent(value)}`
         ).filter(Boolean).join('&');
 
-        // Get the original URL of the page without any query parameters
         const originalUrl = window.location.href.split('?')[0];
 
-        // Redirect to the URL with the query string only if params is not empty
         window.location.href = params ? originalUrl + '?' + params : originalUrl;
     });
 </script>

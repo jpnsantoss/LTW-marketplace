@@ -28,6 +28,7 @@ CREATE TABLE items (
   model TEXT NOT NULL,
   seller_id INTEGER NOT NULL,
   created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  sold_at DATETIME DEFAULT NULL,
   FOREIGN KEY(category_id) REFERENCES categories(id),
   FOREIGN KEY(size_id) REFERENCES sizes(id),
   FOREIGN KEY(condition_id) REFERENCES conditions(id),
@@ -119,3 +120,12 @@ CREATE INDEX messages_index_12 ON messages (seller_id);
 CREATE INDEX messages_index_13 ON messages (buyer_id, seller_id);
 CREATE INDEX cart_index_14 ON cart (user_id);
 CREATE INDEX cart_index_15 ON cart (product_id);
+
+CREATE TRIGGER after_update_items_sold
+  AFTER UPDATE ON items
+  FOR EACH ROW
+  WHEN NEW.sold_at IS NOT NULL
+  BEGIN
+    DELETE FROM wishlist WHERE wishlist.product_id = NEW.id;
+    DELETE FROM cart WHERE cart.product_id = NEW.id;
+END;

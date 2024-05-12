@@ -63,7 +63,25 @@ class Cart{
             echo json_encode(['message' => 'Method Not Allowed']);
         }
     }
-
+    public function payStub(){
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if (isset($_POST['data'])) {
+                
+                $data = json_decode($_POST['data']);
+                if ($data !== null) {
+                    foreach ($data as $el) {
+                        $this->cart->setSold($el->item_id);
+                    }
+                } else {
+                    echo "Error decoding JSON data";
+                }
+            } else {
+                echo "No data received";
+            }
+            //should redirect to some receipt/shipping forms
+            header('location: ' . URLROOT , true, 303);
+        }
+    }
     public function index(){
         if(isLoggedIn()){
             $userId = $_SESSION['user']['id'];
@@ -75,4 +93,36 @@ class Cart{
         }
     }
 
-}?>
+    public function checkout($item){
+
+        $item_id = $item['id'];
+
+        if(isLoggedIn()){
+            $userId = $_SESSION['user']['id'];
+            if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+                view('Checkout/index', ['items' => $this->cart->getItem($item_id, $userId)]);
+            }else if($_SERVER['REQUEST_METHOD'] === 'POST') {
+                view('Checkout/index', ['items' => $this->cart->getCart($userId)]);
+            }
+        }else{
+            header('location: ' . URLROOT . '/login', true, 303);
+            die(UNAUTHORIZED_ACCESS);
+        }
+
+    }
+
+    /*
+    public function conclude(){
+
+        $item_id = $item['id'];
+
+        if(isLoggedIn()){
+        view('Checkout/conclusion', ['items' => $this->cart->getCart($userId)]);
+        }else{
+            header('location: ' . URLROOT . '/login', true, 303);
+            die(UNAUTHORIZED_ACCESS);
+        
+        }
+    }*/
+}
+?>

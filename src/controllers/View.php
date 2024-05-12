@@ -38,14 +38,17 @@ class View
     }
 
 
-    public function cart()
-    {
-        view('Cart/index');
-    }
-
-
     public function chat()
     {
         view('Chat/index');
+    }
+
+    public function checkout(){
+        if (isLoggedIn()) {
+           view('Checkout/index');
+        } else {
+            header('location: ' . URLROOT . '/login', true, 303);
+        }
+        
     }
 }
