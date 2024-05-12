@@ -6,6 +6,7 @@ getNavbar();
 
 <body>
     <h1>My Cart</h1>
+    
     <?php foreach ($data['items'] as $wishedItem) { ?>
         <article>
             <div class="desc">
@@ -22,7 +23,7 @@ getNavbar();
                 <button type="submit" class="progress">Checkout Item</button>
             </form>
         </article>
-    <?php } if(sizeof($data['items'])===0){?>
+    <?php } if(sizeof($data['items']) === 0){?>
         <p class ="empty">You have no items to checkout!</p>
     <?php } else {?>
         <form action="<?= URLROOT ?>#">

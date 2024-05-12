@@ -1,13 +1,8 @@
 <?php
-
 namespace Controllers;
-
 use Models\CartModel;
-
 class Cart{
-
     private $cart;
-
     public function __construct(){
         $this->cart = new CartModel;
     }
@@ -22,7 +17,6 @@ class Cart{
                 'user_id' => $_SESSION['user']['id'],
                 'product_id' => $product_id['id'],
             ];
-
             if ($this->cart->addToCart($cartRequest)){
                 http_response_code(200);
                 echo json_encode(['message' => 'Item added to cart successfully!']);   
@@ -40,6 +34,7 @@ class Cart{
         }
         
     }
+
     public function deleteItem($product_id) : bool
     {      
         if (!isLoggedIn()) {
@@ -51,7 +46,6 @@ class Cart{
                 'user_id' => $_SESSION['user']['id'],
                 'product_id' => $product_id['id'],
             ];
-
             if ($this->cart->deleteItem($cartRequest)){
                 http_response_code(200);
                 echo json_encode(['message' => 'Item added to cart successfully!']);   
@@ -69,6 +63,7 @@ class Cart{
             echo json_encode(['message' => 'Method Not Allowed']);
         }
     }
+
     public function index(){
         if(isLoggedIn()){
             $userId = $_SESSION['user']['id'];
@@ -79,6 +74,5 @@ class Cart{
             die(UNAUTHORIZED_ACCESS);
         }
     }
+
 }?>
-
-

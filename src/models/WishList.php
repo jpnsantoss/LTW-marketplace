@@ -3,8 +3,8 @@
 namespace Models;
 
 use \Models\Database;
-//é relativo a um user
 
+//é relativo a um user
 class WishListModel{
 
     private $db;
@@ -29,7 +29,7 @@ class WishListModel{
         }
         return ($this->db->execute());
     }
-
+    
     public function deleteItem($data)
     {
         $this->db->query("DELETE FROM wishlist WHERE user_id = :user_id and product_id = :product_id");

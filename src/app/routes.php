@@ -9,8 +9,7 @@ $router->addRoute('create', ['controller' => 'View', 'action' => 'createProduct'
 $router->addRoute('cart', ['controller' => 'Cart', 'action' => 'index']);
 $router->addRoute('wishlist', ['controller' => 'WishList', 'action' => 'index']);
 $router->addRoute('profile', ['controller' => 'Admin', 'action' => 'profile']);
-$router->addRoute('create', ['controller' => 'Admin', 'action' => 'additem']);
-$router->addRoute('cart', ['controller' => 'View', 'action' => 'cart']);
+$router->addRoute('create', ['controller' => 'Admin', 'action' => 'additem']);;
 $router->addRoute('chat', ['controller' => 'View', 'action' => 'chat']);
 
 $router->addRoute('admin', ['controller' => 'Admin', 'action' => 'index']);

@@ -1,5 +1,4 @@
 <?php
-
 namespace Controllers;
 
 use Models\WishListModel;
@@ -23,7 +22,6 @@ class WishList{
                 'user_id' => $_SESSION['user']['id'],
                 'product_id' => $product_id['id'],
             ];
-
             if ($this->wishList->addToWishList($wishListRequest)){
                 http_response_code(200);
                 echo json_encode(['message' => 'Item added to list successfully!']);   
@@ -36,11 +34,14 @@ class WishList{
                 die(SOMETHING_WENT_WRONG);
                 return false;
             }
+
         }else{
             http_response_code(405);
             echo json_encode(['message' => 'Method Not Allowed']);
         }
+
     }
+
     public function deleteItem($product_id) : bool
     {      
         if (!isLoggedIn()) {
@@ -52,7 +53,6 @@ class WishList{
                 'user_id' => $_SESSION['user']['id'],
                 'product_id' => $product_id['id'],
             ];
-
             if ($this->wishList->deleteItem($wishListRequest)){
                 http_response_code(200);
                 echo json_encode(['message' => 'Item added to list successfully!']);   
@@ -69,6 +69,7 @@ class WishList{
             http_response_code(405);
             echo json_encode(['message' => 'Method Not Allowed']);
         }
+        
     }
     
     public function index(){
@@ -82,4 +83,3 @@ class WishList{
         }
     }
 }
-
