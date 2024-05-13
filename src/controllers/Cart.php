@@ -1,10 +1,14 @@
 <?php
 namespace Controllers;
 use Models\CartModel;
+use Models\ItemModel;
+
+
 class Cart{
     private $cart;
     public function __construct(){
         $this->cart = new CartModel;
+        $this->item = new ItemModel;
     }
 
     public function addToCart($product_id) : bool{
@@ -64,22 +68,30 @@ class Cart{
         }
     }
     public function payStub(){
+        session_start();
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
             if (isset($_POST['data'])) {
                 
                 $data = json_decode($_POST['data']);
                 if ($data !== null) {
                     foreach ($data as $el) {
-                        $this->cart->setSold($el->item_id);
+                        $buyer_id = $_SESSION['user']['id'];
+                        $soldItem = $this->item->getItem($el->item_id);
+                        $this->cart->setSold($soldItem->id, $buyer_id, $soldItem->seller_id );
                     }
                 } else {
                     echo "Error decoding JSON data";
                 }
             } else {
                 echo "No data received";
+                
             }
             //should redirect to some receipt/shipping forms
-            header('location: ' . URLROOT , true, 303);
+            header('location: ' . URLROOT . '/profile', true, 303);
+        }
+        else{
+           
         }
     }
     public function index(){

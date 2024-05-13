@@ -40,11 +40,16 @@ class CartModel{
         return ($this->db->execute());
     }
 
-    public function setSold($id)
+    public function setSold($item_id, $buyer_id, $seller_id)
     {   
+        
+        $this->db->query("INSERT INTO transactions (`seller_id`, `buyer_id`, `product_id`) VALUES (:seller_id, :buyer_id, :product_id) ");
+        $this->db->bind(':product_id', $item_id);
+        $this->db->bind(':buyer_id', $_SESSION['user']['id']);
+        $this->db->bind(':seller_id', $seller_id);
+        
         //$this->db->query("SELECT sold_at from items WHERE items.id = :id");
-        $this->db->query("UPDATE items SET sold_at= CURRENT_TIMESTAMP WHERE items.id = :id AND sold_at IS NULL");
-        $this->db->bind(':id', $id);
+        
         return $this->db->execute();
     }
 }

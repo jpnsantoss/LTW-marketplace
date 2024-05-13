@@ -4,6 +4,19 @@ getHead(array('/css/style.css', '/css/navbar.css', '/css/form.css', '/css/itemli
 getNavbar();
 ?>
 
+<?php session_start(); ?>
+
+<?php if (!isLoggedIn()) {
+    // Redirecionar para a página de login, por exemplo:
+    header("Location: login.php");
+    exit;
+} 
+
+$user = $_SESSION['user'];
+
+
+?>
+
 <body>
     <h1>Checkout</h1>
     <h2>Your item:</h2>
@@ -25,7 +38,7 @@ getNavbar();
     <h3><b>Number of items: </b><?= sizeof($data['items']) ?></h3>
     <h3><b>To pay: </b><?= $topay ?>€</h3>
 
-    <form action="<?= URLROOT ?>/cart/pay-stub" method="post">
+    <form action="<?= URLROOT ?>/cart/paystub" method="post">
 
     <input type="hidden" name="data" value="<?= htmlspecialchars(json_encode($data['items'])) ?>">
         <label for="name">Name on Card:</label><br>
