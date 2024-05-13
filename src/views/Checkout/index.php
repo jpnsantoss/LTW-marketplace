@@ -6,7 +6,7 @@ getNavbar();
 
 <body>
     <h1>Checkout</h1>
-    <h2>Your item:</h2>
+    <h2>Items to checkout:</h2>
     <?php foreach ($data['items'] as $item) { ?>
         <article>
             <div class="desc">
@@ -22,10 +22,11 @@ getNavbar();
     
     
     <?php $topay += $item->price;} ?>
-    <h3><b>Number of items: </b><?= sizeof($data['items']) ?></h3>
-    <h3><b>To pay: </b><?= $topay ?>€</h3>
-
-    <form action="<?= URLROOT ?>/cart/pay-stub" method="post">
+    <div class="info">
+        <h3><b>Number of items: </b><?= sizeof($data['items']) ?></h3>
+        <h3><b>To pay: </b><?= $topay ?>€</h3>
+    </div>
+    <form class="stub" action="<?= URLROOT ?>/cart/pay-stub" method="post">
 
     <input type="hidden" name="data" value="<?= htmlspecialchars(json_encode($data['items'])) ?>">
         <label for="name">Name on Card:</label><br>
@@ -40,12 +41,14 @@ getNavbar();
         <label for="cvv">CVV:</label><br>
         <input type="text" id="cvv" name="cvv"><br><br>
         
-        <button type="submit">Submit Payment</button>
+        <button type="submit" class="pay">Submit Payment</button>
     </form>
-    <p>By checking out, you are transferring to each seller the value for the items you want.</p>
-    <p>You will soon receive shipping forms of your products from the respective seller. If you don't receive a shipping form, please contact your seller. If they do not answer in a workday, please contact an Admin.</p>
-    <p>Our sellers are subject to a careful promotion process for to ensure your best experience. </p>
-    <p>Sincerely,</p> 
-    <p>Your marketplace team</p> 
+    <section class="text">
+        <p>By checking out, you are transferring to each seller the value for the items you want.</p>
+        <p>You will soon receive shipping forms of your products from the respective seller. If you don't receive a shipping form, please contact your seller. If they do not answer in a workday, please contact an Admin.</p>
+        <p>Our sellers are subject to a careful promotion process for to ensure your best experience. </p>
+        <p>Sincerely,</p> 
+        <p>Your marketplace team</p> 
+    </section>
 </body>
 </html>
