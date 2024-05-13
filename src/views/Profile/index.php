@@ -81,7 +81,7 @@ $user = $_SESSION['user'];
 
     <div class="item-wrapper">
     <?php foreach ($data["items"] as $item) : ?>
-
+        <?php if ($item->seller_id == $user['id'] && $item->sold_at === NULL) { ?>
 
         <div class="item-container">
         <div class="item-image">
@@ -91,7 +91,7 @@ $user = $_SESSION['user'];
 
     </div>
     <div class="edit-product">
-        <?php if ($item->seller_id == $user['id']) { ?>
+       
             <h3><?php echo $item->brand; ?> : <?php echo $item->model; ?></h3>
             <br>
 
@@ -176,6 +176,7 @@ $user = $_SESSION['user'];
 
 
         <?php } ?>
+        
         <?php endforeach; ?>
                 </div>
 
