@@ -126,18 +126,34 @@ option {
     max-height: auto;
     display: grid;
     grid-template-columns: 3fr 3fr;
+    grid-column-gap: 20px; 
     /*gap: 3rem;*/
 }
 
 .item-container {
     display: flex;
     flex-direction: column;
-    padding-right: 20px;
-    padding-left: 20px;
     gap: 1.5rem;
     font-family: "Open Sans", sans-serif;
+    align-items: center;
   }
 
+  .buyer-seller-info {
+    display: flex;
+    flex-direction: row;
+}
+
+.seller-info,
+.buyer-info {
+    margin-top: 10px;
+    margin-right: 20px; /* Espaçamento entre o vendedor e o comprador */
+}
+
+.seller-info h4,
+.buyer-info h4 {
+    margin: 0;
+}
+  
 .edit-profile {
     max-height: auto;
     display: grid;
@@ -147,6 +163,20 @@ option {
     margin-bottom: 10px;
     padding-bottom: 10px;
     /*gap: 3rem;*/
+  }
+  .product-box {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+}
+  .sold-product{
+    grid-column: 1 / span 1;
+  }
+  .products-bought{
+    grid-column: 2 / span 1;
   }
 
 .email{
@@ -219,7 +249,7 @@ form .label {
     margin-top: 20px;
     max-width: 100%; 
     max-height: 200px;
-    margin-left: 40px;
+    margin-left: 0px;
 }
 
 #previous-button,

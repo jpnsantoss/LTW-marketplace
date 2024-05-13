@@ -77,36 +77,6 @@ $user = $_SESSION['user'];
 
 </div>
 
-
-
-
-
-
-<h2>Shipping Forms:</h2>
-
-<?php foreach ($data["transactions"] as $transaction) : ?>
-    <?php if ($transaction->seller_id == $user['id']) : ?>
-        <h3>Seller name: <?php echo $user['name']; ?></h3>
-    <?php endif; ?>
-
-    <?php foreach ($data["items"] as $item) : ?>
-        <?php if ($transaction->product_id == $item->id) : ?>
-            <h3>Item: <?php echo $item->model; ?> : <?php echo $item->brand; ?></h3>
-        <?php endif; ?>
-    <?php endforeach; ?>
-
-    <?php foreach ($data["users"] as $buyer) : ?>
-        <?php if ($buyer->id == $transaction->buyer_id) : ?>
-            <h3>Buyer name: <?php echo $buyer->name; ?> : <?php echo $buyer->id; ?></h3>
-        <?php endif; ?>
-    <?php endforeach; ?>
-<?php endforeach; ?>
-
-
-
-
-
-
     <h2> Your products: </h2>
 
     <div class="item-wrapper">
@@ -207,10 +177,100 @@ $user = $_SESSION['user'];
 
         <?php } ?>
         <?php endforeach; ?>
-    
+                </div>
 
-    
-    
+        
+        <h2>Shipping Forms:</h2>
+        <br>
+        <div class = "item-wrapper">
+        
+
+<div class="sold-products">
+    <h3>Sold Products:</h3>
+
+    <?php foreach ($data["transactions"] as $transaction) : ?>
+        <?php if ($transaction->seller_id == $user['id']) : ?>
+            <div class="product-box">
+                <?php foreach ($data["items"] as $item) : ?>
+                    <?php if ($transaction->product_id == $item->id) : ?>
+                        <h3>Item:</h3>
+                        <div class="item-container">
+                            <div class="item-image">
+                                <img id="item-image" src="<?= $item->image_urls[0] ?>" alt="Item image">
+                            </div>
+                    </div>
+                    <br>
+                            <div class="item-info">
+                                <h4>Model: <?php echo $item->model; ?> 
+                                Brand: <?php echo $item->brand; ?></h4>
+                            
+                        </div>
+                    <?php endif; ?>
+                <?php endforeach; ?>
+
+                <div class="buyer-seller-info">
+                    <div class="buyer-info">
+                    <h4>Seller:<?php echo $user['full_name']; ?></h4>
+                    </div>
+
+                    <?php foreach ($data["users"] as $buyer) : ?>
+                        <?php if ($buyer->id == $transaction->seller_id) : ?>
+                            <div class="seller-info">
+                            <h4>Buyer: <?php echo $buyer->full_name; ?> </h4>
+                            </div>
+
+                        <?php endif; ?>
+                    <?php endforeach; ?>
+                        </div>
+                
+            </div>
+        <?php endif; ?>
+    <?php endforeach; ?>
+</div>   
+
+
+
+<div class="products-bought">
+    <h3>Products Bought:</h3>
+
+    <?php foreach ($data["transactions"] as $transaction) : ?>
+        <?php if ($transaction->buyer_id == $user['id']) : ?>
+            <div class="product-box">
+                <?php foreach ($data["items"] as $item) : ?>
+                    <?php if ($transaction->product_id == $item->id) : ?>
+                        <h3>Item:</h3>
+                        <div class="item-container">
+                            <div class="item-image">
+                                <img id="item-image" src="<?= $item->image_urls[0] ?>" alt="Item image">
+                            </div>
+                    </div>
+                    <br>
+                            <div class="item-info">
+                                <h4>Model: <?php echo $item->model; ?> Brand: <?php echo $item->brand; ?></h4>
+                            
+                        </div>
+                    <?php endif; ?>
+                <?php endforeach; ?>
+
+                <div class="buyer-seller-info">
+                    <div class="buyer-info">
+                        <h4>Buyer:<?php echo $user['full_name']; ?></h4>
+                    </div>
+
+                    <?php foreach ($data["users"] as $seller) : ?>
+                        <?php if ($seller->id == $transaction->seller_id) : ?>
+                            <div class="seller-info">
+                                <h4>Seller: <?php echo $seller->full_name; ?> </h4>
+                            </div>
+
+                        <?php endif; ?>
+                    <?php endforeach; ?>
+                        </div>
+                
+            </div>
+        <?php endif; ?>
+    <?php endforeach; ?>
+</div>
 
 
 </section>
