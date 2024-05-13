@@ -216,7 +216,7 @@ $user = $_SESSION['user'];
                     </div>
 
                     <?php foreach ($data["users"] as $buyer) : ?>
-                        <?php if ($buyer->id == $transaction->seller_id) : ?>
+                        <?php if ($buyer->id == $transaction->buyer_id) : ?>
                             <div class="seller-info">
                             <h4>Buyer: <?php echo $buyer->full_name; ?> </h4>
                             </div>
