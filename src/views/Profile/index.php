@@ -202,7 +202,8 @@ $user = $_SESSION['user'];
                     <br>
                             <div class="item-info">
                                 <h4>Model: <?php echo $item->model; ?> 
-                                Brand: <?php echo $item->brand; ?></h4>
+                                Brand: <?php echo $item->brand; ?>
+                                Price: <?php echo $item->price; ?>€</h4>
                             
                         </div>
                     <?php endif; ?>
@@ -246,7 +247,8 @@ $user = $_SESSION['user'];
                     </div>
                     <br>
                             <div class="item-info">
-                                <h4>Model: <?php echo $item->model; ?> Brand: <?php echo $item->brand; ?></h4>
+                                <h4>Model: <?php echo $item->model; ?> Brand: <?php echo $item->brand; ?>
+                                Price: <?php echo $item->price; ?>€</h4>
                             
                         </div>
                     <?php endif; ?>
