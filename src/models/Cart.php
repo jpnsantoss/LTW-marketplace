@@ -49,7 +49,8 @@ class CartModel{
         $this->db->bind(':seller_id', $seller_id);
         
         //$this->db->query("SELECT sold_at from items WHERE items.id = :id");
-        
+        $this->db->query("UPDATE items SET sold_at= CURRENT_TIMESTAMP WHERE items.id = :id AND sold_at IS NULL");
+        $this->db->bind(':id', $item_id);
         return $this->db->execute();
     }
 }
