@@ -12,3 +12,6 @@ getNavbar();
     <p>You will soon receive shipping forms of your products from the respective seller. If you don't receive a shipping form, please contact your seller. If they do not answer in a workday, please contact an Admin.</p>
 </body>
 </html>
+<?php
+getScript('navbar.js');
+?>

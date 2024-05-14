@@ -67,3 +67,6 @@ $user = $_SESSION['user'];
     </section>
 </body>
 </html>
+<?php
+getScript('navbar.js');
+?>

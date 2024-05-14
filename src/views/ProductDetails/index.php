@@ -71,3 +71,6 @@ getNavbar();
     </script>
 
 </body>
+<?php
+getScript('navbar.js');
+?>

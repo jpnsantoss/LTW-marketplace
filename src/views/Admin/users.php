@@ -1,6 +1,7 @@
 <?php 
     require_once APPROOT . '/src/views/Common/common.php'; 
-    getHead(array('/css/style.css', '/css/table.css'), "Users");
+    getHead(array('/css/style.css', '/css/table.css', '/css/navbar.css'), "Users");
+    getNavbar();
 ?>
 <body>
     <h1>Users</h1>
@@ -45,4 +46,8 @@
         <?php } ?>
     </table> 
     <?php getScript('promote.js'); ?>
+    
 </body>
+<?php
+getScript('navbar.js');
+?>

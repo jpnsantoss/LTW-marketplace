@@ -26,7 +26,7 @@ function getNavbar()
             </div>
             <div id="menu-links">
                 <ul>
-                    <li><a href="#"><i class="icon">chat_bubble</i> Messages</a></li>
+                    <li><a href="/#"><i class="icon">chat_bubble</i> Messages</a></li>
                     <li><a href="/wishlist"><i class="icon">favorite</i> Wishlist</a></li>
 
                     <li class="dropdown">
@@ -36,7 +36,7 @@ function getNavbar()
                                 <li><a href="/admin">Admin</a></li>
                             <?php endif; ?>
                             <li><a href="/profile">Profile</a></li>
-                            <li><a href="#">Settings</a></li>
+            
                             <li><a href="#" id="logout">Logout</a></li>
                         </ul>
                     </li>

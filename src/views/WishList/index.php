@@ -29,3 +29,6 @@ getNavbar();
         <?php } ?>
 </body>
 
+<?php
+getScript('navbar.js');
+?>

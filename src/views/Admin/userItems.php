@@ -4,7 +4,9 @@ getHead(array('/css/style.css', '/css/itemlist.css', '/css/navbar.css'), "Add It
 getNavbar();
 ?>
 <body>
+<?php $hasItems = false ?>
 <?php foreach ($data['items'] as $item) { ?>
+    <?php $hasItems = true ?>
         <article>
             <div class="desc">
                 <p><b>Model: </b><?= $item->model ?></p>
@@ -17,4 +19,13 @@ getNavbar();
             
         </article>
     <?php }?>
+    <div class="desc">
+    <?php if (!$hasItems) : ?>
+                    <h2>No items for sale yet</h2>
+                <?php endif; ?>
+                </div>
+
 </body>
+<?php
+getScript('navbar.js');
+?>
