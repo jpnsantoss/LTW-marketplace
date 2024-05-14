@@ -85,13 +85,14 @@ $user = $_SESSION['user'];
     <?php foreach ($data["items"] as $item) : ?>
         <?php if ($item->seller_id == $user['id'] && $item->sold_at === NULL) { ?>
             <?php $hasItems = true ?>  
-            <div class="item-container">
-            <div class="item-image">
-            <img id="item-image-<?= $item->id ?>" src="<?= $item->image_urls[0] ?>" alt="Item image">
-    <button id="previous-button">&#10094;</button>
-    <button id="next-button">&#10095;</button>
-            </div>
-        
+        <div class="item-container">
+        <div class="item-image" data-item-id="<?= $item->id ?>">
+                    <?php foreach ($item->image_urls as $key => $image_url) : ?>
+                        <img class="item-image" src="<?= $image_url ?>" alt="Item image" style="<?= $key > 0 ? 'display: none;' : '' ?>">
+                    <?php endforeach; ?>
+                    <button class="previous-button">&#10094;</button>
+                    <button class="next-button">&#10095;</button>
+                </div>
     <div class="edit-product">
        
             <h3><?php echo $item->brand; ?> : <?php echo $item->model; ?></h3>
@@ -180,13 +181,44 @@ $user = $_SESSION['user'];
         <?php } ?>
         
         <?php endforeach; ?>
-        
-
                 </div>
+
+                <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const previousButtons = document.querySelectorAll('.previous-button');
+        const nextButtons = document.querySelectorAll('.next-button');
+
+        previousButtons.forEach(button => {
+            button.addEventListener('click', function () {
+                const itemImageContainer = this.parentElement;
+                const itemImages = itemImageContainer.querySelectorAll('.item-image img');
+                let currentIndex = Array.from(itemImages).findIndex(img => img.style.display !== 'none');
+                currentIndex = (currentIndex - 1 + itemImages.length) % itemImages.length;
+                itemImages.forEach((img, index) => {
+                    img.style.display = index === currentIndex ? 'block' : 'none';
+                });
+            });
+        });
+
+        nextButtons.forEach(button => {
+            button.addEventListener('click', function () {
+                const itemImageContainer = this.parentElement;
+                const itemImages = itemImageContainer.querySelectorAll('.item-image img');
+                let currentIndex = Array.from(itemImages).findIndex(img => img.style.display !== 'none');
+                currentIndex = (currentIndex + 1) % itemImages.length;
+                itemImages.forEach((img, index) => {
+                    img.style.display = index === currentIndex ? 'block' : 'none';
+                });
+            });
+        });
+    });
+</script>
+
+
                 <?php if (!$hasItems) : ?>
                     <h4>No items for sale</h4>
                 <?php endif; ?>
-<br>
+
         
         <h2>Shipping Forms:</h2>
         <br>
@@ -291,46 +323,13 @@ $user = $_SESSION['user'];
             </div>
         <?php endif; ?>
     <?php endforeach; ?>
-    <?php if (!$boughtItems) : ?>
-    <h4>No items bought yet</h4>
-<?php endif; ?> 
+    
 </div>
 
 
 </section>
 
-<script>
- document.addEventListener('DOMContentLoaded', function() {
-    const images = <?= json_encode($item->image_urls) ?>;
-    const imageElement = document.getElementById('item-image-<?= $item->id ?>');
-    let currentIndex = 0;
 
-    function showImage(index) {
-        imageElement.src = images[index];
-    }
-
-    document.getElementById('previous-button').addEventListener('click', function() {
-        if (currentIndex > 0) {
-            currentIndex--;
-        } else {
-            currentIndex = images.length - 1;
-        }
-        showImage(currentIndex);
-    });
-
-    document.getElementById('next-button').addEventListener('click', function() {
-        if (currentIndex < images.length - 1) {
-            currentIndex++;
-        } else {
-            currentIndex = 0;
-        }
-        showImage(currentIndex);
-    });
-
-    showImage(currentIndex);
-});
-
-</script>
 
 
 

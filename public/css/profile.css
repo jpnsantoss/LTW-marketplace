@@ -248,7 +248,8 @@ form .label {
 
 .item-image {
     position: relative;
-    
+    max-width: 200px;
+    max-height: 200px;
 }
 
 #item-image {
@@ -258,8 +259,9 @@ form .label {
     margin-left: 0px;
 }
 
-#previous-button,
-#next-button {
+.previous-button
+ ,
+.next-button {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
@@ -271,11 +273,11 @@ form .label {
     z-index: 1; /* as setas de navegação estarão acima da imagem */
 }
 
-#previous-button {
+.previous-button {
     left: 10px; /* posição da seta de navegação esquerda */
 }
 
-#next-button {
+.next-button {
     right: 10px; /* posição da seta de navegação direita */
 }
 
