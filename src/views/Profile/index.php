@@ -194,7 +194,8 @@ $user = $_SESSION['user'];
             <div class="product-box">
                 <?php foreach ($data["items"] as $item) : ?>
                     <?php if ($transaction->product_id == $item->id) : ?>
-                        <h3>Item:</h3>
+                       <h3> <?php echo $item->model; ?> 
+                                <?php echo $item->brand; ?></h3>
                         <div class="item-container">
                             <div class="item-image">
                                 <img id="item-image" src="<?= $item->image_urls[0] ?>" alt="Item image">
@@ -202,9 +203,11 @@ $user = $_SESSION['user'];
                     </div>
                     <br>
                             <div class="item-info">
-                                <h4>Model: <?php echo $item->model; ?> 
-                                Brand: <?php echo $item->brand; ?>
+                                <h4>
                                 Price: <?php echo $item->price; ?>€</h4>
+                                <br>
+                                <h5>
+                                Sold at <?php echo $item->sold_at; ?></h5>
                             
                         </div>
                     <?php endif; ?>
@@ -212,13 +215,13 @@ $user = $_SESSION['user'];
 
                 <div class="buyer-seller-info">
                     <div class="buyer-info">
-                    <h4>Seller:<?php echo $user['full_name']; ?></h4>
+                    <h5>by <?php echo $user['full_name']; ?></h5    >
                     </div>
 
                     <?php foreach ($data["users"] as $buyer) : ?>
                         <?php if ($buyer->id == $transaction->buyer_id) : ?>
                             <div class="seller-info">
-                            <h4>Buyer: <?php echo $buyer->full_name; ?> </h4>
+                            <h5>to <?php echo $buyer->full_name; ?> </h5>
                             </div>
 
                         <?php endif; ?>
@@ -240,7 +243,8 @@ $user = $_SESSION['user'];
             <div class="product-box">
                 <?php foreach ($data["items"] as $item) : ?>
                     <?php if ($transaction->product_id == $item->id) : ?>
-                        <h3>Item:</h3>
+                        <h3> <?php echo $item->model; ?> 
+                                <?php echo $item->brand; ?></h3>
                         <div class="item-container">
                             <div class="item-image">
                                 <img id="item-image" src="<?= $item->image_urls[0] ?>" alt="Item image">
@@ -248,22 +252,24 @@ $user = $_SESSION['user'];
                     </div>
                     <br>
                             <div class="item-info">
-                                <h4>Model: <?php echo $item->model; ?> Brand: <?php echo $item->brand; ?>
+                            <h4>
                                 Price: <?php echo $item->price; ?>€</h4>
-                            
+                                <br>
+                                <h5>
+                                Sold at <?php echo $item->sold_at; ?></h5>
                         </div>
                     <?php endif; ?>
                 <?php endforeach; ?>
 
                 <div class="buyer-seller-info">
                     <div class="buyer-info">
-                        <h4>Buyer:<?php echo $user['full_name']; ?></h4>
+                    <h5>to <?php echo $user['full_name']; ?></h5    >
                     </div>
 
                     <?php foreach ($data["users"] as $seller) : ?>
                         <?php if ($seller->id == $transaction->seller_id) : ?>
                             <div class="seller-info">
-                                <h4>Seller: <?php echo $seller->full_name; ?> </h4>
+                            <h5>by <?php echo $seller->full_name; ?> </h5>
                             </div>
 
                         <?php endif; ?>
