@@ -7,7 +7,7 @@ getNavbar();
 <body class="forms">
     <section>
     <h1>Sell Item:</h1>
-        <form action="<?= URLROOT; ?>/item/create" method="post" enctype="multipart/form-data">
+        <form action="<?= URLROOT; ?>/item/create" method="post" enctype="multipart/form-data" onsubmit="return validateForm()">
             <label for="brand">Brand</label>
             <input type="text" name="brand" id="brand">
             <label for="model">Model</label>
@@ -38,6 +38,20 @@ getNavbar();
             <br>
             <button class="button" type="submit">Add Item</button>
         </form>
+        
+<script>
+    function validateForm() {
+        var fileInput = document.getElementById('images');
+        var files = fileInput.files;
+
+        if (files.length === 0) {
+            alert('Selecione pelo menos uma imagem.');
+            return false;
+        }
+
+        return true;
+    }
+</script>
     </section>
 </body>  
 

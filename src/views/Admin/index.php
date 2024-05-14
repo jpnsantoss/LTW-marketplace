@@ -12,6 +12,7 @@ getNavbar();
             <h1>Items for sale:</h1>
             <ul class="listing">
                 <?php foreach ($data["items"] as $item) : ?>
+                    <?php if($item->sold_at === NULL):?>
                     <li>
                         <?= $item->brand; ?> &emsp;
                         <?= $item->model; ?> &emsp;
@@ -25,6 +26,7 @@ getNavbar();
                             <input type="submit" value="Delete">
                         </form>
                     </li>
+                    <?php endif; ?>
                 <?php endforeach; ?>
             </ul>
     </section>

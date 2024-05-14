@@ -18,7 +18,7 @@ $router->addRoute('checkout', ['controller' => 'Cart', 'action' => 'checkout']);
 $router->addRoute('conclusion', ['controller' => 'Cart', 'action' => 'conclusion']);
 
 $router->addRoute('admin', ['controller' => 'Admin', 'action' => 'index']);
-$router->addRoute('admin', ['controller' => 'Admin', 'action' => 'users']);
+$router->addRoute('adminUsers', ['controller' => 'Admin', 'action' => 'users']);
 
 $router->addRoute('{controller}/{action}/{id:\d+}', [
     'controller' => 'Home',

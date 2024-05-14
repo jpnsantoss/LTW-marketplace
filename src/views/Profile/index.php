@@ -77,19 +77,21 @@ $user = $_SESSION['user'];
 
 </div>
 
+<?php $hasItems = false ?>
+
     <h2> Your products: </h2>
 
     <div class="item-wrapper">
     <?php foreach ($data["items"] as $item) : ?>
         <?php if ($item->seller_id == $user['id'] && $item->sold_at === NULL) { ?>
-
-        <div class="item-container">
-        <div class="item-image">
-        <img id="item-image" src="<?= $item->image_urls[0] ?>" alt="Item image">
-        <button id="previous-button">&#10094;</button>
-        <button id="next-button" >&#10095;</button>
-
-    </div>
+            <?php $hasItems = true ?>  
+            <div class="item-container">
+            <div class="item-image">
+            <img id="item-image-<?= $item->id ?>" src="<?= $item->image_urls[0] ?>" alt="Item image">
+    <button id="previous-button">&#10094;</button>
+    <button id="next-button">&#10095;</button>
+            </div>
+        
     <div class="edit-product">
        
             <h3><?php echo $item->brand; ?> : <?php echo $item->model; ?></h3>
@@ -161,11 +163,11 @@ $user = $_SESSION['user'];
 
             <!-- Adicione campos para quaisquer outros campos que você deseja atualizar -->
             
-            <button class="button" type="submit">Update Item</button>
+            <button class="button" type="submit">Update Item</button></form>
 
-            <form class="buttondelete" action="<?= URLROOT; ?>/item/<?= $item->id; ?>/deleteuseritem" method="post">
-    <input type="submit" value="Delete">
-</form>
+            <form  class ="button-delete" action="<?= URLROOT; ?>/item/<?= $item->id ?>/deleteuseritem" method="post">
+                        <input type="submit" value="Delete">
+                    </form>
                 </div>
                 
                 </form>
@@ -178,14 +180,19 @@ $user = $_SESSION['user'];
         <?php } ?>
         
         <?php endforeach; ?>
-                </div>
+        
 
+                </div>
+                <?php if (!$hasItems) : ?>
+                    <h4>No items for sale</h4>
+                <?php endif; ?>
+<br>
         
         <h2>Shipping Forms:</h2>
         <br>
         <div class = "item-wrapper">
         
-
+        <?php $soldItems = false ?>  
 <div class="sold-products">
     <h3>Sold Products:</h3>
 
@@ -194,6 +201,7 @@ $user = $_SESSION['user'];
             <div class="product-box">
                 <?php foreach ($data["items"] as $item) : ?>
                     <?php if ($transaction->product_id == $item->id) : ?>
+                        <?php $soldItems = true ?>  
                        <h3> <?php echo $item->model; ?> 
                                 <?php echo $item->brand; ?></h3>
                         <div class="item-container">
@@ -231,15 +239,19 @@ $user = $_SESSION['user'];
             </div>
         <?php endif; ?>
     <?php endforeach; ?>
+    <?php if (!$soldItems) : ?>
+    <h4>No items sold yet</h4>
+<?php endif; ?>
 </div>   
 
 
-
+<?php $boughtItems = false ?>  
 <div class="products-bought">
     <h3>Products Bought:</h3>
 
     <?php foreach ($data["transactions"] as $transaction) : ?>
         <?php if ($transaction->buyer_id == $user['id']) : ?>
+            <?php $boughtItems = true ?>  
             <div class="product-box">
                 <?php foreach ($data["items"] as $item) : ?>
                     <?php if ($transaction->product_id == $item->id) : ?>
@@ -279,12 +291,46 @@ $user = $_SESSION['user'];
             </div>
         <?php endif; ?>
     <?php endforeach; ?>
+    <?php if (!$boughtItems) : ?>
+    <h4>No items bought yet</h4>
+<?php endif; ?> 
 </div>
 
 
 </section>
 
+<script>
+ document.addEventListener('DOMContentLoaded', function() {
+    const images = <?= json_encode($item->image_urls) ?>;
+    const imageElement = document.getElementById('item-image-<?= $item->id ?>');
+    let currentIndex = 0;
 
+    function showImage(index) {
+        imageElement.src = images[index];
+    }
+
+    document.getElementById('previous-button').addEventListener('click', function() {
+        if (currentIndex > 0) {
+            currentIndex--;
+        } else {
+            currentIndex = images.length - 1;
+        }
+        showImage(currentIndex);
+    });
+
+    document.getElementById('next-button').addEventListener('click', function() {
+        if (currentIndex < images.length - 1) {
+            currentIndex++;
+        } else {
+            currentIndex = 0;
+        }
+        showImage(currentIndex);
+    });
+
+    showImage(currentIndex);
+});
+
+</script>
 
 
 

@@ -98,7 +98,7 @@ class Item
     public function deleteuseritem($params)
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            if (!isLoggedIn() || !isAdmin()) {
+            if (!isLoggedIn() ) {
                 header('location: ' . URLROOT . '/', true, 303);
                 die(UNAUTHORIZED_ACCESS);
             }
