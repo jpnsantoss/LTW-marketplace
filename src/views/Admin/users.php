@@ -19,6 +19,7 @@
         <?php foreach ($data['users'] as $user){
             $user = (array) $user;
             $isSeller = isset($user['user_id']) ? 'Yes' : 'No';
+            $hasRequested
             ?>
             <tr>
                 <td><?=$user['id']?></td>
@@ -31,7 +32,7 @@
                 <?php if ($isSeller == 'No') { ?>
                     <td class ="button">
                         <form action="<?= URLROOT ?>/admin/<?=$user['id']?>/promote-user-to-seller" method="get">
-                            <button type="submit" class="promote-button">Promote to seller</button>
+                            <button type="submit" class="promote-button">Accept Seller Request</button>
                         </form>
                     </td>
                 <?php } else { ?>
