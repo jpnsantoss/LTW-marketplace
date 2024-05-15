@@ -18,7 +18,8 @@
     </tr>
         <?php foreach ($data['users'] as $user){
             $user = (array) $user;
-            $isSeller = isset($user['user_id']) ? 'Yes' : 'No';
+            $isSeller = isset($user['seller']) ? 'Yes' : 'No';
+            $isAdmin = isset($user['admin'] ) ? 'Yes' : 'No';
             ?>
             <tr>
                 <td><?=$user['id']?></td>
@@ -36,9 +37,15 @@
                     </td>
                 <?php } else { ?>
                     <td class="button">
+                        
                         <form action="<?= URLROOT ?>/Admin/<?=$user['id']?>/userItems" method="get">
                             <button type="submit" class="promote-button">See Items</button>
-                        </form>                    
+                        </form>    
+                        <?php if($isAdmin == 'No'){?>
+                            <form action="<?= URLROOT ?>/admin/<?=$user['id']?>/promote-user-to-admin" method="get">
+                            <button type="submit" class="promote-button">Promote to admin</button>
+                        </form>
+                     <?php   }?>
                     </td> 
                 <?php } ?>
         
