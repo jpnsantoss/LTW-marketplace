@@ -150,17 +150,32 @@ $user_id = $_SESSION['user']['id'];?>
     });
 
     document.addEventListener('DOMContentLoaded', function() {
-        document.getElementById('sellerRequestForm').addEventListener('click', function(event) {
+        var awaitingConfirm = localStorage.getItem('awaitingConfirm'); // Check if the message should be displayed
+        if (awaitingConfirm === 'true') {
+            // Replace the button with the awaiting confirm message
+            var li = document.createElement('li');
+            var a = document.createElement('a');
+            a.setAttribute('href', '#'); // Set href attribute if needed
+            a.classList.add('highlight'); // Add the 'no-hover' class
+            a.innerText = 'Awaiting Admin Confirm';
+            li.appendChild(a);
+            var requestLi = document.getElementById('requestLi');
+            requestLi.parentNode.replaceChild(li, requestLi);
+        }
+
+    document.getElementById('sellerRequestForm').addEventListener('click', function(event) {
             event.preventDefault();
             // Replace the button with the awaiting confirm message
             var li = document.createElement('li');
             var a = document.createElement('a');
             a.setAttribute('href', '#'); // Set href attribute if needed
-            a.classList.add('highlight', 'no-cursor');
-            a.innerText = 'Awaiting Admin Confirmation';
+            a.classList.add('highlight'); // Add the 'no-hover' class
+            a.innerText = 'Awaiting Admin Confirm';
             li.appendChild(a);
             var requestLi = document.getElementById('requestLi');
             requestLi.parentNode.replaceChild(li, requestLi);
+            // Store in localStorage that the message should be displayed
+            localStorage.setItem('awaitingConfirm', 'true');
         });
     });
 
