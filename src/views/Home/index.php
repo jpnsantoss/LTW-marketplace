@@ -1,10 +1,51 @@
 <?php
 require_once APPROOT . '/src/views/Common/common.php';
 getHead(array('/css/style.css', '/css/navbar.css', '/css/home.css'), "Home");
-?>
+$user_id = $_SESSION['user']['id'];?>
 
 <body>
-    <?php getNavbar(); ?>
+    <header>
+        <nav>
+            <div class="nav-mobile">
+                <ul>
+                    <li><a href="/">LTW Marketplace</a></li>
+                </ul>
+                <button id="menu-button"><i class="icon">menu</i></button>
+            </div>
+            <div id="menu-links">
+                <ul>
+                    <li><a href="/#"><i class="icon">chat_bubble</i> Messages</a></li>
+                    <li><a href="/wishlist"><i class="icon">favorite</i> Wishlist</a></li>
+
+                    <li class="dropdown">
+                        <a href="#"><i class="icon">person</i> Account</a>
+                        <ul>
+                            <?php if (isAdmin()) : ?>
+                                <li><a href="/admin">Admin</a></li>
+                            <?php endif; ?>
+                            <li><a href="/profile">Profile</a></li>
+            
+                            <li><a href="#" id="logout">Logout</a></li>
+                        </ul>
+                    </li>
+
+                    <?php if (isSeller()) { ?>
+                        <li><a href="/create" class="highlight">Post Items</a></li>
+                    <?php }else if(hasRequested()) {?>
+                        <li><a id="awaitingConfirm" class="highlight">Awaiting Admin Confirmation</a></li>
+                    <?php } else { ?>
+                        <li id="requestLi">
+                            <form id="sellerRequestForm" class="highlight" action="<?= URLROOT ?>/admin/<?= $_SESSION['user']['id'] ?>/request-to-be-seller" method="get">
+                                <button type="submit" class="requestButton">Request Seller Privileges</button>
+                            </form>
+                        </li>
+                    <?php } ?>
+                    <li><a href="/cart" class="highlight">Cart</a></li>
+
+                </ul>
+            </div>
+        </nav>
+    </header> 
     <main>
         <section class="search">
             <form>
@@ -95,7 +136,7 @@ getHead(array('/css/style.css', '/css/navbar.css', '/css/home.css'), "Home");
     </main>
 </body>
 <script>
-    document.querySelector('form').addEventListener('submit', function(e) {
+    document.querySelector('form:not(#sellerRequestForm)').addEventListener('submit', function(e) {
         e.preventDefault();
 
         const form = e.target;
@@ -107,9 +148,40 @@ getHead(array('/css/style.css', '/css/navbar.css', '/css/home.css'), "Home");
 
         window.location.href = params ? originalUrl + '?' + params : originalUrl;
     });
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var awaitingConfirm = localStorage.getItem('awaitingConfirm'); // Check if the message should be displayed
+        if (awaitingConfirm === 'true') {
+            // Replace the button with the awaiting confirm message
+            var li = document.createElement('li');
+            var a = document.createElement('a');
+            a.setAttribute('href', '#'); // Set href attribute if needed
+            a.classList.add('highlight'); // Add the 'no-hover' class
+            a.innerText = 'Awaiting Admin Confirm';
+            li.appendChild(a);
+            var requestLi = document.getElementById('requestLi');
+            requestLi.parentNode.replaceChild(li, requestLi);
+        }
+
+    document.getElementById('sellerRequestForm').addEventListener('click', function(event) {
+            event.preventDefault();
+            // Replace the button with the awaiting confirm message
+            var li = document.createElement('li');
+            var a = document.createElement('a');
+            a.setAttribute('href', '#'); // Set href attribute if needed
+            a.classList.add('highlight'); // Add the 'no-hover' class
+            a.innerText = 'Awaiting Admin Confirm';
+            li.appendChild(a);
+            var requestLi = document.getElementById('requestLi');
+            requestLi.parentNode.replaceChild(li, requestLi);
+            // Store in localStorage that the message should be displayed
+            localStorage.setItem('awaitingConfirm', 'true');
+        });
+    });
+
 </script>
 <?php
-getScript('navbar.js');
+    getScript('navbar.js');
 ?>
 
 </html>

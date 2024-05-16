@@ -31,3 +31,14 @@ function isSeller()
     // Check the user's role
     return isset($_SESSION['user']) && $_SESSION['user']['isSeller'] == 1;
 }
+
+function hasRequested(){
+    // Start a session if it's not already started
+    if (session_status() == PHP_SESSION_NONE) {
+        session_start();
+    }
+
+    // Check the user's role
+    return isset($_SESSION['user']) && $_SESSION['user']['hasRequested'] == 1;
+}
+?>

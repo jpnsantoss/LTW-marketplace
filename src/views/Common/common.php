@@ -42,11 +42,9 @@ function getNavbar()
                     </li>
 
 
-                    <?php if (isSeller()) : ?>
+                    <?php if (isSeller()) { ?>
                         <li><a href="/create" class="highlight">Post Items</a></li>
-                    <?php else : ?>
-                        <li><a href="#" class="highlight">Become a Seller</a></li>
-                    <?php endif; ?>
+                    <?php } ?>
                     <li><a href="/cart" class="highlight">Cart</a></li>
 
                 </ul>

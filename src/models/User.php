@@ -94,6 +94,14 @@ class UserModel
 
         return $this->db->execute();
     }
+    public function requestToBeSeller($id) : bool
+    {
+        $user_id = $id['id'];
+        $this->db->query('UPDATE users set hasRequested = 1 where users.id = :user_id');
+        $this->db->bind(':user_id', $user_id);
+
+        return $this->db->execute();
+    }
 
     public function promoteToAdmin($id) : bool
     {
@@ -103,6 +111,7 @@ class UserModel
 
         return $this->db->execute();
     }
+
 
     public function getSellerItems($user_id)
     {

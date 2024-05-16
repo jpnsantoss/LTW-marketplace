@@ -10,7 +10,18 @@ class CartModel{
         $this->db = new Database;
     }
     public function getCart($user_id){
-        $this->db->query("SELECT * FROM cart JOIN items ON items.id = cart.product_id JOIN images ON items.id = images.item_id JOIN users ON users.id = items.seller_id WHERE cart.user_id = :user_id");
+        $this->db->query("SELECT items.*, images.*, users.*
+        FROM items
+        JOIN wishlist ON items.id = wishlist.product_id
+        JOIN (
+            SELECT item_id, MIN(images.id) AS image_id
+            FROM images
+            GROUP BY item_id
+        ) AS min_images ON items.id = min_images.item_id
+        JOIN images ON items.id = images.item_id AND images.id = min_images.image_id
+        JOIN users ON users.id = items.seller_id
+        WHERE wishlist.user_id = :user_id;
+        ");
         $this->db->bind(':user_id', $user_id);
         return $this->db->resultSet();
     }
