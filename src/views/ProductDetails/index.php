@@ -27,19 +27,19 @@ getNavbar();
                     <li>Condition: <?= $data["item"]->condition_name; ?></li>
                 </div>
                 <div class="item-buttons">
-                <form action="<?= URLROOT ?>/WishList/<?= $data["item"]->id; ?>/add-to-wish-list" method="get">
-                    <button type="submit" class="add-to-wishlist">Add to Wishlist</button>
-                </form>
-                <form action="<?= URLROOT ?>/cart/<?= $data["item"]->id; ?>/add-to-cart" method="get">
-                    <button type="submit" class="add-to-cart">Add to Cart</button>
-                </form>
+                    <form action="<?= URLROOT ?>/WishList/<?= $data["item"]->id; ?>/add-to-wish-list" method="get">
+                        <button type="submit" class="add-to-wishlist">Add to Wishlist</button>
+                    </form>
+                    <form action="<?= URLROOT ?>/cart/<?= $data["item"]->id; ?>/add-to-cart" method="get">
+                        <button type="submit" class="add-to-cart">Add to Cart</button>
+                    </form>
                 </div>
             </div>
             <div class="user-info">
                 <h4>User: <?= $data["item"]->seller_name; ?></h4>
 
                 <div class="item-buttons">
-                    <a href="<?= URLROOT ?>/chat/index/<?= $data["item"]->id ?>" class="send-message">Send Message</a>
+                    <a href="<?= URLROOT ?>/chat/open/<?= $data["item"]->id ?>" class="send-message">Send Message</a>
                 </div>
             </div>
         </div>

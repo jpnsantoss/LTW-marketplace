@@ -1,0 +1,36 @@
+.chat-inbox {
+  display: flex;
+  justify-content: space-around;
+  padding: 20px;
+}
+
+.sellers,
+.buyers {
+  width: 45%;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.product {
+  margin-bottom: 20px;
+}
+
+.users p {
+  margin-bottom: 10px;
+}
+
+.users a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.users a:hover {
+  text-decoration: underline;
+}

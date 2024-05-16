@@ -20,11 +20,9 @@ $router->addRoute('conclusion', ['controller' => 'Cart', 'action' => 'conclusion
 $router->addRoute('admin', ['controller' => 'Admin', 'action' => 'index']);
 $router->addRoute('adminUsers', ['controller' => 'Admin', 'action' => 'users']);
 
-$router->addRoute('{controller}/{action}/{id:\d+}', [
-    'controller' => 'Home',
-    'action' => 'details'
-]);
 $router->addRoute('adminPromote', ['controller' => 'Admin', 'action' => 'users']);
+
+$router->addRoute('inbox', ['controller' => 'Inbox', 'action' => 'index']);
 
 // Routes in main controllers/ folder (Namespace \Controllers)
 $router->addRoute('{controller}/{action}');
