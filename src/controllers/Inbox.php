@@ -22,7 +22,7 @@ class Inbox
             die(UNAUTHORIZED_ACCESS);
         }
 
-        $userId = $_SESSION['user_id']; // Assuming you store user id in session
+        $userId = $_SESSION['user']['id'];
         $selling = $this->message->getChatsAsSeller($userId);
         $buying = $this->message->getChatsAsBuyer($userId);
 

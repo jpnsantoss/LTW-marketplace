@@ -42,9 +42,14 @@ class MessageModel
         }
     }
 
+
+
     public function getChatsAsSeller($sellerId)
     {
-        $this->db->query("SELECT * FROM chat WHERE seller_id = :seller_id");
+        $this->db->query("SELECT chat.*, items.brand, items.model, users.username as buyer_username FROM chat 
+                          JOIN items ON chat.product_id = items.id 
+                          JOIN users ON chat.buyer_id = users.id 
+                          WHERE chat.seller_id = :seller_id");
 
         $this->db->bind(':seller_id', $sellerId);
 
@@ -55,7 +60,10 @@ class MessageModel
 
     public function getChatsAsBuyer($buyerId)
     {
-        $this->db->query("SELECT * FROM chat WHERE buyer_id = :buyer_id");
+        $this->db->query("SELECT chat.*, items.brand, items.model, users.username as seller_username FROM chat 
+                          JOIN items ON chat.product_id = items.id 
+                          JOIN users ON chat.seller_id = users.id 
+                          WHERE chat.buyer_id = :buyer_id");
 
         $this->db->bind(':buyer_id', $buyerId);
 
@@ -63,6 +71,7 @@ class MessageModel
 
         return $chats;
     }
+
 
 
 
