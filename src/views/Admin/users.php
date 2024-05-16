@@ -18,10 +18,14 @@
     </tr>
         <?php foreach ($data['users'] as $user){
             $user = (array) $user;
-            $isSeller = isset($user['user_id']) ? 'Yes' : 'No';
+            $isSeller = isset($user['seller']) ? 'Yes' : 'No';
             $isAdmin = isset($user['admin'] ) ? 'Yes' : 'No';
-            $hasRequested
-
+            if($user['hasRequested']){
+                $hasRequested = 'Yes';
+            }
+            else{
+                $hasRequested = 'No';
+            }
             ?>
             <tr>
                 <td><?=$user['id']?></td>
@@ -31,7 +35,8 @@
                 <td><?=$user['hashed_password']?></td>
                 <td><?=$isSeller?></td>
                 <td><?=$user['created_at']?></td>
-                <?php if ($isSeller == 'No') { ?>
+                
+                <?php if ($isSeller == 'No' && $hasRequested=='Yes') { ?>
                     <td class ="button">
                         <form action="<?= URLROOT ?>/admin/<?=$user['id']?>/promote-user-to-seller" method="get">
                             <button type="submit" class="promote-button">Accept Seller Request</button>
