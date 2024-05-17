@@ -20,7 +20,6 @@ CREATE TABLE admins (
 
 CREATE TABLE items (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
-  name TEXT NOT NULL,
   category_id INTEGER NOT NULL,
   size_id INTEGER NOT NULL,
   condition_id TEXT NOT NULL,
