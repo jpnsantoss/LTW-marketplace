@@ -120,7 +120,37 @@ $user = $_SESSION['user'];
 
 
 <h3>Change Your Preferences</h3>
+<form  action="<?= URLROOT ?>/auth/changepreferences" method="post">
 
+<label for="category">Change Category</label>
+<select name="category" id="category">
+<option value="">All Categories</option>
+    <?php foreach ($data["categories"] as $category) : ?>
+        <option value="<?= $category->id; ?>"><?= $category->name; ?></option>
+    <?php endforeach; ?>
+</select>
+
+<label for="size">Change Size</label>
+<select name="size" id="size">
+<option value="">All Sizes</option>
+    <?php foreach ($data["sizes"] as $size) : ?>
+        <option value="<?= $size->id; ?>"><?= $size->name; ?></option>
+    <?php endforeach; ?>
+</select>
+
+
+<label for="condition">Change Condition</label>
+<select name="condition" id="condition">
+<option value="">All Conditions</option>
+    <?php foreach ($data["conditions"] as $condition) : ?>
+        <option value="<?= $condition->id; ?>"><?= $condition->name; ?></option>
+    <?php endforeach; ?>
+</select>
+
+
+<button class="button" type="submit">Set preferences</button></form>
+
+</form>
 
 
 
@@ -166,7 +196,7 @@ $user = $_SESSION['user'];
                     <p class="pp"><?php echo $category->name; ?></p>
                 <?php endif; ?>
             <?php endforeach; ?>
-<br>
+                <br>
             
             <label for="category">Change Category</label>
             <select name="category" id="category">

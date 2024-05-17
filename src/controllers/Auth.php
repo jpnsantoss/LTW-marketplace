@@ -95,27 +95,34 @@ class Auth
         }
     }
 
-    public function changecategory()
+    public function changepreferences()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (!isLoggedIn()) {
                 header('location: ' . URLROOT . '/', true, 303);
                 die(UNAUTHORIZED_ACCESS);
             }
-            $category = [
+            $preferences = [
                 'category' => $_POST['category'],
+                'size' => $_POST['size'],
+                'condition' => $_POST['condition'],
                 'user_id' => $_SESSION['user']['id'],
             ];
 
 
-            if ($this->user->changeCategory($category)) {
+            if ($this->user->changePreferences($preferences)) {
 
-                $_SESSION['user']['category_id'] = $category['category'];
+                $_SESSION['user']['category_id'] = $preferences['category'];
+                $_SESSION['user']['size_id'] = $preferences['size'];
+                $_SESSION['user']['condition_id'] = $preferences['condition'];
 
                 header('location: ' . URLROOT . '/profile', true, 303);
             } else {
                 header('location: ' . URLROOT . '/', true, 303);
             }
+        }
+        else {
+            header('location: ' . URLROOT . '/', true, 303);
         }
     }
 

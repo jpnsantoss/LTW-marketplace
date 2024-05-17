@@ -141,11 +141,13 @@ class UserModel
 
     }
 
-    public function changeCategory($category){
+    public function changePreferences($category){
 
-        $this->db->query('UPDATE users SET category_id = :category WHERE id = :user_id');
+        $this->db->query('UPDATE users SET category_id = :category, size_id = :size, condition_id = :condition WHERE id = :user_id');
         $this->db->bind(':user_id', $category['user_id']);
         $this->db->bind(':category', $category['category']);
+        $this->db->bind(':size', $category['size']);
+        $this->db->bind(':condition', $category['condition']);
 
         return $this->db->execute();
 
