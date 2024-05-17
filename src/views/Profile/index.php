@@ -34,15 +34,6 @@ $user = $_SESSION['user'];
     <h2>Edit Profile:</h2>
     <h2>Change Password</h2>
 
-    <form class = "category" action="<?= URLROOT; ?>/auth/changecategory" method="post">
-    <label for="category">Change Category</label>
-            <select name="category" id="category">
-                <?php foreach ($data["categories"] as $category) : ?>
-                    <option value="<?= $category->id; ?>"><?= $category->name; ?></option>
-                <?php endforeach; ?>
-            </select>
-    <button class="button-submit" type="submit">Submit</button>
-</form>
 
     <form class = "email" action="<?= URLROOT; ?>/auth/changeemail" method="post">
         <label for="email">New email: </label>
@@ -83,42 +74,43 @@ $user = $_SESSION['user'];
 
 </div>
 
+<div class="preferences">
 <h3>Your Preferences</h3>
 <?php $hasCategory =false; ?>
 <?php foreach ($data["categories"] as $category) : ?>
                 <?php if ($category->id == $user['category_id']) : ?>
                     <?php $hasCategory =true; ?>
-                    <p class="pp"><p>Category: <?= $category->name ?? "None"; ?></p>
+                    <p>Category: <?= $category->name ?? "None"; ?></p>
                 <?php endif; ?>
  <?php endforeach; ?>
  <?php if (!$hasCategory) : ?>
                     <?php $condition =true; ?>
-                    <p class="pp"><p>Category: None</p>
+                    <p>Category: None</p>
                 <?php endif; ?>
                 <?php $hasSize =false; ?>
  <?php foreach ($data["sizes"] as $size) : ?>
-                <?php if ($size->id == $user['size_id']) : ?>
-                    <?php $hasSize =true; ?>
-                    <p class="pp"><p>Size: <?= $size->name ?? "None"; ?></p>
+                <?php if ($size->id == $user['size_id']) : 
+                     $hasSize =true; ?>
+                    <p>Size: <?= $size->name ?? "None"; ?></p>
                 <?php endif; ?>
  <?php endforeach; ?>
  <?php if (!$hasSize) : ?>
                     <?php $condition =true; ?>
-                    <p class="pp"><p>Size: None</p>
+                    <p>Size: None</p>
                 <?php endif; ?>
  <?php $hasCondition =false; ?>
  <?php foreach ($data["conditions"] as $condition) : ?>
                 <?php if ($condition->id == $user['condition_id']) : ?>
                     <?php $hasCondition =true; ?>
-                    <p class="pp"><p>Condition: <?= $condition->name?></p>
+                    <p>Condition: <?= $condition->name?></p>
                 <?php endif; ?>
  <?php endforeach; ?>
  <?php if (!$hasCondition) : ?>
                     <?php $condition =true; ?>
-                    <p class="pp"><p>Condition: None</p>
+                    <p>Condition: None</p>
                 <?php endif; ?>
 
-
+<br>
 <h3>Change Your Preferences</h3>
 <form  action="<?= URLROOT ?>/auth/changepreferences" method="post">
 
@@ -151,6 +143,7 @@ $user = $_SESSION['user'];
 <button class="button" type="submit">Set preferences</button></form>
 
 </form>
+    </div>
 
 
 
