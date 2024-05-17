@@ -8,6 +8,17 @@ CREATE TABLE users (
   hasRequested BOOLEAN DEFAULT 0
 );
 
+CREATE TABLE preferences (
+  user_id INTEGER UNIQUE NOT NULL,
+  category_id INTEGER NOT NULL,
+  size_id INTEGER NOT NULL,
+  condition_id TEXT NOT NULL,
+  FOREIGN KEY(user_id) REFERENCES users(id),
+  FOREIGN KEY(category_id) REFERENCES categories(id),
+  FOREIGN KEY(size_id) REFERENCES sizes(id),
+  FOREIGN KEY(condition_id) REFERENCES conditions(id),
+)
+
 CREATE TABLE sellers (
   user_id INTEGER UNIQUE NOT NULL,
   FOREIGN KEY(user_id) REFERENCES users(id)
