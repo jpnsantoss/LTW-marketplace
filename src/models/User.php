@@ -86,15 +86,24 @@ class UserModel
         return $user;
     }
 
-    public function promoteToSeller($id) : bool
+
+    public function promoteToSeller($id): bool
     {
         $user_id = $id['id'];
         $this->db->query('INSERT INTO sellers(user_id) VALUES (:user_id)');
         $this->db->bind(':user_id', $user_id);
 
-        return $this->db->execute();
+        if ($this->db->execute()) {
+            $this->db->query('UPDATE users SET hasRequested = 0 WHERE users.id = :user_id');
+            $this->db->bind(':user_id', $user_id);
+
+            return $this->db->execute();
+        }
+
+        return false;
     }
-    public function requestToBeSeller($id) : bool
+
+    public function requestToBeSeller($id): bool
     {
         $user_id = $id['id'];
         $this->db->query('UPDATE users set hasRequested = 1 where users.id = :user_id');
@@ -103,7 +112,7 @@ class UserModel
         return $this->db->execute();
     }
 
-    public function promoteToAdmin($id) : bool
+    public function promoteToAdmin($id): bool
     {
         $user_id = $id['id'];
         $this->db->query('INSERT INTO admins(user_id) VALUES (:user_id)');
@@ -120,43 +129,59 @@ class UserModel
         return $this->db->resultSet();
     }
 
-    public function changeEmail($email){
+    public function changeEmail($email)
+    {
 
-            $this->db->query('UPDATE users SET email = :email WHERE id = :user_id');
-            $this->db->bind(':user_id', $email['user_id']);
-            $this->db->bind(':email', $email['email']);
+        $this->db->query('UPDATE users SET email = :email WHERE id = :user_id');
+        $this->db->bind(':user_id', $email['user_id']);
+        $this->db->bind(':email', $email['email']);
 
-            return $this->db->execute();
-
+        return $this->db->execute();
     }
 
-    public function changeUsername($change){
+    public function changeUsername($change)
+    {
 
         $this->db->query('UPDATE users SET username = :username WHERE id = :user_id');
         $this->db->bind(':user_id', $change['user_id']);
         $this->db->bind(':username', $change['username']);
 
         return $this->db->execute();
-
     }
 
-    public function changeFullname($change){
+    public function changeFullname($change)
+    {
 
         $this->db->query('UPDATE users SET full_name = :fullname WHERE id = :user_id');
         $this->db->bind(':user_id', $change['user_id']);
         $this->db->bind(':fullname', $change['fullname']);
 
         return $this->db->execute();
-
     }
 
-    public function changePassword($change){
+    public function changePassword($change)
+    {
 
         $this->db->query('UPDATE users SET hashed_password = :hashed_password WHERE id = :user_id');
         $this->db->bind(':user_id', $change['user_id']);
         $this->db->bind(':hashed_password', $change['hashed_password']);
 
         return $this->db->execute();
+    }
 
+    public function requestSeller($req)
+    {
+        $user_id = $req['user_id'];
+        $this->db->query('UPDATE users set hasRequested = 1 where users.id = :user_id');
+        $this->db->bind(':user_id', $user_id);
+
+        return $this->db->execute();
+    }
+
+    public function isSeller($id)
+    {
+        $this->db->query('SELECT * FROM sellers WHERE user_id = :user_id');
+        $this->db->bind(':user_id', $id['id']);
+        return $this->db->single() !== false;
     }
 }
