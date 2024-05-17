@@ -5,8 +5,15 @@ CREATE TABLE users (
   full_name TEXT NOT NULL,
   email TEXT UNIQUE NOT NULL,
   created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  hasRequested BOOLEAN DEFAULT 0
+  hasRequested BOOLEAN DEFAULT 0,
+  category_id INTEGER,
+  size_id INTEGER,
+  condition_id INTEGER,
+  FOREIGN KEY (category_id) REFERENCES categories(id),
+  FOREIGN KEY (size_id) REFERENCES sizes(id),
+  FOREIGN KEY (condition_id) REFERENCES conditions(id)
 );
+
 
 CREATE TABLE preferences (
   user_id INTEGER UNIQUE NOT NULL,
@@ -17,7 +24,7 @@ CREATE TABLE preferences (
   FOREIGN KEY(category_id) REFERENCES categories(id),
   FOREIGN KEY(size_id) REFERENCES sizes(id),
   FOREIGN KEY(condition_id) REFERENCES conditions(id),
-)
+);
 
 CREATE TABLE sellers (
   user_id INTEGER UNIQUE NOT NULL,

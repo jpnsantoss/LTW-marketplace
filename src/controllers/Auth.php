@@ -95,6 +95,30 @@ class Auth
         }
     }
 
+    public function changecategory()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if (!isLoggedIn()) {
+                header('location: ' . URLROOT . '/', true, 303);
+                die(UNAUTHORIZED_ACCESS);
+            }
+            $category = [
+                'category' => $_POST['category'],
+                'user_id' => $_SESSION['user']['id'],
+            ];
+
+
+            if ($this->user->changeCategory($category)) {
+
+                $_SESSION['user']['category_id'] = $category['category'];
+
+                header('location: ' . URLROOT . '/profile', true, 303);
+            } else {
+                header('location: ' . URLROOT . '/', true, 303);
+            }
+        }
+    }
+
     public function changeusername()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {

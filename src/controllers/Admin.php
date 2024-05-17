@@ -151,7 +151,7 @@ public function getSellerItems($id){
                 'conditions' => $this->condition->getConditions(),
                 'transactions' => $this->transaction->getTransactions(),
                 'users' => $this->user->getUsers(),
-                'preferences' => $this->preference->getPreferences(),
+                
             ]);
         } else {
             header('location: ' . URLROOT . '/login', true, 303);

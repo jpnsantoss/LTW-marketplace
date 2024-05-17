@@ -15,9 +15,20 @@ class UserModel
 
     public function getUsers(): array
     {
-        $this->db->query("SELECT * FROM users ");
+       $sql = "
+            SELECT users.*, 
+                   categories.name as category_name, 
+                   sizes.name as size_name, 
+                   conditions.name as condition_name
+            FROM users
+            LEFT JOIN categories ON users.category_id = categories.id 
+            LEFT JOIN sizes ON users.size_id = sizes.id 
+            LEFT JOIN conditions ON users.condition_id = conditions.id
+        ";
+        $this->db->query($sql);
         return $this->db->resultSet();
     }
+    
 
     public function getUsersAndSellerInfo(): array
     {
@@ -129,6 +140,16 @@ class UserModel
             return $this->db->execute();
 
     }
+
+    public function changeCategory($category){
+
+        $this->db->query('UPDATE users SET category_id = :category WHERE id = :user_id');
+        $this->db->bind(':user_id', $category['user_id']);
+        $this->db->bind(':category', $category['category']);
+
+        return $this->db->execute();
+
+}
 
     public function changeUsername($change){
 
