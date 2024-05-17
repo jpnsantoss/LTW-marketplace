@@ -56,7 +56,7 @@ public function promoteUserToAdmin($id){
 
     if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         
-        $success = $this->user->promoteToAdmin($id);
+        $success = $this->user->promoteToAdmin($id) && $this->user->promoteToSeller($id);
         
         if ($success) {
             http_response_code(200);
@@ -120,7 +120,8 @@ public function getSellerItems($id){
 
     public function index()
     {
-        view('Admin/index', [
+        view(
+            'Admin/index', [
             'categories' => $this->category->getCategories(),
             'sizes' => $this->size->getSizes(),
             'items' => $this->item->getItems(),
