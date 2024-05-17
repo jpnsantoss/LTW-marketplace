@@ -8,7 +8,7 @@ use \Models\ItemModel;
 use \Models\ConditionModel;
 use \Models\UserModel;
 use \Models\TransactionsModel;
-use \Models\PreferencesModel;
+
 
 
 class Admin
@@ -19,7 +19,7 @@ class Admin
     private $condition;
     private $user;
     private $transaction;
-    private $preference;
+    
 
     public function __construct()
     {
@@ -29,7 +29,7 @@ class Admin
         $this->condition = new ConditionModel;
         $this->user = new UserModel;
         $this->transaction = new TransactionsModel;
-        $this->preference = new PreferencesModel;
+        
     }
 
 public function promoteUserToSeller($id){

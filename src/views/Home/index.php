@@ -1,7 +1,8 @@
 <?php
 require_once APPROOT . '/src/views/Common/common.php';
 getHead(array('/css/style.css', '/css/navbar.css', '/css/home.css'), "Home");
-$user_id = $_SESSION['user']['id'];?>
+$user_id = $_SESSION['user']['id'];
+$user = $_SESSION['user'];?>?>
 
 <body>
     <header>
@@ -58,6 +59,7 @@ $user_id = $_SESSION['user']['id'];?>
                         <?php endforeach; ?>
                     </select>
                     <input type="submit" value="Search" id="search-button">
+                    
                 </div>
                 <div class="search-filters">
                     <label for="size">Size
@@ -86,6 +88,10 @@ $user_id = $_SESSION['user']['id'];?>
                 </div>
             </form>
         </section>
+
+        <form id="userPreferences" class="highlight" action="<?= URLROOT ?>/home/preferences/" method="get">
+                                <button type="submit" class="requestButton">Filter by user preferences</button>
+                            </form>
 
         <section class="home-items">
             <h2>Items for sale:</h2>

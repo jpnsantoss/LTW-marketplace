@@ -75,6 +75,77 @@ class ItemModel
     }
 
 
+    public function preferences($user = []): array
+    {
+        $preferences = [
+            'category_id' => $user['category_id'],
+            'size_id' => $user['size_id'],
+            'condition_id' => $user['condition_id'],
+        ];
+    
+        // Remove null filters
+        $preferences = array_filter($preferences, function ($value) {
+            return $value !== null;
+        });
+    
+        if (isLoggedIn()) {
+            view('Home/index', [
+                'items' => $this->item->getItemsPreferences($preferences),
+                'categories' => $this->category->getCategories(),
+                'sizes' => $this->size->getSizes(),
+                'conditions' => $this->condition->getConditions(),
+            ]);
+        } else {
+            header('location: ' . URLROOT . '/login', true, 303);
+        }
+    }
+    
+    public function getItemsPreferences($filters): array
+    {
+        $sql = "
+            SELECT items.*, 
+                   categories.name as category_name, 
+                   sizes.name as size_name, 
+                   conditions.name as condition_name, 
+                   users.username as seller_name,
+                   GROUP_CONCAT(images.url) as image_urls
+            FROM items 
+            LEFT JOIN categories ON items.category_id = categories.id 
+            LEFT JOIN sizes ON items.size_id = sizes.id 
+            LEFT JOIN conditions ON items.condition_id = conditions.id 
+            LEFT JOIN sellers ON items.seller_id = sellers.user_id
+            LEFT JOIN users ON sellers.user_id = users.id
+            LEFT JOIN images ON items.id = images.item_id
+        ";
+    
+        if (!empty($filters)) {
+            $filterSql = [];
+            foreach ($filters as $column => $value) {
+                $filterSql[] = "items.$column = :$column";
+            }
+            $sql .= " WHERE " . implode(" AND ", $filterSql);
+        }
+    
+        $sql .= " GROUP BY items.id";
+    
+        $this->db->query($sql);
+    
+        foreach ($filters as $column => $value) {
+            $this->db->bind(":$column", $value);
+        }
+    
+        $items = $this->db->resultSet();
+    
+        foreach ($items as $item) {
+            $item->image_urls = explode(',', $item->image_urls);
+        }
+    
+        return $items;
+    }
+    
+
+
+
 
 
     public function getProductsByUserId(int $userId): array

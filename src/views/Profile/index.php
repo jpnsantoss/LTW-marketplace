@@ -124,7 +124,7 @@ $user = $_SESSION['user'];
 
 <label for="category">Change Category</label>
 <select name="category" id="category">
-<option value="">All Categories</option>
+<option value=<?php NULL ?>>All Categories</option>
     <?php foreach ($data["categories"] as $category) : ?>
         <option value="<?= $category->id; ?>"><?= $category->name; ?></option>
     <?php endforeach; ?>
@@ -132,7 +132,7 @@ $user = $_SESSION['user'];
 
 <label for="size">Change Size</label>
 <select name="size" id="size">
-<option value="">All Sizes</option>
+<option value=<?php NULL ?>>All Sizes</option>
     <?php foreach ($data["sizes"] as $size) : ?>
         <option value="<?= $size->id; ?>"><?= $size->name; ?></option>
     <?php endforeach; ?>
@@ -141,7 +141,7 @@ $user = $_SESSION['user'];
 
 <label for="condition">Change Condition</label>
 <select name="condition" id="condition">
-<option value="">All Conditions</option>
+<option value=<?php NULL ?>>All Conditions</option>
     <?php foreach ($data["conditions"] as $condition) : ?>
         <option value="<?= $condition->id; ?>"><?= $condition->name; ?></option>
     <?php endforeach; ?>

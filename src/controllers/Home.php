@@ -7,6 +7,7 @@ use \Models\SizeModel;
 use \Models\ItemModel;
 use \Models\ConditionModel;
 use \Models\ImageModel;
+use \Models\UserModel;
 
 class Home
 {
@@ -15,6 +16,7 @@ class Home
     private $item;
     private $condition;
     private $image;
+    private $user;
 
     public function __construct()
     {
@@ -23,6 +25,7 @@ class Home
         $this->item = new ItemModel;
         $this->condition = new ConditionModel;
         $this->image = new ImageModel;
+        $this->user = new UserModel;
     }
 
     public function index()
@@ -33,6 +36,8 @@ class Home
             'size_id' => $_GET['size_id'] ?? null,
             'condition_id' => $_GET['condition_id'] ?? null,
         ];
+
+        
 
         // Handle price filter separately
         if (isset($_GET['price_from'])) {
@@ -57,6 +62,34 @@ class Home
             header('location: ' . URLROOT . '/login', true, 303);
         }
     }
+
+    public function preferences()
+    {
+        session_start();
+        $preferences = [
+            'category_id' => $_SESSION['user']['category_id'],
+            'size_id' => $_SESSION['user']['size_id'] ,
+            'condition_id' => $_SESSION['user']['condition_id'] ,
+        ];
+
+        // Remove null filters
+        $preferences = array_filter($preferences, function ($value) {
+            return $value !== null;
+        });
+
+        if (isLoggedIn()) {
+            view('Home/index', [
+                'items' => $this->item->getItemsPreferences($preferences),
+                'categories' => $this->category->getCategories(),
+                'sizes' => $this->size->getSizes(),
+                'conditions' => $this->condition->getConditions(),
+            ]);
+        } else {
+            header('location: ' . URLROOT . '/login', true, 303);
+        }
+    }
+
+    
 
     public function profile()
     {
