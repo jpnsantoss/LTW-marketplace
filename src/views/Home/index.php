@@ -1,7 +1,8 @@
 <?php
-require_once APPROOT . '/src/views/Common/common.php';
-getHead(array('/css/style.css', '/css/navbar.css', '/css/home.css'), "Home");
-$user_id = $_SESSION['user']['id'];?>
+        require_once APPROOT . '/src/views/Common/common.php';
+        getHead(array('/css/style.css', '/css/navbar.css', '/css/home.css'), "Home");
+        $user_id = $_SESSION['user']['id'];
+?>
 
 <body>
     <header>
@@ -29,11 +30,11 @@ $user_id = $_SESSION['user']['id'];?>
                         </ul>
                     </li>
 
-                    <?php if (isSeller() || isAdmin()) { ?>
+                    <?php if (isSeller()) { ?>
                         <li><a href="/create" class="highlight">Post Items</a></li>
                     <?php }else if(hasRequested()) {?>
-                        <li><a id="awaitingConfirm" class="highlight">Awaiting Admin Confirmation</a></li>
-                    <?php } else { ?>
+                        <li><a id="awaitingConfirm" class="highlight">Request Sent</a></li>
+                    <?php } else {?>
                         <li id="requestLi">
                             <form id="sellerRequestForm" class="highlight" action="<?= URLROOT ?>/admin/<?= $_SESSION['user']['id'] ?>/request-to-be-seller" method="get">
                                 <button type="submit" class="requestButton">Request Seller Privileges</button>
@@ -61,7 +62,7 @@ $user_id = $_SESSION['user']['id'];?>
                 </div>
                 <div class="search-filters">
                     <label for="size">Size
-                        <select name="size_id" id="size">
+                    requestLi     <select name="size_id" id="size">
                             <option value="">All Sizes</option>
                             <?php foreach ($data["sizes"] as $size) : ?>
                                 <option value="<?= $size->id; ?>" <?= isset($_GET['size_id']) && $_GET['size_id'] == $size->id ? 'selected' : '' ?>><?= $size->name; ?></option>
@@ -145,34 +146,18 @@ $user_id = $_SESSION['user']['id'];?>
         const originalUrl = window.location.href.split('?')[0];
         window.location.href = params ? originalUrl + '?' + params : originalUrl;
     });
-
     document.addEventListener('DOMContentLoaded', function() {
-        var awaitingConfirm = localStorage.getItem('awaitingConfirm'); // Check if the message should be displayed
-        if (awaitingConfirm === 'true') {
-            // Replace the button with the awaiting confirm message
-            var li = document.createElement('li');
-            var a = document.createElement('a');
-            a.setAttribute('href', '#'); // Set href attribute if needed
-            a.classList.add('highlight'); // Add the 'no-hover' class
-            a.innerText = 'Awaiting Admin Confirm';
-            li.appendChild(a);
-            var requestLi = document.getElementById('requestLi');
-            requestLi.parentNode.replaceChild(li, requestLi);
-        }
-
-    document.getElementById('sellerRequestForm').addEventListener('click', function(event) {
+        document.getElementById('sellerRequestForm').addEventListener('click', function(event) {
             event.preventDefault();
             // Replace the button with the awaiting confirm message
             var li = document.createElement('li');
             var a = document.createElement('a');
             a.setAttribute('href', '#'); // Set href attribute if needed
-            a.classList.add('highlight'); // Add the 'no-hover' class
-            a.innerText = 'Awaiting Admin Confirm';
+            a.classList.add('highlight', 'no-cursor');
+            a.innerText = 'Request Sent';
             li.appendChild(a);
             var requestLi = document.getElementById('requestLi');
             requestLi.parentNode.replaceChild(li, requestLi);
-            // Store in localStorage that the message should be displayed
-            localStorage.setItem('awaitingConfirm', 'true');
         });
     });
 
