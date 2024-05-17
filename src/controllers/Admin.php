@@ -32,102 +32,106 @@ class Admin
         
     }
 
-public function promoteUserToSeller($id){
+    public function promoteUserToSeller($id)
+    {
 
-    if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-        
-        $success = $this->user->promoteToSeller($id);
-        
-        if ($success) {
-            http_response_code(200);
-            echo json_encode(['message' => 'User promoted to seller successfully!']);
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+            $success = $this->user->promoteToSeller($id);
+
+            if ($success) {
+                http_response_code(200);
+                echo json_encode(['message' => 'User promoted to seller successfully!']);
+            } else {
+                http_response_code(500);
+                echo json_encode(['message' => 'Failed to promote user to seller']);
+            }
         } else {
-            http_response_code(500); 
-            echo json_encode(['message' => 'Failed to promote user to seller']);
+            http_response_code(405);
+            echo json_encode(['message' => 'Method Not Allowed']);
         }
-    
-    } else {
-        http_response_code(405);
-        echo json_encode(['message' => 'Method Not Allowed']);
+
+        header('location: ' . URLROOT . '/Admin/users');
     }
 
-    header('location: ' . URLROOT. '/Admin/users');
-}
+    public function promoteUserToAdmin($id)
+    {
 
-public function promoteUserToAdmin($id){
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-        
-        $success = $this->user->promoteToAdmin($id);
-        
-        if ($success) {
-            http_response_code(200);
-            echo json_encode(['message' => 'User promoted to seller successfully!']);
+            if (!$this->user->isSeller($id)) {
+                $this->user->promoteToSeller($id);
+            }
+            $success = $this->user->promoteToAdmin($id);
+
+            if ($success) {
+                http_response_code(200);
+                echo json_encode(['message' => 'User promoted to seller successfully!']);
+            } else {
+                http_response_code(500);
+                echo json_encode(['message' => 'Failed to promote user to seller']);
+            }
         } else {
-            http_response_code(500); 
-            echo json_encode(['message' => 'Failed to promote user to seller']);
+            http_response_code(405);
+            echo json_encode(['message' => 'Method Not Allowed']);
         }
-    
-    } else {
-        http_response_code(405);
-        echo json_encode(['message' => 'Method Not Allowed']);
+
+        header('location: ' . URLROOT . '/Admin/users');
     }
 
-    header('location: ' . URLROOT. '/Admin/users');
-}
+    public function requestToBeSeller($id)
+    {
 
-public function requestToBeSeller($id){
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
-    if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-        
-        $success = $this->user->requestToBeSeller($id);
-        
-        if ($success) {
-            http_response_code(200);
-            echo json_encode(['message' => 'User promoted to seller successfully!']);
-            header('location: ' . URLROOT.'/');
- 
+            $success = $this->user->requestToBeSeller($id);
+
+            if ($success) {
+                http_response_code(200);
+                echo json_encode(['message' => 'User promoted to seller successfully!']);
+                header('location: ' . URLROOT . '/');
+            } else {
+                http_response_code(500);
+                echo json_encode(['message' => 'Failed to promote user to seller']);
+            }
         } else {
-            http_response_code(500); 
-            echo json_encode(['message' => 'Failed to promote user to seller']);
+            http_response_code(405);
+            echo json_encode(['message' => 'Method Not Allowed']);
         }
-    
-    } else {
-        http_response_code(405);
-        echo json_encode(['message' => 'Method Not Allowed']);
     }
-}
 
-public function getSellerItems($id){
+    public function getSellerItems($id)
+    {
 
-    if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-        
-        $success = $this->user->getSellerItems($id);
-        
-        if ($success) {
-            http_response_code(200);
-            echo json_encode(['message' => 'User items fetched successfully!']);
-            header('location: ' . URLROOT. '/Admin/'. $id['id'] . '/user-items'); 
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
+            $success = $this->user->getSellerItems($id);
+
+            if ($success) {
+                http_response_code(200);
+                echo json_encode(['message' => 'User items fetched successfully!']);
+                header('location: ' . URLROOT . '/Admin/' . $id['id'] . '/user-items');
+            } else {
+                http_response_code(500);
+                echo json_encode(['message' => 'Failed to fetch user items']);
+            }
         } else {
-            http_response_code(500); 
-            echo json_encode(['message' => 'Failed to fetch user items']);
+            http_response_code(405);
+            echo json_encode(['message' => 'Method Not Allowed']);
         }
-    
-    } else {
-        http_response_code(405);
-        echo json_encode(['message' => 'Method Not Allowed']);
     }
-}
 
     public function index()
     {
-        view('Admin/index', [
-            'categories' => $this->category->getCategories(),
-            'sizes' => $this->size->getSizes(),
-            'items' => $this->item->getItems(),
-            'conditions' => $this->condition->getConditions()
-        ]);
+        view(
+            'Admin/index',
+            [
+                'categories' => $this->category->getCategories(),
+                'sizes' => $this->size->getSizes(),
+                'items' => $this->item->getItems(),
+                'conditions' => $this->condition->getConditions()
+            ]
+        );
     }
 
 
@@ -164,11 +168,10 @@ public function getSellerItems($id){
             'users' => $this->user->getUsersAndSellerInfo()
         ]);
     }
-    public function userItems($data){
+    public function userItems($data)
+    {
         view('Admin/userItems', [
             'items' => $this->user->getSellerItems($data['id'])
         ]);
     }
-
-
 }

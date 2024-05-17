@@ -42,9 +42,17 @@ function getNavbar()
                     </li>
 
 
-                    <?php if (isSeller()) { ?>
+                    <?php if (isSeller()) : ?>
                         <li><a href="/create" class="highlight">Post Items</a></li>
-                    <?php } ?>
+                    <?php elseif (hasRequested()) : ?>
+                        <li><a class="highlight">Request Sent</a></li>
+                    <?php else : ?>
+                        <li>
+                            <form class="highlight" action="<?= URLROOT ?>/auth/request" method="post">
+                                <button type="submit" class="requestButton">Request Seller Privileges</button>
+                            </form>
+                        </li>
+                    <?php endif; ?>
                     <li><a href="/cart" class="highlight">Cart</a></li>
 
                 </ul>

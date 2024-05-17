@@ -59,6 +59,27 @@ class Auth
             die(UNAUTHORIZED_ACCESS);
         }
     }
+
+    public function request()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if (!isLoggedIn()) {
+                header('location: ' . URLROOT . '/', true, 303);
+                die(UNAUTHORIZED_ACCESS);
+            }
+            $request = [
+                'user_id' => $_SESSION['user']['id'],
+            ];
+
+            if ($this->user->requestSeller($request)) {
+                $_SESSION['user']['hasRequested'] = 1;
+                header('location: ' . URLROOT . '/', true, 303);
+            } else {
+                die(SOMETHING_WENT_WRONG);
+            }
+        }
+    }
+
     public function logout()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
