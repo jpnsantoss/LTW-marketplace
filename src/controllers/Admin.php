@@ -52,6 +52,50 @@ public function promoteUserToSeller($id){
     header('location: ' . URLROOT. '/Admin/users');
 }
 
+public function promoteUserToAdmin($id){
+
+    if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+        
+        $success = $this->user->promoteToAdmin($id);
+        
+        if ($success) {
+            http_response_code(200);
+            echo json_encode(['message' => 'User promoted to seller successfully!']);
+        } else {
+            http_response_code(500); 
+            echo json_encode(['message' => 'Failed to promote user to seller']);
+        }
+    
+    } else {
+        http_response_code(405);
+        echo json_encode(['message' => 'Method Not Allowed']);
+    }
+
+    header('location: ' . URLROOT. '/Admin/users');
+}
+
+public function requestToBeSeller($id){
+
+    if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+        
+        $success = $this->user->requestToBeSeller($id);
+        
+        if ($success) {
+            http_response_code(200);
+            echo json_encode(['message' => 'User promoted to seller successfully!']);
+            header('location: ' . URLROOT.'/');
+ 
+        } else {
+            http_response_code(500); 
+            echo json_encode(['message' => 'Failed to promote user to seller']);
+        }
+    
+    } else {
+        http_response_code(405);
+        echo json_encode(['message' => 'Method Not Allowed']);
+    }
+}
+
 public function getSellerItems($id){
 
     if ($_SERVER['REQUEST_METHOD'] === 'GET') {

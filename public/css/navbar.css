@@ -42,6 +42,21 @@ nav li a {
   width: fit-content;
 }
 
+nav li button {
+  display: block;
+  color: white;
+  text-align: center;
+  font-size: 1.1rem;
+  color: var(--primary);
+  font-family: "Geologica", sans-serif;
+  float: left;
+  padding: 0.8rem 1.5rem;
+  margin: 0.8rem;
+  border-radius: 10px;
+  width: fit-content;
+}
+
+
 /* Change the color on hover */
 nav li a:hover {
   opacity: 0.8;

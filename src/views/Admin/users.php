@@ -18,7 +18,14 @@
     </tr>
         <?php foreach ($data['users'] as $user){
             $user = (array) $user;
-            $isSeller = isset($user['user_id']) ? 'Yes' : 'No';
+            $isSeller = isset($user['seller']) ? 'Yes' : 'No';
+            $isAdmin = isset($user['admin'] ) ? 'Yes' : 'No';
+            if($user['hasRequested']){
+                $hasRequested = 'Yes';
+            }
+            else{
+                $hasRequested = 'No';
+            }
             ?>
             <tr>
                 <td><?=$user['id']?></td>
@@ -28,17 +35,24 @@
                 <td><?=$user['hashed_password']?></td>
                 <td><?=$isSeller?></td>
                 <td><?=$user['created_at']?></td>
-                <?php if ($isSeller == 'No') { ?>
+                
+                <?php if ($isSeller == 'No' && $hasRequested=='Yes') { ?>
                     <td class ="button">
                         <form action="<?= URLROOT ?>/admin/<?=$user['id']?>/promote-user-to-seller" method="get">
-                            <button type="submit" class="promote-button">Promote to seller</button>
+                            <button type="submit" class="promote-button">Accept Seller Request</button>
                         </form>
                     </td>
                 <?php } else { ?>
                     <td class="button">
+                        
                         <form action="<?= URLROOT ?>/Admin/<?=$user['id']?>/userItems" method="get">
                             <button type="submit" class="promote-button">See Items</button>
-                        </form>                    
+                        </form>    
+                        <?php if($isAdmin == 'No'){?>
+                            <form action="<?= URLROOT ?>/admin/<?=$user['id']?>/promote-user-to-admin" method="get">
+                            <button type="submit" class="promote-button">Promote to admin</button>
+                        </form>
+                     <?php   }?>
                     </td> 
                 <?php } ?>
         

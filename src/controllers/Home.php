@@ -25,7 +25,6 @@ class Home
         $this->image = new ImageModel;
     }
 
-
     public function index()
     {
         $filters = [
@@ -71,8 +70,6 @@ class Home
     }
 
 
-
-
     public function details($id)
     {
         $itemId = intval($id['id']);
@@ -100,4 +97,5 @@ class Home
             echo "Item não encontrado";
         }*/
     }
+    
 }

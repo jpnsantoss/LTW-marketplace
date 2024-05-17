@@ -21,7 +21,7 @@ class UserModel
 
     public function getUsersAndSellerInfo(): array
     {
-        $this->db->query("SELECT * FROM users LEFT JOIN sellers ON users.id = sellers.user_id");
+        $this->db->query("SELECT users.id, users.username, users.hashed_password, users.full_name, users.email, users.created_at, users.hasRequested, sellers.user_id as seller, admins.user_id as admin FROM users LEFT JOIN sellers ON users.id = sellers.user_id LEFT JOIN admins on users.id=admins.user_id");
         return $this->db->resultSet();
     }
 
@@ -94,6 +94,24 @@ class UserModel
 
         return $this->db->execute();
     }
+    public function requestToBeSeller($id) : bool
+    {
+        $user_id = $id['id'];
+        $this->db->query('UPDATE users set hasRequested = 1 where users.id = :user_id');
+        $this->db->bind(':user_id', $user_id);
+
+        return $this->db->execute();
+    }
+
+    public function promoteToAdmin($id) : bool
+    {
+        $user_id = $id['id'];
+        $this->db->query('INSERT INTO admins(user_id) VALUES (:user_id)');
+        $this->db->bind(':user_id', $user_id);
+
+        return $this->db->execute();
+    }
+
 
     public function getSellerItems($user_id)
     {
