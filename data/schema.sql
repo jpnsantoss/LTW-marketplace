@@ -20,7 +20,6 @@ CREATE TABLE admins (
 
 CREATE TABLE items (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
-  name TEXT NOT NULL,
   category_id INTEGER NOT NULL,
   size_id INTEGER NOT NULL,
   condition_id TEXT NOT NULL,
@@ -94,15 +93,25 @@ CREATE TABLE cart (
   UNIQUE(user_id, product_id)
 );
 
+CREATE TABLE chat (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  buyer_id INTEGER NOT NULL,
+  seller_id INTEGER NOT NULL,
+  product_id INTEGER NOT NULL,
+  created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY(buyer_id) REFERENCES buyers(user_id),
+  FOREIGN KEY(seller_id) REFERENCES sellers(user_id),
+  FOREIGN KEY(product_id) REFERENCES items(id)
+);
 
 CREATE TABLE messages (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
-  buyer_id INTEGER NOT NULL,
-  product_id INTEGER NOT NULL,
+  chat_id INTEGER NOT NULL,
+  sender_id INTEGER NOT NULL,
   content TEXT NOT NULL,
   created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  FOREIGN KEY(buyer_id) REFERENCES buyers(user_id),
-  FOREIGN KEY(product_id) REFERENCES sellers(product_id)
+  FOREIGN KEY(chat_id) REFERENCES chat(id),
+  FOREIGN KEY(sender_id) REFERENCES users(id)
 );
 
 CREATE INDEX items_index_0 ON items (category_id);
@@ -116,11 +125,14 @@ CREATE INDEX transactions_index_7 ON transactions (product_id);
 CREATE INDEX transactions_index_8 ON transactions (seller_id, buyer_id);
 CREATE INDEX wishlist_index_9 ON wishlist (user_id);
 CREATE INDEX wishlist_index_10 ON wishlist (product_id);
-CREATE INDEX messages_index_11 ON messages (buyer_id);
-CREATE INDEX messages_index_12 ON messages (seller_id);
-CREATE INDEX messages_index_13 ON messages (buyer_id, seller_id);
 CREATE INDEX cart_index_14 ON cart (user_id);
 CREATE INDEX cart_index_15 ON cart (product_id);
+CREATE INDEX message_index_16 ON messages (chat_id);
+CREATE INDEX chat_index_17 ON chat (buyer_id);
+CREATE INDEX chat_index_18 ON chat (seller_id);
+CREATE INDEX chat_index_19 ON chat (product_id);
+CREATE INDEX chat_index_20 ON chat (buyer_id, seller_id, product_id);
+
 
 CREATE TRIGGER after_update_items_sold
   AFTER UPDATE ON items

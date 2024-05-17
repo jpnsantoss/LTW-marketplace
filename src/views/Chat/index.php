@@ -7,21 +7,20 @@ getHead(array('/css/style.css', '/css/navbar.css', '/css/home.css', '/css/chat.c
     <?php getNavbar(); ?>
     <div class="chat-container">
         <div class="chat-box">
-            <h2>Chat about <?= $data['product']->brand . " " . $data['product']->model ?> with <?= $data['product']->seller_name ?></h2>
+            <h2>Chat about <?= $data['chat']->brand . ' ' . $data['chat']->model ?> with <?= ($data['chat']->seller_id == $_SESSION['user']['id']) ? $data['chat']->buyer_username : $data['chat']->seller_username ?></h2>
             <div class="chat-messages">
                 <?php foreach ($data['messages'] as $message) : ?>
-                    <div class="chat-message <?= ($message->buyer_id == $_SESSION['user']['id']) ? 'right' : 'left' ?>">
-                        <p><strong><?= ($message->buyer_id == $_SESSION['user']['id']) ? $message->buyer_name : $message->seller_name ?></strong>: <?= $message->content ?></p>
+                    <div class="chat-message <?= ($message->sender_id == $_SESSION['user']['id']) ? 'right' : 'left' ?>">
+                        <p><strong><?= ($message->sender_id == $_SESSION['user']['id']) ? 'You' : ($data['chat']->seller_id == $_SESSION['user']['id'] ? $data['chat']->buyer_username : $data['chat']->seller_username) ?></strong>: <?= $message->content ?></p>
                     </div>
                 <?php endforeach; ?>
             </div>
             <form action="<?= URLROOT ?>/chat/send" method="POST">
-                <input type="hidden" name="product_id" value="<?= $data['product']->id ?>">
-                <input type="text" name="message" placeholder="Type a message...">
+                <input type="hidden" name="chat_id" value="<?= $data['chat']->id ?>">
+                <input type="text" name="content" placeholder="Type a message...">
                 <button type="submit">Send</button>
             </form>
         </div>
-
 </body>
 
 <?php
