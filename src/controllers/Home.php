@@ -30,20 +30,34 @@ class Home
 
     public function index()
     {
+        if(!isset($_GET['active'])){
         $filters = [
             'search' => $_GET['search'] ?? null,
             'category_id' => $_GET['category_id'] ?? null,
             'size_id' => $_GET['size_id'] ?? null,
             'condition_id' => $_GET['condition_id'] ?? null,
         ];
-
-        
-
         // Handle price filter separately
         if (isset($_GET['price_from'])) {
             $filters['price'] = [$_GET['price_from'], $_GET['price_to'] ?? PHP_INT_MAX];
         } elseif (isset($_GET['price_to'])) {
             $filters['price'] = [0, $_GET['price_to']];
+        }
+    }
+
+        else if (isset($_GET['active']) && $_GET['active'] === 'true'){
+            session_start();
+            $filters = [
+                'category_id' => $_SESSION['user']['category_id'],
+                'size_id' => $_SESSION['user']['size_id'] ,
+                'condition_id' => $_SESSION['user']['condition_id'] ,
+            ];
+        }
+
+        else{
+            view('Profile/index', [
+                'items' => $this->item->getItems(),
+            ]);
         }
 
         // Remove null filters
@@ -78,7 +92,7 @@ class Home
         });
 
         if (isLoggedIn()) {
-            view('Home/index', [
+            view('Home/preferences', [
                 'items' => $this->item->getItemsPreferences($preferences),
                 'categories' => $this->category->getCategories(),
                 'sizes' => $this->size->getSizes(),

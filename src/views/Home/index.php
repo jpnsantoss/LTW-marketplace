@@ -49,7 +49,7 @@ $user = $_SESSION['user'];?>?>
     </header> 
     <main>
         <section class="search">
-            <form class="search-items">
+            <form class="search-items" action="<?= URLROOT ?>/home/index" method="get">
                 <div class="search-main">
                     <input type="text" name="search" id="search" placeholder="What are you looking for?" value="<?= $_GET['search'] ?? '' ?>">
                     <select name="category_id" id="category">
@@ -89,7 +89,8 @@ $user = $_SESSION['user'];?>?>
                 </div>
                 
             </form>
-            <form class="userPreferences" action="<?= URLROOT ?>/home/preferences/" method="post">
+            <form class="userPreferences" action="<?= URLROOT ?>/home/index/" method="get">
+            <input type="hidden" name="active" value="true">
     <button type="submit" class="requestButton filterButton">Filter by user preferences</button>
 </form>
         </section>
