@@ -8,11 +8,11 @@ getNavbar();
 
 <body class="forms">
     <section>
-            <!-- list items -->
-            <h1>Items for sale:</h1>
-            <ul class="listing">
-                <?php foreach ($data["items"] as $item) : ?>
-                    <?php if($item->sold_at === NULL):?>
+        <!-- list items -->
+        <h1>Items for sale:</h1>
+        <ul class="listing">
+            <?php foreach ($data["items"] as $item) : ?>
+                <?php if ($item->sold_at === NULL) : ?>
                     <li>
                         <?= $item->brand; ?> &emsp;
                         <?= $item->model; ?> &emsp;
@@ -26,9 +26,9 @@ getNavbar();
                             <input type="submit" value="Delete">
                         </form>
                     </li>
-                    <?php endif; ?>
-                <?php endforeach; ?>
-            </ul>
+                <?php endif; ?>
+            <?php endforeach; ?>
+        </ul>
     </section>
     <section>
         <h1>Add new category:</h1>
@@ -106,9 +106,7 @@ getNavbar();
     </section>
     <section class="users">
         <h1>Users:</h1>
-        <form method="POST" action="<?= URLROOT; ?>/Admin/users">  
-            <input type="submit" value="Manage users"/>  
-        </form>
+        <a href="/admin/users">Manage Users</a>
     </section>
 </body>
 
