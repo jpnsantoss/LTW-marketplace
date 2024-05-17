@@ -42,7 +42,7 @@
                             <button type="submit" class="promote-button">Accept Seller Request</button>
                         </form>
                     </td>
-                <?php } else { ?>
+                <?php } else if($isSeller == 'Yes'){ ?>
                     <td class="button">
                         
                         <form action="<?= URLROOT ?>/Admin/<?=$user['id']?>/userItems" method="get">
