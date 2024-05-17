@@ -49,7 +49,7 @@ $user = $_SESSION['user'];?>?>
     </header> 
     <main>
         <section class="search">
-            <form>
+            <form class="search-items">
                 <div class="search-main">
                     <input type="text" name="search" id="search" placeholder="What are you looking for?" value="<?= $_GET['search'] ?? '' ?>">
                     <select name="category_id" id="category">
@@ -59,6 +59,7 @@ $user = $_SESSION['user'];?>?>
                         <?php endforeach; ?>
                     </select>
                     <input type="submit" value="Search" id="search-button">
+
                     
                 </div>
                 <div class="search-filters">
@@ -86,12 +87,15 @@ $user = $_SESSION['user'];?>?>
                         </select>
                     </label>
                 </div>
+                
             </form>
+            <form class="userPreferences" action="<?= URLROOT ?>/home/preferences/" method="post">
+    <button type="submit" class="requestButton filterButton">Filter by user preferences</button>
+</form>
         </section>
 
-        <form id="userPreferences" class="highlight" action="<?= URLROOT ?>/home/preferences/" method="get">
-                                <button type="submit" class="requestButton">Filter by user preferences</button>
-                            </form>
+        
+
 
         <section class="home-items">
             <h2>Items for sale:</h2>
