@@ -107,6 +107,7 @@ $user = $_SESSION['user'];?>
     </main>
 </body>
 
+<?php getScript('filter.js'); ?>
 <?php
 getScript('navbar.js');
 ?>

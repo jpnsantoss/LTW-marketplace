@@ -10,6 +10,7 @@ document.getElementById('menu-button').addEventListener('click', function () {
     }
 });
 
+
 // Dropdown menu
 document.querySelector('.dropdown').addEventListener('click', function (event) {
     event.stopPropagation();
