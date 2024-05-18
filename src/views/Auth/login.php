@@ -10,10 +10,10 @@ getHead($styles, "Log In")
     <form class="auth-form" action="<?= URLROOT; ?>/auth/login" method="post">
 
         <label for="email">Email</label>
-        <input id="email" name="email" type="email" placeholder="Enter your email">
+        <input id="email" name="email" type="email" required placeholder="Enter your email">
 
         <label for="password">Password</label>
-        <input id="password" name="password" type="password" placeholder="Enter your password">
+        <input id="password" name="password" type="password" required placeholder="Enter your password">
 
 
         <button class="primary" type="submit">Log In</button>

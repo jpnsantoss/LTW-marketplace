@@ -16,6 +16,10 @@ class Auth
     public function register()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            // Check if password is empty
+            if (empty($_POST['password'])) {
+                die('Password cannot be empty');
+            }
             $registerRequest = [
                 'username' => $_POST['username'],
                 'name' => $_POST['name'],
@@ -141,8 +145,7 @@ class Auth
             } else {
                 header('location: ' . URLROOT . '/', true, 303);
             }
-        }
-        else {
+        } else {
             header('location: ' . URLROOT . '/', true, 303);
         }
     }
