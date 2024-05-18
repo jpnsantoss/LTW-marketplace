@@ -23,7 +23,7 @@ CREATE TABLE preferences (
   FOREIGN KEY(user_id) REFERENCES users(id),
   FOREIGN KEY(category_id) REFERENCES categories(id),
   FOREIGN KEY(size_id) REFERENCES sizes(id),
-  FOREIGN KEY(condition_id) REFERENCES conditions(id),
+  FOREIGN KEY(condition_id) REFERENCES conditions(id)
 );
 
 CREATE TABLE sellers (
