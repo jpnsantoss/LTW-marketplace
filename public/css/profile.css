@@ -55,7 +55,7 @@ input[type="password"] {
   width: 200px;
   padding: 5px;
   box-sizing: border-box;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
 }
 input[type="password"] {
   display: inline-block;
@@ -101,6 +101,7 @@ option {
   border-radius: 4px;
   cursor: pointer;
   margin-top: 10px;
+  width: 135.54px;
 }
 
 .button:hover {
@@ -129,8 +130,17 @@ option {
   margin-bottom: 10px;
 }
 
+.item-info{
+  max-height: auto;
+  display: grid;
+  grid-template-columns: 3fr 3fr;
+  grid-column-gap: 10px;
+  margin-bottom: 10px;  
+}
+
 .button-delete {
   margin-top: 10px;
+  
 }
 
 .item-container {
@@ -246,6 +256,12 @@ form .label {
   position: relative;
   max-width: 200px;
   max-height: 200px;
+  
+}
+
+.size-image{
+  height: 200px;
+  
 }
 
 #item-image {

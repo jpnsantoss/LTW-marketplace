@@ -139,6 +139,7 @@ $user = $_SESSION['user'];
                 if ($item->seller_id == $user['id'] && $item->sold_at === NULL) :
                     $hasItems = true ?>
                     <div class="item-container">
+                        <div class="size-image">
                         <div class="item-image" data-item-id="<?= $item->id ?>">
                             <?php foreach ($item->image_urls as $key => $image_url) : ?>
                                 <img class="item-image" src="<?= $image_url ?>" alt="Item image" style="<?= $key > 0 ? 'display: none;' : '' ?>">
@@ -146,22 +147,28 @@ $user = $_SESSION['user'];
                             <button class="previous-button">&#10094;</button>
                             <button class="next-button">&#10095;</button>
                         </div>
+                        </div>
                         <div class="edit-product">
                             <h3><?= $item->brand; ?> : <?= $item->model; ?></h3>
                             <br>
-                            <form action="<?= URLROOT ?>/item/updateitem" method="post">
+                            <form class ="item-info" action="<?= URLROOT ?>/item/updateitem" method="post">
                                 <?php getCSRFInput(); ?>
+                                <div class="brand">
                                 <label for="brand">Brand:</label>
                                 <input type="text" id="brand" name="brand" value="<?= $item->brand; ?>">
-
+                                
+                               <br>
                                 <label for="model">Model:</label>
                                 <input type="text" id="model" name="model" value="<?= $item->model; ?>">
-
+                                <br>
                                 <label for="price">Price:</label>
                                 <input type="text" id="price" name="price" value="<?= $item->price; ?>">
-
+                                <br>    
+                                </div>
                                 <input type="hidden" name="item_id" value="<?= $item->id; ?>">
+                               
 
+                                <div>
                                 <h4 class="h">Product Category: </h4>
 
                                 <?php foreach ($data["categories"] as $category) : ?>
@@ -170,14 +177,16 @@ $user = $_SESSION['user'];
                                     <?php endif; ?>
                                 <?php endforeach; ?>
                                 <br>
-
+                                
                                 <label for="category">Change Category</label>
                                 <select name="category" id="category">
                                     <?php foreach ($data["categories"] as $category) : ?>
                                         <option value="<?= $category->id; ?>"><?= $category->name; ?></option>
                                     <?php endforeach; ?>
                                 </select>
+                                </div>
 
+                                <div>
                                 <h4 class="h">Product Size: </h4>
 
                                 <?php foreach ($data["sizes"] as $size) : ?>
@@ -186,14 +195,15 @@ $user = $_SESSION['user'];
                                     <?php endif; ?>
                                 <?php endforeach; ?>
                                 <br>
-
+                                
                                 <label for="size">Change Size</label>
                                 <select name="size" id="size">
                                     <?php foreach ($data["sizes"] as $size) : ?>
                                         <option value="<?= $size->id; ?>"><?= $size->name; ?></option>
                                     <?php endforeach; ?>
                                 </select>
-
+                                </div>
+                                <div>
                                 <h4 class="h">Product Condition: </h4>
 
                                 <?php foreach ($data["conditions"] as $condition) : ?>
@@ -202,19 +212,21 @@ $user = $_SESSION['user'];
                                     <?php endif; ?>
                                 <?php endforeach; ?>
                                 <br>
-
+                               
                                 <label for="condition">Change Condition</label>
                                 <select name="condition" id="condition">
                                     <?php foreach ($data["conditions"] as $condition) : ?>
                                         <option value="<?= $condition->id; ?>"><?= $condition->name; ?></option>
                                     <?php endforeach; ?>
                                 </select>
+                                </div>
                                 <button class="button" type="submit">Update Item</button>
+                                
                             </form>
 
                             <form class="button-delete" action="<?= URLROOT; ?>/item/<?= $item->id ?>/deleteuseritem" method="post">
                                 <?php getCSRFInput(); ?>
-                                <input type="submit" value="Delete">
+                                <input type="submit" value="Delete Item">
                             </form>
                         </div>
                     </div>
