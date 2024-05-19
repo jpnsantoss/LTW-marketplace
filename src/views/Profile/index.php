@@ -15,7 +15,24 @@ $user = $_SESSION['user'];
             <p>Username: <?= $user['username']; ?></p>
             <p>Email: <?= $user['email']; ?></p>
             <p>Full name: <?= $user['full_name']; ?></p>
-            <p>Date: <?= $user['category_name']; ?></p>
+            <p>Date: <?= $user['created_at']; ?></p>
+            <p> Status: 
+            <?php if (isAdmin()) : ?>
+                        Admin
+                <?php elseif (isSeller()) : ?>
+                        Seller
+                    <?php elseif (hasRequested()) : ?>
+                        Request to be Seller Sent
+
+                    <?php else : ?>
+            
+                            <form class="highlight" action="<?= URLROOT ?>/auth/request" method="post">
+                                <?php getCSRFInput(); ?>
+                                <button type="submit" class="requestButton">Request Seller Privileges</button>
+                            </form>
+        
+                    <?php endif; ?>
+                    </p>
         </div>
 
         <div class="edit-profile">
