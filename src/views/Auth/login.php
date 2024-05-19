@@ -1,14 +1,15 @@
 <?php
 require_once APPROOT . '/src/views/Common/common.php';
 $styles = array('/css/style.css', '/css/auth.css');
-getHead($styles, "Log In")
+getHead($styles, "Log In");
+getCSRF();
 ?>
 
 <main class="container auth-container">
     <h1>Welcome back to LTW Marketplace!</h1>
     <h2>Sign into your account to get started</h2>
     <form class="auth-form" action="<?= URLROOT; ?>/auth/login" method="post">
-
+        <?php getCSRFInput(); ?>
         <label for="email">Email</label>
         <input id="email" name="email" type="email" required placeholder="Enter your email">
 

@@ -14,8 +14,15 @@
     </head>
 <?php }
 
+function getCSRFInput()
+{
+    echo '<input type="hidden" name="csrf_token" value="' . $_SESSION['csrf_token'] . '">';
+}
+
 function getNavbar()
-{ ?>
+{
+    getCSRF();
+?>
     <header>
         <nav>
             <div class="nav-mobile">
@@ -49,6 +56,7 @@ function getNavbar()
                     <?php else : ?>
                         <li>
                             <form class="highlight" action="<?= URLROOT ?>/auth/request" method="post">
+                                <?php getCSRFInput(); ?>
                                 <button type="submit" class="requestButton">Request Seller Privileges</button>
                             </form>
                         </li>

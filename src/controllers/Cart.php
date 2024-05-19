@@ -1,17 +1,23 @@
 <?php
+
 namespace Controllers;
+
 use Models\CartModel;
 use Models\ItemModel;
 
 
-class Cart{
+class Cart
+{
     private $cart;
-    public function __construct(){
+    private $item;
+    public function __construct()
+    {
         $this->cart = new CartModel;
         $this->item = new ItemModel;
     }
 
-    public function addToCart($product_id) : bool{
+    public function addToCart($product_id): bool
+    {
         if (!isLoggedIn()) {
             header('location: ' . URLROOT . '/login', true, 303);
             die(UNAUTHORIZED_ACCESS);
@@ -21,106 +27,114 @@ class Cart{
                 'user_id' => $_SESSION['user']['id'],
                 'product_id' => $product_id['id'],
             ];
-            if ($this->cart->addToCart($cartRequest)){
+            if ($this->cart->addToCart($cartRequest)) {
                 http_response_code(200);
-                echo json_encode(['message' => 'Item added to cart successfully!']);   
+                echo json_encode(['message' => 'Item added to cart successfully!']);
                 header('location: ' . URLROOT . '/cart', true, 303);
                 return true;
-            }else{
-                http_response_code(500); 
+            } else {
+                http_response_code(500);
                 echo json_encode(['message' => 'Failed to add item to Cart']);
                 die(SOMETHING_WENT_WRONG);
                 return false;
             }
-        }else{
+        } else {
             http_response_code(405);
             echo json_encode(['message' => 'Method Not Allowed']);
         }
-        
     }
 
-    public function deleteItem($product_id) : bool
-    {      
+    public function deleteItem($product_id): bool
+    {
+        checkCSRF();
         if (!isLoggedIn()) {
             header('location: ' . URLROOT . '/login', true, 303);
             die(UNAUTHORIZED_ACCESS);
         }
-        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $cartRequest = [
                 'user_id' => $_SESSION['user']['id'],
                 'product_id' => $product_id['id'],
             ];
-            if ($this->cart->deleteItem($cartRequest)){
+            if ($this->cart->deleteItem($cartRequest)) {
                 http_response_code(200);
-                echo json_encode(['message' => 'Item added to cart successfully!']);   
+                echo json_encode(['message' => 'Item added to cart successfully!']);
                 header('location: ' . URLROOT . '/cart', true, 303);
                 return true;
-            }else{
-                http_response_code(500); 
+            } else {
+                http_response_code(500);
                 echo json_encode(['message' => 'Failed to add item to Cart']);
                 header('location: ' . URLROOT . '/cart', true, 303);
                 die(SOMETHING_WENT_WRONG);
                 return false;
             }
-        }else{
+        } else {
             http_response_code(405);
             echo json_encode(['message' => 'Method Not Allowed']);
         }
     }
-    public function payStub(){
-        session_start();
+    public function payStub()
+    {
+        checkCSRF();
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             if (isset($_POST['data'])) {
-                
+
                 $data = json_decode($_POST['data']);
                 if ($data !== null) {
                     foreach ($data as $el) {
                         $buyer_id = $_SESSION['user']['id'];
                         $soldItem = $this->item->getItem($el->item_id);
-                        $this->cart->setSold($soldItem->id, $buyer_id, $soldItem->seller_id );
+                        $this->cart->setSold($soldItem->id, $buyer_id, $soldItem->seller_id);
                     }
                 } else {
                     echo "Error decoding JSON data";
                 }
             } else {
                 echo "No data received";
-                
             }
             //should redirect to some receipt/shipping forms
             header('location: ' . URLROOT . '/profile', true, 303);
-        }
-        else{
-           
+        } else {
+            http_response_code(405);
+            echo json_encode(['message' => 'Method Not Allowed']);
         }
     }
-    public function index(){
-        if(isLoggedIn()){
+
+    public function index()
+    {
+        if (isLoggedIn()) {
             $userId = $_SESSION['user']['id'];
-            view('Cart/index', [ 'items' => $this->cart->getCart($userId)]);
-        }
-        else{
+            $items = sanitize($this->cart->getCart($userId));
+
+            view('Cart/index', ['items' => $items]);
+        } else {
             header('location: ' . URLROOT . '/login', true, 303);
             die(UNAUTHORIZED_ACCESS);
         }
     }
 
-    public function checkout($item){
 
-        $item_id = $item['id'];
+    public function checkout($item)
+    {
+        checkCSRF();
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $item_id = $item['id'];
 
-        if(isLoggedIn()){
-            $userId = $_SESSION['user']['id'];
-            if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-                view('Checkout/index', ['items' => $this->cart->getItem($item_id, $userId)]);
-            }else if($_SERVER['REQUEST_METHOD'] === 'POST') {
-                view('Checkout/index', ['items' => $this->cart->getCart($userId)]);
+            if (isLoggedIn()) {
+                $userId = $_SESSION['user']['id'];
+                if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+                    $items = sanitize($this->cart->getItem($item_id, $userId));
+                    view('Checkout/index', ['items' => $items]);
+                } else if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                    $items = sanitize($this->cart->getCart($userId));
+                    view('Checkout/index', ['items' => $items]);
+                }
+            } else {
+                header('location: ' . URLROOT . '/login', true, 303);
+                die(UNAUTHORIZED_ACCESS);
             }
-        }else{
-            header('location: ' . URLROOT . '/login', true, 303);
-            die(UNAUTHORIZED_ACCESS);
         }
-
     }
 
     /*
@@ -137,4 +151,3 @@ class Cart{
         }
     }*/
 }
-?>

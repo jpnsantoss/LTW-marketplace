@@ -22,11 +22,12 @@ class Chat
             die(UNAUTHORIZED_ACCESS);
         }
 
-        $chat = $this->message->getChatById($params['id']);
-        $messages = $this->message->getMessages($params['id']);
+        $chat = sanitizeObject($this->message->getChatById($params['id']));
+        $messages = sanitize($this->message->getMessages($params['id']));
 
         return view('Chat/index', ['chat' => $chat, 'messages' => $messages]);
     }
+
 
     public function open($params)
     {
@@ -50,17 +51,23 @@ class Chat
 
     public function send()
     {
-        if (!isLoggedIn()) {
-            header('location: ' . URLROOT . '/login', true, 303);
-            die(UNAUTHORIZED_ACCESS);
+        checkCSRF();
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            if (!isLoggedIn()) {
+                header('location: ' . URLROOT . '/login', true, 303);
+                die(UNAUTHORIZED_ACCESS);
+            }
+
+            $req['sender_id'] = $_SESSION['user']['id'];
+            $req['chat_id'] = $_POST['chat_id'];
+            $req['content'] = $_POST['content'];
+
+            $this->message->sendMessage($req);
+
+            header('location: ' . URLROOT . '/chat/index/' . $req['chat_id'], true, 303);
+        } else {
+            http_response_code(405);
+            echo json_encode(['message' => 'Method Not Allowed']);
         }
-
-        $req['sender_id'] = $_SESSION['user']['id'];
-        $req['chat_id'] = $_POST['chat_id'];
-        $req['content'] = $_POST['content'];
-
-        $this->message->sendMessage($req);
-
-        header('location: ' . URLROOT . '/chat/index/' . $req['chat_id'], true, 303);
     }
 }

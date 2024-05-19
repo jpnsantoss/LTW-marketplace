@@ -23,6 +23,7 @@ getNavbar();
 
 
                         <form class="button" action="<?= URLROOT; ?>/item/<?= $item->id; ?>/delete" method="post">
+                            <?php getCSRFInput(); ?>
                             <input type="submit" value="Delete">
                         </form>
                     </li>
@@ -35,6 +36,7 @@ getNavbar();
 
         <!-- create category -->
         <form action="<?= URLROOT; ?>/category/create" method="post">
+            <?php getCSRFInput(); ?>
             <label for="name">Category Name</label>
             <input type="text" name="name" id="name">
             <button type="submit">Add Category</button>
@@ -46,6 +48,7 @@ getNavbar();
                 <li>
                     <?= $category->name; ?> &emsp;
                     <form action="<?= URLROOT; ?>/category/<?= $category->id; ?>/delete" method="post">
+                        <?php getCSRFInput(); ?>
                         <input type="submit" value="Delete">
                     </form>
                 </li>
@@ -58,6 +61,7 @@ getNavbar();
 
         <!-- create size -->
         <form action="<?= URLROOT; ?>/size/create" method="post">
+            <?php getCSRFInput(); ?>
             <label for="name">Size Name</label>
             <input type="text" name="name" id="name">
             <button type="submit">Add Size</button>
@@ -71,6 +75,7 @@ getNavbar();
                     <?= $size->name; ?> &emsp;
 
                     <form action="<?= URLROOT; ?>/size/<?= $size->id; ?>/delete" method="post">
+                        <?php getCSRFInput(); ?>
                         <input type="submit" value="Delete">
                     </form>
                 </li>
@@ -85,6 +90,7 @@ getNavbar();
         <!-- create condition -->
 
         <form action="<?= URLROOT; ?>/condition/create" method="post">
+            <?php getCSRFInput(); ?>
             <label for="name">Condition Name</label>
             <input type="text" name="name" id="name">
             <button type="submit">Add Condition</button>
@@ -98,6 +104,7 @@ getNavbar();
                     <?= $condition->name; ?> &emsp;
 
                     <form action="<?= URLROOT; ?>/condition/<?= $condition->id; ?>/delete" method="post">
+                        <?php getCSRFInput(); ?>
                         <input type="submit" value="Delete">
                     </form>
                 </li>

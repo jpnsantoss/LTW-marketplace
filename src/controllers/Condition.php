@@ -14,6 +14,7 @@ class Condition
 
     public function create()
     {
+        checkCSRF();
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (!isLoggedIn() || !isAdmin()) {
                 header('location: ' . URLROOT . '/', true, 303);

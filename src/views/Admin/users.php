@@ -37,6 +37,7 @@ getNavbar();
                 <td class="button">
                     <?php if ($hasRequested) { ?>
                         <form action="<?= URLROOT ?>/admin/<?= $user['id'] ?>/promote-user-to-seller" method="POST">
+                            <?php getCSRFInput(); ?>
                             <button type="submit" class="promote-button">Accept Seller Request</button>
                         </form>
                     <?php } ?>
@@ -47,17 +48,14 @@ getNavbar();
                     <?php } ?>
                     <?php if (!$isAdmin) { ?>
                         <form action="<?= URLROOT ?>/admin/<?= $user['id'] ?>/promote-user-to-admin" method="POST">
+                            <?php getCSRFInput(); ?>
                             <button type="submit" class="promote-button">Promote to admin</button>
                         </form>
                     <?php } ?>
                 </td>
-
-
             </tr>
         <?php } ?>
     </table>
-    <?php getScript('promote.js'); ?>
-
 </body>
 <?php
 getScript('navbar.js');
