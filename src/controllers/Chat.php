@@ -15,6 +15,14 @@ class Chat
         $this->item = new ItemModel;
     }
 
+    public function getNewMessages($data){
+        $chatId = $data['id'];
+        $lastTimestamp = $_GET['last_timestamp']; 
+    
+        $messages = $this->message->getNewMessages($chatId, $lastTimestamp);
+        echo json_encode($messages);
+    }
+
     public function index($params)
     {
         if (!isLoggedIn()) {

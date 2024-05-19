@@ -72,5 +72,4 @@ function getNavbar()
 function getScript($script)
 { ?>
     <script src="<?= URLROOT ?>/js/<?= $script ?>"></script>
-<?php }
-?>
+<?php } ?>

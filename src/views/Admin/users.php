@@ -1,12 +1,10 @@
 <?php
 require_once APPROOT . '/src/views/Common/common.php';
 getHead(array('/css/style.css', '/css/table.css', '/css/navbar.css'), "Users");
-getNavbar();
 ?>
 
-
-
 <body>
+    <?php getNavbar(); ?>
     <h1>Users</h1>
     <table>
         <tr>
@@ -57,6 +55,6 @@ getNavbar();
         <?php } ?>
     </table>
 </body>
-<?php
-getScript('navbar.js');
-?>
+<?php getScript('navbar.js'); ?>
+
+</html>

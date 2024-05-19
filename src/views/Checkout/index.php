@@ -4,6 +4,7 @@ getHead(array('/css/style.css', '/css/navbar.css', '/css/form.css', '/css/itemli
 getNavbar();
 ?>
 
+<?php session_start(); ?>
 
 <?php if (!isLoggedIn()) {
     // Redirecionar para a página de login, por exemplo:
@@ -13,9 +14,11 @@ getNavbar();
 
 $user = $_SESSION['user'];
 
+
 ?>
 
 <body>
+    <?php getNavbar(); ?>
     <h1>Checkout</h1>
     <h2>Items to checkout:</h2>
     <?php foreach ($data['items'] as $item) { ?>
@@ -64,9 +67,7 @@ $user = $_SESSION['user'];
         <p>Sincerely,</p>
         <p>Your marketplace team</p>
     </section>
+    <?php getScript('navbar.js'); ?>
 </body>
 
 </html>
-<?php
-getScript('navbar.js');
-?>

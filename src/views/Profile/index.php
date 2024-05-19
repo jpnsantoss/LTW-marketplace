@@ -2,24 +2,11 @@
 require_once APPROOT . '/src/views/Common/common.php';
 getHead(array('/css/style.css', '/css/navbar.css', '/css/profile.css'), "Profile");
 getNavbar();
-?>
-
-<?php if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}; ?>
-
-<?php if (!isLoggedIn()) {
-    // Redirecionar para a página de login, por exemplo:
-    header("Location: login.php");
-    exit;
-}
-
 $user = $_SESSION['user'];
-
-
 ?>
 
 <body class="forms">
+    <?php getNavbar(); ?>
     <section>
         <h1>Your profile</h1>
 
@@ -60,6 +47,8 @@ $user = $_SESSION['user'];
                 <br>
                 <input type="text" name="fullname" id="fullname">
                 <button class="button-submit" type="submit">Submit</button>
+            </form>
+            </form>
             </form>
 
 
@@ -146,8 +135,9 @@ $user = $_SESSION['user'];
 
                 <button class="button" type="submit">Set preferences</button>
             </form>
-        </div>
 
+            </form>
+        </div>
 
 
         <?php $hasItems = false ?>
@@ -155,51 +145,50 @@ $user = $_SESSION['user'];
         <h2> Your products: </h2>
 
         <div class="item-wrapper">
-            <?php foreach ($data["items"] as $item) : ?>
-                <?php if ($item->seller_id == $user['id'] && $item->sold_at === NULL) { ?>
-                    <?php $hasItems = true ?>
-                    <div class="item-container">
-                        <div class="item-image" data-item-id="<?= $item->id ?>">
-                            <?php foreach ($item->image_urls as $key => $image_url) : ?>
-                                <img class="item-image" src="<?= $image_url ?>" alt="Item image" style="<?= $key > 0 ? 'display: none;' : '' ?>">
-                            <?php endforeach; ?>
-                            <button class="previous-button">&#10094;</button>
-                            <button class="next-button">&#10095;</button>
-                        </div>
-                        <div class="edit-product">
+        <?php foreach ($data["items"] as $item) : 
+                 if ($item->seller_id == $user['id'] && $item->sold_at === NULL): 
+                    $hasItems = true ?>  
+        <div class="item-container">
+            <div class="item-image" data-item-id="<?= $item->id ?>">
+                <?php foreach ($item->image_urls as $key => $image_url) : ?>
+                    <img class="item-image" src="<?= $image_url ?>" alt="Item image" style="<?= $key > 0 ? 'display: none;' : '' ?>">
+                <?php endforeach; ?>
+                <button class="previous-button">&#10094;</button>
+                <button class="next-button">&#10095;</button>
+            </div>
+            <div class="edit-product">
+                <h3><?= $item->brand; ?> : <?= $item->model; ?></h3>
+                <br>
+                <form  action="<?= URLROOT ?>/item/updateitem" method="post">
+                    <?php getCSRFInput(); ?>
 
-                            <h3><?php echo $item->brand; ?> : <?php echo $item->model; ?></h3>
-                            <br>
+                    <label for="brand">Brand:</label>
+                    <input type="text" id="brand" name="brand" value="<?= $item->brand; ?>">
 
 
-                            <form action="<?= URLROOT ?>/item/updateitem" method="post">
-                                <?php getCSRFInput(); ?>
-                                <label for="brand">Brand:</label>
-                                <input type="text" id="brand" name="brand" value="<?php echo $item->brand; ?>">
+                                        <label for="model">Model:</label>
+                                        <input type="text" id="model" name="model" value="<?= $item->model; ?>">
 
-                                <label for="model">Model:</label>
-                                <input type="text" id="model" name="model" value="<?php echo $item->model; ?>">
+                                        <label for="price">Price:</label>
+                                        <input type="text" id="price" name="price" value="<?= $item->price; ?>">
 
-                                <label for="price">Price:</label>
-                                <input type="text" id="price" name="price" value="<?php echo $item->price; ?>">
+                                        <input type="hidden" name="item_id" value="<?= $item->id; ?>">
 
-                                <input type="hidden" name="item_id" value="<?php echo $item->id; ?>">
+                                        <h4 class="h">Product Category: </h4>
 
-                                <h4 class="h">Product Category: </h4>
-
-                                <?php foreach ($data["categories"] as $category) : ?>
-                                    <?php if ($category->id == $item->category_id) : ?>
-                                        <p class="pp"><?php echo $category->name; ?></p>
-                                    <?php endif; ?>
-                                <?php endforeach; ?>
-                                <br>
-
-                                <label for="category">Change Category</label>
-                                <select name="category" id="category">
-                                    <?php foreach ($data["categories"] as $category) : ?>
-                                        <option value="<?= $category->id; ?>"><?= $category->name; ?></option>
-                                    <?php endforeach; ?>
-                                </select>
+                                        <?php foreach ($data["categories"] as $category) : ?>
+                                            <?php if ($category->id == $item->category_id) : ?>
+                                                <p class="pp"><?= $category->name; ?></p>
+                                            <?php endif; ?>
+                                        <?php endforeach; ?>
+                                    <br>
+    
+                                        <label for="category">Change Category</label>
+                                        <select name="category" id="category">
+                                            <?php foreach ($data["categories"] as $category) : ?>
+                                                <option value="<?= $category->id; ?>"><?= $category->name; ?></option>
+                                            <?php endforeach; ?>
+                                        </select>
 
                                 <h4 class="h">Product Size: </h4>
 
@@ -218,6 +207,7 @@ $user = $_SESSION['user'];
                                 </select>
 
                                 <h4 class="h">Product Condition: </h4>
+                    <h4 class="h">Product Condition: </h4>
 
                                 <?php foreach ($data["conditions"] as $condition) : ?>
                                     <?php if ($condition->id == $item->condition_id) : ?>
@@ -225,6 +215,12 @@ $user = $_SESSION['user'];
                                     <?php endif; ?>
                                 <?php endforeach; ?>
                                 <br>
+                    <?php foreach ($data["conditions"] as $condition) : ?>
+                        <?php if ($condition->id == $item->condition_id) : ?>
+                            <p class="pp"><?= $condition->name; ?></p>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
+                    <br>
 
                                 <label for="condition">Change Condition</label>
                                 <select name="condition" id="condition">
@@ -239,12 +235,25 @@ $user = $_SESSION['user'];
 
                                 <button class="button" type="submit">Update Item</button>
                             </form>
+                    <label for="condition">Change Condition</label>
+                    <select name="condition" id="condition">
+                        <?php foreach ($data["conditions"] as $condition) : ?>
+                            <option value="<?= $condition->id; ?>"><?= $condition->name; ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                    <button class="button" type="submit">Update Item</button>
+                </form>
 
                             <form class="button-delete" action="<?= URLROOT; ?>/item/<?= $item->id ?>/deleteuseritem" method="post">
                                 <?php getCSRFInput(); ?>
                                 <input type="submit" value="Delete">
                             </form>
                         </div>
+
+                        </form>
+                        </form>
+
+                        </form>
                     </div>
 
 
@@ -404,9 +413,4 @@ $user = $_SESSION['user'];
 
 
 </body>
-
-
-
-<?php
-getScript('navbar.js');
-?>
+<html>

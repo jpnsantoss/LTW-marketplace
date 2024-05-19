@@ -29,10 +29,6 @@ getHead(array('/css/style.css', '/css/navbar.css', '/css/home.css', '/css/inbox.
             <?php endforeach; ?>
         </div>
     </div>
+    <?php getScript('navbar.js');?>
 </body>
-
-<?php
-getScript('navbar.js');
-?>
-
 </html>

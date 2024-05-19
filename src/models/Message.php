@@ -17,18 +17,33 @@ class MessageModel
     public function findChatByBuyer($buyerId, $productId)
     {
         $this->db->query("SELECT * FROM chat WHERE buyer_id = :buyer_id AND product_id = :product_id AND seller_id = (SELECT seller_id FROM items WHERE id = :item_id) LIMIT 1");
-
         $this->db->bind(':buyer_id', $buyerId);
         $this->db->bind(':product_id', $productId);
         $this->db->bind(':item_id', $productId);
-
         $chat = $this->db->single();
 
         return $chat;
     }
+    public function getNewMessages($chatId, $lastTimestamp)
+{
+    // Fetch new messages
+    $this->db->query('SELECT * FROM messages WHERE chat_id = :chat_id AND created_at > :created_at ORDER BY created_at ASC');
+    $this->db->bind(':chat_id', $chatId);
+    $this->db->bind(':created_at', $lastTimestamp);
+    $newMessages = $this->db->resultSet();
 
-    public function createChat($buyerId, $productId)
-    {
+    $latestTimestamp = $lastTimestamp;
+    if (!empty($newMessages)) {
+        $latestTimestamp = end($newMessages)->created_at;
+    }
+
+    return [
+        'messages' => $newMessages,
+        'latest_timestamp' => $latestTimestamp
+    ];
+}
+
+    public function createChat($buyerId, $productId) {
         $this->db->query("INSERT INTO chat (buyer_id, product_id, seller_id) SELECT :buyer_id, :product_id, seller_id FROM items WHERE id = :item_id");
 
         $this->db->bind(':buyer_id', $buyerId);

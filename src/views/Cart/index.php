@@ -5,6 +5,7 @@ getNavbar();
 ?>
 
 <body>
+    <?php getNavbar(); ?>
     <h1>My Cart</h1>
 
     <?php foreach ($data['items'] as $wishedItem) { ?>

@@ -1,7 +1,6 @@
 <?php
 require_once APPROOT . '/src/views/Common/common.php';
 getHead(array('/css/style.css', '/css/form.css', '/css/navbar.css'), "Add Item Category");
-getNavbar();
 ?>
 
 <!-- create item -->
@@ -115,8 +114,11 @@ getNavbar();
         <h1>Users:</h1>
         <a href="/admin/users">Manage Users</a>
     </section>
+    <?php getScript('navbar.js'); ?>
 </body>
 
 <?php
 getScript('navbar.js');
 ?>
+
+</html>
