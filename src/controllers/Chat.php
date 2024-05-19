@@ -31,9 +31,9 @@ class Chat
         }
 
         $chat = sanitizeObject($this->message->getChatById($params['id']));
-        $messages = sanitize($this->message->getMessages($params['id']));
+        //$messages = sanitize($this->message->getMessages($params['id']));
 
-        return view('Chat/index', ['chat' => $chat, 'messages' => $messages]);
+        return view('Chat/index', ['chat' => $chat]);
     }
 
 
@@ -60,7 +60,7 @@ class Chat
     public function send()
     {
         checkCSRF();
-        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (!isLoggedIn()) {
                 header('location: ' . URLROOT . '/login', true, 303);
                 die(UNAUTHORIZED_ACCESS);

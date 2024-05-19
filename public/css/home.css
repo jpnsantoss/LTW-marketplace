@@ -15,7 +15,7 @@
   align-items: center;
 }
 
-.search .userPreferences{
+.search .userPreferences {
   max-width: 1200px;
   margin: 0 auto;
   padding-left: 0.5rem;
@@ -146,8 +146,8 @@
 
 .item-card img {
   width: 100%;
-  background-size: cover;
-  background-repeat: no-repeat;
+  height: 40dvh;
+  object-fit: cover;
 }
 
 .item-info {
@@ -188,7 +188,7 @@
   align-items: center;
 }
 
-.buttons{
+.buttons {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -216,16 +216,12 @@
   }
 }
 
-
 form .userPreferences {
-  
   align-items: left;
 }
 
-.userPreferences{
-  
+.userPreferences {
 }
-
 
 .filterButton {
   padding: 1rem 2rem;
@@ -238,15 +234,14 @@ form .userPreferences {
 }
 
 .filterButton:hover {
-  background-color: #433040; 
+  background-color: #433040;
 }
 
 .filterButton:active {
-  background-color: #31232f; 
+  background-color: #31232f;
 }
 
 .filterButton:focus {
-  outline: none; 
-  box-shadow: 0 0 5px #433040; 
+  outline: none;
+  box-shadow: 0 0 5px #433040;
 }
-

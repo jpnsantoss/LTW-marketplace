@@ -15,7 +15,7 @@ class UserModel
 
     public function getUsers(): array
     {
-       $sql = "
+        $sql = "
             SELECT users.*, 
                    categories.name as category_name, 
                    sizes.name as size_name, 
@@ -28,7 +28,7 @@ class UserModel
         $this->db->query($sql);
         return $this->db->resultSet();
     }
-    
+
 
     public function getUsersAndSellerInfo(): array
     {
@@ -135,26 +135,39 @@ class UserModel
     public function changeEmail($email)
     {
 
-            $this->db->query('UPDATE users SET email = :email WHERE id = :user_id');
-            $this->db->bind(':user_id', $email['user_id']);
-            $this->db->bind(':email', $email['email']);
+        $this->db->query('UPDATE users SET email = :email WHERE id = :user_id');
+        $this->db->bind(':user_id', $email['user_id']);
+        $this->db->bind(':email', $email['email']);
 
-            return $this->db->execute();
-        }
-
-        public function changePreferences($category){
-
-            $this->db->query('UPDATE users SET category_id = :category, size_id = :size, condition_id = :condition WHERE id = :user_id');
-            $this->db->bind(':user_id', $category['user_id']);
-            $this->db->bind(':category', $category['category']);
-            $this->db->bind(':size', $category['size']);
-            $this->db->bind(':condition', $category['condition']);
-    
-            return $this->db->execute();
+        return $this->db->execute();
     }
+
+    public function changePreferences($category)
+    {
+
+        $this->db->query('UPDATE users SET category_id = :category, size_id = :size, condition_id = :condition WHERE id = :user_id');
+        $this->db->bind(':user_id', $category['user_id']);
+        $this->db->bind(':category', $category['category']);
+        $this->db->bind(':size', $category['size']);
+        $this->db->bind(':condition', $category['condition']);
+
+        return $this->db->execute();
+    }
+
     public function getSellerItems($user_id)
     {
-        $this->db->query('SELECT * from items join sellers on sellers.user_id = items.seller_id JOIN images ON items.id = images.item_id where sellers.user_id = :user_id');
+        $this->db->query("
+        SELECT * 
+        FROM items 
+        JOIN sellers ON sellers.user_id = items.seller_id 
+        JOIN (
+            SELECT item_id, MIN(id) AS min_id
+            FROM images
+            GROUP BY item_id
+        ) AS min_images ON items.id = min_images.item_id
+        JOIN images ON min_images.min_id = images.id
+        WHERE sellers.user_id = :user_id
+    ");
         $this->db->bind(':user_id', $user_id);
         return $this->db->resultSet();
     }

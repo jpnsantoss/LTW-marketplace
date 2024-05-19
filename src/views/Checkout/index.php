@@ -1,20 +1,14 @@
 <?php
 require_once APPROOT . '/src/views/Common/common.php';
 getHead(array('/css/style.css', '/css/navbar.css', '/css/form.css', '/css/itemlist.css'), "Checkout");
-getNavbar();
 ?>
 
-<?php session_start(); ?>
-
-<?php if (!isLoggedIn()) {
-    // Redirecionar para a página de login, por exemplo:
-    header("Location: login.php");
-    exit;
-}
+<?php
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+};
 
 $user = $_SESSION['user'];
-
-
 ?>
 
 <body>

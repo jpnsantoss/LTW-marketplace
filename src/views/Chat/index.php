@@ -49,7 +49,7 @@ getCSRF();
             };
             xhr.send();
         }
-        setInterval(fetchNewMessages, 1000);      
+        setInterval(fetchNewMessages, 500);      
     </script>
 <?php getScript('navbar.js'); ?>
 </body>

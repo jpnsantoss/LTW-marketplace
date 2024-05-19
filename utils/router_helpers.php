@@ -30,14 +30,14 @@ function view(string $view, array $data = []): void
 
 function sanitize($input)
 {
-    if (is_array($input)) {
+    /*if (is_array($input)) {
         return sanitizeArray($input);
     } elseif (is_object($input)) {
         return sanitizeObject($input);
-    } else {
+    } else {*/
         // If the input is not an array or an object, return it as is
         return $input;
-    }
+    //}
 }
 
 

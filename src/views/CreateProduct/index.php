@@ -53,7 +53,7 @@ getHead(array('/css/style.css', '/css/form.css', '/css/navbar.css'), "Add Item C
             return true;
         }
     </script>
+    <?php getScript('navbar.js'); ?>
 </body>
-<?php getScript('navbar.js'); ?>
 
 </html>

@@ -1,143 +1,137 @@
-section{
-	float:left;
-	clear:both;
+section {
+  float: left;
+  clear: both;
 }
 
-header{
-    margin: 0px;
+header {
+  margin: 0px;
 }
 
-.home{
-    display: flex;
-    flex-direction: column;
-    align-items: left;
+.home {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
 }
-.home h1{
-    margin: 20px;
+.home h1 {
+  margin: 20px;
 }
-.home form{
-    margin: 20px;
+.home form {
+  margin: 20px;
 }
 
-.forms{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin: 0;
+.forms {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
 }
 
 section {
-    width: 100%;
-    max-width: 600px;
-    margin-bottom: 20px;
-	margin-top: 20px;
+  width: 100%;
+  max-width: 1200px;
+  margin-bottom: 20px;
+  margin-top: 20px;
 }
 
-
-
 form {
-	margin-top: 0px;
-	background-color: #f9f9f9;	
-	padding: 20px;
-    border-radius: 8px;
-    margin-bottom: 20px;
-	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-top: 0px;
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 label {
-    display: block;
-    margin-bottom: 5px;
+  display: block;
+  margin-bottom: 5px;
 }
 
 input[type="text"],
 input[type="number"],
 select {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }
 
 .button {
-    padding: 10px 20px;
-    background-color: #333;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+  padding: 10px 20px;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
 }
 
 .button:hover {
-    background-color: #555;
+  background-color: #555;
 }
 
 .listing {
-    list-style: none;
-    padding: 0;
+  list-style: none;
+  padding: 0;
 }
 
-.item-button{
-    margin-top: 0px;
-	background-color: #f9f9f9;	
-	padding: 20px;
-    border-radius: 8px;
-    margin-bottom: 20px;
-	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    margin-right: 20px; 
-    border: 0px;
+.item-button {
+  margin-top: 0px;
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-right: 20px;
+  border: 0px;
 }
 
-.item-button:hover{
-    background-color: rgb(228, 222, 222);
+.item-button:hover {
+  background-color: rgb(228, 222, 222);
 }
-.listing-column{
-    list-style-type: none; /* Remove os marcadores de lista */
-        padding: 0; /* Remove o preenchimento padrão */
-        display: flex; /* Define o contêiner da lista como flexível */
-        flex-wrap: wrap; /* Permite que os itens da lista quebrem para a próxima linha */
-        margin-top: 15px;
-        margin-left: 20px;
+.listing-column {
+  list-style-type: none; /* Remove os marcadores de lista */
+  padding: 0; /* Remove o preenchimento padrão */
+  display: flex; /* Define o contêiner da lista como flexível */
+  flex-wrap: wrap; /* Permite que os itens da lista quebrem para a próxima linha */
+  margin-top: 15px;
+  margin-left: 20px;
 }
-
-
 
 .listing li {
-    display: flex; /* Usa o modelo de caixa flexível */
-    justify-content: space-between; /* Alinha os itens horizontalmente */
-    align-items: center; /* Alinha os itens verticalmente */
-    background-color: #f9f9f9; /* Cor de fundo do retângulo */
-    padding-left: 10px;
-	padding-right: 20px;
-	padding-bottom: 0px;
-	padding-top: 0px; /* Espaçamento interno */
-    margin-bottom: 10px; /* Espaçamento inferior entre os itens */
-    border-radius: 8px; /* Borda arredondada */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex; /* Usa o modelo de caixa flexível */
+  justify-content: space-between; /* Alinha os itens horizontalmente */
+  align-items: center; /* Alinha os itens verticalmente */
+  background-color: #f9f9f9; /* Cor de fundo do retângulo */
+  padding-left: 10px;
+  padding-right: 20px;
+  padding-bottom: 0px;
+  padding-top: 0px; /* Espaçamento interno */
+  margin-bottom: 10px; /* Espaçamento inferior entre os itens */
+  border-radius: 8px; /* Borda arredondada */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.listing li form{
-	padding: 0px;
-	margin-top: 10px;
-	margin-bottom: 10px;
+.listing li form {
+  padding: 0px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
-
-
 
 input[type="submit"] {
-    padding: 5px 10px;
-    background-color: #333;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+  padding: 5px 10px;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
 }
 
 input[type="submit"]:hover {
-    background-color: #555;
+  background-color: #555;
 }
 
-.users{
-    display:inline;
+.users {
+  display: inline;
 }
