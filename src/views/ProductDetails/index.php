@@ -44,9 +44,6 @@ getNavbar();
             </div>
         </div>
     </div>
-
-
-
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             const images = <?= json_encode($data["item"]->image_urls) ?>;
@@ -69,8 +66,6 @@ getNavbar();
             previousButton.addEventListener("click", showPreviousImage);
         });
     </script>
-
+    <?php getScript('navbar.js');?>
 </body>
-<?php
-getScript('navbar.js');
-?>
+</html>

@@ -1,23 +1,16 @@
 <?php 
 require_once APPROOT . '/src/views/Common/common.php'; 
-getHead(array('/css/style.css', '/css/navbar.css', '/css/form.css', '/css/itemlist.css'), "Checkout"); 
-getNavbar();
-?>
-
-<?php session_start(); ?>
-
-<?php if (!isLoggedIn()) {
-    // Redirecionar para a página de login, por exemplo:
+session_start(); 
+ if (!isLoggedIn()) {
     header("Location: login.php");
     exit;
 } 
-
 $user = $_SESSION['user'];
-
-
+getHead(array('/css/style.css', '/css/navbar.css', '/css/form.css', '/css/itemlist.css'), "Checkout"); 
 ?>
 
 <body>
+    <?php getNavbar(); ?>
     <h1>Checkout</h1>
     <h2>Items to checkout:</h2>
     <?php foreach ($data['items'] as $item) { ?>
@@ -65,8 +58,6 @@ $user = $_SESSION['user'];
         <p>Sincerely,</p> 
         <p>Your marketplace team</p> 
     </section>
+    <?php getScript('navbar.js'); ?>
 </body>
 </html>
-<?php
-getScript('navbar.js');
-?>

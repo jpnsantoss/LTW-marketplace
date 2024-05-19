@@ -49,13 +49,10 @@ $user = $_SESSION['user'];?>
                 
             </form>
             <form class="userPreferences" action="<?= URLROOT ?>/home/index/" method="get">
-            <input type="hidden" name="active" value="true">
-    <button type="submit" class="requestButton filterButton">Filter by user preferences</button>
-</form>
+                <input type="hidden" name="active" value="true">
+                <button type="submit" class="requestButton filterButton">Filter by user preferences</button>
+            </form>
         </section>
-
-        
-
 
         <section class="home-items">
             <h2>Items for sale:</h2>
@@ -105,11 +102,8 @@ $user = $_SESSION['user'];?>
 
         </section>
     </main>
+    <?php getScript('filter.js');?>
+    <?php getScript('navbar.js');?>
 </body>
-
-<?php getScript('filter.js'); ?>
-<?php
-getScript('navbar.js');
-?>
 
 </html>

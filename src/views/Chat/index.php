@@ -22,6 +22,7 @@ getHead(array('/css/style.css', '/css/navbar.css', '/css/home.css', '/css/chat.c
             </form>
         </div>
     </div>
+
     <script>
        var lastTimestamp = '2024-01-01 00:00:00';
 
@@ -46,11 +47,8 @@ getHead(array('/css/style.css', '/css/navbar.css', '/css/home.css', '/css/chat.c
             };
             xhr.send();
         }
-        setInterval(fetchNewMessages, 1000);
-        
-</script>
-<?php
-getScript('navbar.js');
-?>
-
+        setInterval(fetchNewMessages, 1000);      
+    </script>
+<?php getScript('navbar.js'); ?>
+</body>
 </html>

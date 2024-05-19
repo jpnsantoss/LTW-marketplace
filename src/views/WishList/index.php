@@ -1,10 +1,10 @@
 <?php 
 require_once APPROOT . '/src/views/Common/common.php'; 
 getHead(array('/css/style.css', '/css/navbar.css', '/css/itemlist.css'), "Wish List"); 
-getNavbar();
 ?>
 
-<body>
+    <body>
+    <?php getNavbar();?>
     <h1>My Wishlist</h1>
 
     <?php foreach ($data['items'] as $wishedItem) { ?>
@@ -24,11 +24,11 @@ getNavbar();
                 <button type="submit" class="progress">Add to Cart</button>
             </form>
         </article>
+        
         <?php } if(sizeof($data['items']) === 0){?>
             <p class ="empty">Your wishlist is currently empty. </p>
         <?php } ?>
-</body>
+        <?php getScript('navbar.js');?>
+    </body>
+<html>
 
-<?php
-getScript('navbar.js');
-?>

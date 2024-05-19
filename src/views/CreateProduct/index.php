@@ -1,10 +1,10 @@
 <?php
 require_once APPROOT . '/src/views/Common/common.php';
 getHead(array('/css/style.css', '/css/form.css', '/css/navbar.css'), "Add Item Category");
-getNavbar();
 ?>
 
 <body class="forms">
+    <?php getNavbar(); ?>
     <section>
     <h1>Sell Item:</h1>
         <form action="<?= URLROOT; ?>/item/create" method="post" enctype="multipart/form-data" onsubmit="return validateForm()">
@@ -38,23 +38,21 @@ getNavbar();
             <br>
             <button class="button" type="submit">Add Item</button>
         </form>
-        
-<script>
-    function validateForm() {
-        var fileInput = document.getElementById('images');
-        var files = fileInput.files;
+    </section>    
+    <script>
+        function validateForm() {
+            var fileInput = document.getElementById('images');
+            var files = fileInput.files;
 
-        if (files.length === 0) {
-            alert('Selecione pelo menos uma imagem.');
-            return false;
+            if (files.length === 0) {
+                alert('Selecione pelo menos uma imagem.');
+                return false;
+            }
+
+            return true;
         }
-
-        return true;
-    }
-</script>
-    </section>
+    </script>
+    <?php getScript('navbar.js'); ?>
 </body>  
+</html>
 
-<?php
-getScript('navbar.js');
-?>

@@ -1,13 +1,12 @@
 <?php 
 require_once APPROOT . '/src/views/Common/common.php'; 
 getHead(array('/css/style.css', '/css/navbar.css', '/css/itemlist.css'), "Wish List"); 
-getNavbar();
 ?>
 
 <body>
+    <?php getNavbar(); ?>
     <h1>My Cart</h1>
-    
-    <?php foreach ($data['items'] as $wishedItem) { ?>
+    <?php foreach ($data['items'] as $wishedItem): ?>
         <article>
             <div class="desc">
                 <p><b>Model: </b><?= $wishedItem->model ?></p>
@@ -23,15 +22,15 @@ getNavbar();
                 <button type="submit" class="progress">Checkout Item</button>
             </form>
         </article>
-    <?php } if(sizeof($data['items']) === 0){?>
+    <?php endforeach; 
+    if(sizeof($data['items']) === 0):?>
         <p class ="empty">You have no items to checkout!</p>
-    <?php } else {?>
+    <?php else: ?>
         <form action="<?= URLROOT ?>/cart/checkout" method="post">
             <button type="submit" class="checkout">CHECKOUT ALL</button>
         </form>    
-    <?php } ?>
-
+    <?php endif; ?>
+    <?php getScript('navbar.js');?>
 </body>
-<?php
-getScript('navbar.js');
-?>
+</html>
+

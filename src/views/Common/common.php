@@ -1,5 +1,4 @@
-<?php function getHead($styles, $title)
-{ ?>
+<?php function getHead($styles, $title) { ?>
     <!DOCTYPE html>
     <html lang="en">
 
@@ -14,8 +13,7 @@
     </head>
 <?php }
 
-function getNavbar()
-{ ?>
+function getNavbar() { ?>
     <header>
         <nav>
             <div class="nav-mobile">
@@ -61,8 +59,6 @@ function getNavbar()
     </header>
 <?php }
 
-function getScript($script)
-{ ?>
+function getScript($script) { ?>
     <script src="<?= URLROOT ?>/js/<?= $script ?>"></script>
-<?php }
-?>
+<?php } ?>
