@@ -81,4 +81,4 @@ We also implemented the following additional requirements:
 - [ ] **Dynamic Promotions**
 - [X] **User Preferences**
 - [ ] **Shipping Costs**
-- [ ] **Real-Time Messaging System**
+- [X] **Real-Time Messaging System**
