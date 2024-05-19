@@ -48,7 +48,7 @@ class Home
                 'condition_id' => $_SESSION['user']['condition_id'],
             ];
         } else {
-            $items = sanitize($this->item->getItems());
+            $items = $this->item->getItems();
 
             view('Profile/index', [
                 'items' => $items,
@@ -62,7 +62,7 @@ class Home
 
         if (isLoggedIn()) {
 
-            $items = sanitize($this->item->getItems($filters));
+            $items = $this->item->getItems($filters);
             $categories = sanitize($this->category->getCategories());
             $sizes = sanitize($this->size->getSizes());
             $conditions = sanitize($this->condition->getConditions());

@@ -1,7 +1,6 @@
 <?php
 require_once APPROOT . '/src/views/Common/common.php';
 getHead(array('/css/style.css', '/css/navbar.css', '/css/itemlist.css'), "Wish List");
-getNavbar();
 ?>
 
 <body>
