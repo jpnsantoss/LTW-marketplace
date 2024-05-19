@@ -24,30 +24,11 @@ $router->addRoute('adminPromote', ['controller' => 'Admin', 'action' => 'users']
 
 $router->addRoute('inbox', ['controller' => 'Inbox', 'action' => 'index']);
 
-// Routes in main controllers/ folder (Namespace \Controllers)
 $router->addRoute('{controller}/{action}');
 $router->addRoute('{controller}/{action}/{id:\d+}');
 $router->addRoute('{controller}/{id:\d+}/{action}');
 
-
-//$router->addRoute('WishList/{id:\d+}', ['controller' => 'WishList', 'action' => 'addToWishList']);
-
-// Examples:
-// 
-// $router->addRoute('{controller}/{action}');
-// $router->addRoute('{controller}/{action}/{id:\d+}');
-// $router->addRoute('{controller}/{id:\d+}/{action}');
-
-// Routes in folder controllers/folder1/ (Namespace \Controllers\Folder1)
-
-// Examples:
-// $router->addRoute('folder1/{controller}/{action}', ['namespace' => 'Folder1']);
-// $router->addRoute('folder1/{controller}/{id:\d+}/{action}', ['namespace' => 'Folder1']);
-
-// Routes in folder controllers/folder2/ (Namespace \Controllers\Folder2)
-
-// Examples:
-// $router->addRoute('folder2/{controller}/{action}', ['namespace' => 'Folder2']);
-// $router->addRoute('folder2/{controller}/{id:\d+}/{action}', ['namespace' => 'Folder2']);
+$router->addRoute('api/{controller}/{action}', ['namespace' => 'Api']);
+$router->addRoute('api/{controller}/{id:\d+}/{action}', ['namespace' => 'Api']);
 
 $router->setParams(getUri());
