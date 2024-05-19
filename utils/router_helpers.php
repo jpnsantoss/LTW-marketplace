@@ -27,3 +27,34 @@ function view(string $view, array $data = []): void
         die('<h1> 404 Page not found </h1>');
     }
 }
+
+function sanitize($input)
+{
+    if (is_array($input)) {
+        return sanitizeArray($input);
+    } elseif (is_object($input)) {
+        return sanitizeObject($input);
+    } else {
+        // If the input is not an array or an object, return it as is
+        return $input;
+    }
+}
+
+
+function sanitizeArray($array)
+{
+    $sanitizedArray = [];
+    foreach ($array as $key => $object) {
+        $sanitizedArray[$key] = sanitizeObject($object);
+    }
+    return $sanitizedArray;
+}
+
+function sanitizeObject($object)
+{
+    $sanitizedObject = new stdClass();
+    foreach ($object as $key => $value) {
+        $sanitizedObject->$key = htmlspecialchars($value);
+    }
+    return $sanitizedObject;
+}

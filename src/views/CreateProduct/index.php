@@ -6,8 +6,9 @@ getHead(array('/css/style.css', '/css/form.css', '/css/navbar.css'), "Add Item C
 <body class="forms">
     <?php getNavbar(); ?>
     <section>
-    <h1>Sell Item:</h1>
+        <h1>Sell Item:</h1>
         <form action="<?= URLROOT; ?>/item/create" method="post" enctype="multipart/form-data" onsubmit="return validateForm()">
+            <?php getCSRFInput(); ?>
             <label for="brand">Brand</label>
             <input type="text" name="brand" id="brand">
             <label for="model">Model</label>
@@ -38,7 +39,7 @@ getHead(array('/css/style.css', '/css/form.css', '/css/navbar.css'), "Add Item C
             <br>
             <button class="button" type="submit">Add Item</button>
         </form>
-    </section>    
+    </section>
     <script>
         function validateForm() {
             var fileInput = document.getElementById('images');
@@ -52,7 +53,7 @@ getHead(array('/css/style.css', '/css/form.css', '/css/navbar.css'), "Add Item C
             return true;
         }
     </script>
-    <?php getScript('navbar.js'); ?>
-</body>  
-</html>
+</body>
+<?php getScript('navbar.js'); ?>
 
+</html>

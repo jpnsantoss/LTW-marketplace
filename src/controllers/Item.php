@@ -17,6 +17,7 @@ class Item
 
     public function create()
     {
+        checkCSRF();
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (!isLoggedIn() || !isSeller()) {
                 header('location: ' . URLROOT . '/', true, 303);
@@ -72,6 +73,7 @@ class Item
 
     public function delete($params)
     {
+        checkCSRF();
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (!isLoggedIn() || !isAdmin()) {
                 header('location: ' . URLROOT . '/', true, 303);
@@ -97,8 +99,9 @@ class Item
 
     public function deleteuseritem($params)
     {
+        checkCSRF();
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            if (!isLoggedIn() ) {
+            if (!isLoggedIn()) {
                 header('location: ' . URLROOT . '/', true, 303);
                 die(UNAUTHORIZED_ACCESS);
             }
@@ -122,6 +125,7 @@ class Item
 
     public function updateitem()
     {
+        checkCSRF();
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 

@@ -15,19 +15,21 @@ class Auth
 
     public function register()
     {
+        checkCSRF();
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            // Check if password is empty
-            if (empty($_POST['password'])) {
-                die('Password cannot be empty');
-            }
+
+            // Sanitize the input
             $registerRequest = [
-                'username' => $_POST['username'],
-                'name' => $_POST['name'],
-                'email' => $_POST['email'],
+                'username' => filter_var($_POST['username'], FILTER_SANITIZE_FULL_SPECIAL_CHARS),
+                'name' => filter_var($_POST['name'], FILTER_SANITIZE_FULL_SPECIAL_CHARS),
+                'email' => filter_var($_POST['email'], FILTER_SANITIZE_EMAIL),
                 'hashed_password' => password_hash($_POST['password'], PASSWORD_DEFAULT)
             ];
+
             if ($this->user->userExists($registerRequest['email'], $registerRequest['username']))
                 die(ALREADY_EXISTS);
+
             if ($this->user->createUser($registerRequest))
                 header('location: ' . URLROOT . '/login', true, 303);
             else
@@ -37,21 +39,27 @@ class Auth
         }
     }
 
+
     public function login()
     {
+        print_r($_SESSION);
+        print_r($_POST);
+        checkCSRF();
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+            // Sanitize the input
             $loginRequest = [
-                'email' => $_POST['email'],
-                'password' => $_POST['password']
+                'email' => filter_var($_POST['email'], FILTER_SANITIZE_EMAIL),
+                'password' => filter_var($_POST['password'], FILTER_SANITIZE_FULL_SPECIAL_CHARS)
             ];
+
             $user = $this->user->getUserByEmail($loginRequest['email']);
             if (!$user) {
                 die(NOT_FOUND);
             }
 
             if (password_verify($loginRequest['password'], $user['hashed_password'])) {
-                // Start a session and store the user's information
-                session_start();
+                // Store the user's information in the session
                 $_SESSION['user'] = $user;
 
                 // Redirect the user to the home page or dashboard
@@ -63,6 +71,7 @@ class Auth
             die(UNAUTHORIZED_ACCESS);
         }
     }
+
 
     public function request()
     {
@@ -87,7 +96,9 @@ class Auth
     public function logout()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            session_start();
+            if (session_status() == PHP_SESSION_NONE) {
+                session_start();
+            };
             session_destroy();
             header('location: ' . URLROOT . '/login', true, 303);
         } else {
@@ -98,6 +109,7 @@ class Auth
 
     public function changeemail()
     {
+        checkCSRF();
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (!isLoggedIn()) {
                 header('location: ' . URLROOT . '/', true, 303);
@@ -122,6 +134,7 @@ class Auth
 
     public function changepreferences()
     {
+        checkCSRF();
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (!isLoggedIn()) {
                 header('location: ' . URLROOT . '/', true, 303);
@@ -152,6 +165,7 @@ class Auth
 
     public function changeusername()
     {
+        checkCSRF();
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (!isLoggedIn()) {
                 header('location: ' . URLROOT . '/', true, 303);
@@ -176,6 +190,7 @@ class Auth
 
     public function changefullname()
     {
+        checkCSRF();
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (!isLoggedIn()) {
                 header('location: ' . URLROOT . '/', true, 303);
@@ -200,6 +215,7 @@ class Auth
 
     public function changepassword()
     {
+        checkCSRF();
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (!isLoggedIn()) {
                 header('location: ' . URLROOT . '/', true, 303);

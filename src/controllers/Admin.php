@@ -19,7 +19,7 @@ class Admin
     private $condition;
     private $user;
     private $transaction;
-    
+
 
     public function __construct()
     {
@@ -29,12 +29,11 @@ class Admin
         $this->condition = new ConditionModel;
         $this->user = new UserModel;
         $this->transaction = new TransactionsModel;
-        
     }
 
     public function promoteUserToSeller($id)
     {
-
+        checkCSRF();
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             $success = $this->user->promoteToSeller($id);
@@ -56,7 +55,7 @@ class Admin
 
     public function promoteUserToAdmin($id)
     {
-
+        checkCSRF();
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             if (!$this->user->isSeller($id)) {
@@ -121,57 +120,93 @@ class Admin
         }
     }
 
+
     public function index()
     {
+        $categories = sanitize($this->category->getCategories());
+
+        $sizes = sanitize($this->size->getSizes());
+
+        $items = sanitize($this->item->getItems());
+
+        $conditions = sanitize($this->condition->getConditions());
+
+
         view(
             'Admin/index',
             [
-                'categories' => $this->category->getCategories(),
-                'sizes' => $this->size->getSizes(),
-                'items' => $this->item->getItems(),
-                'conditions' => $this->condition->getConditions()
+                'categories' => $categories,
+                'sizes' => $sizes,
+                'items' => $items,
+                'conditions' => $conditions
             ]
         );
     }
 
 
+
+
     public function additem()
     {
+        $categories = sanitize($this->category->getCategories());
+
+        $sizes = sanitize($this->size->getSizes());
+
+        $items = sanitize($this->item->getItems());
+
+        $conditions = sanitize($this->condition->getConditions());
+
         view('CreateProduct/index', [
-            'categories' => $this->category->getCategories(),
-            'sizes' => $this->size->getSizes(),
-            'items' => $this->item->getItems(),
-            'conditions' => $this->condition->getConditions()
+            'categories' => $categories,
+            'sizes' => $sizes,
+            'items' => $items,
+            'conditions' => $conditions
         ]);
     }
 
     public function profile()
     {
         if (isLoggedIn()) {
+            $categories = sanitize($this->category->getCategories());
+
+            $sizes = sanitize($this->size->getSizes());
+
+            $items = sanitize($this->item->getItems());
+
+            $conditions = sanitize($this->condition->getConditions());
+
+            $transactions = sanitize($this->transaction->getTransactions());
+
+            $users = sanitize($this->user->getUsers());
+
             view('Profile/index', [
-                'categories' => $this->category->getCategories(),
-                'sizes' => $this->size->getSizes(),
-                'items' => $this->item->getItems(),
-                'conditions' => $this->condition->getConditions(),
-                'transactions' => $this->transaction->getTransactions(),
-                'users' => $this->user->getUsers(),
-                
+                'categories' => $categories,
+                'sizes' => $sizes,
+                'items' => $items,
+                'conditions' => $conditions,
+                'transactions' => $transactions,
+                'users' => $users
             ]);
         } else {
             header('location: ' . URLROOT . '/login', true, 303);
         }
     }
 
+
     public function users()
     {
+        $users = sanitize($this->user->getUsersAndSellerInfo());
+
         view('Admin/users', [
-            'users' => $this->user->getUsersAndSellerInfo()
+            'users' => $users
         ]);
     }
     public function userItems($data)
     {
+        $items = sanitize($this->user->getSellerItems($data['id']));
+
         view('Admin/userItems', [
-            'items' => $this->user->getSellerItems($data['id'])
+            'items' => $items
         ]);
     }
 }

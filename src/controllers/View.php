@@ -29,26 +29,22 @@ class View
         }
     }
 
-
-
-
     public function createProduct()
     {
         view('CreateProduct/index');
     }
-
 
     public function chat()
     {
         view('Chat/index');
     }
 
-    public function checkout(){
+    public function checkout()
+    {
         if (isLoggedIn()) {
-           view('Checkout/index');
+            view('Checkout/index');
         } else {
             header('location: ' . URLROOT . '/login', true, 303);
         }
-        
     }
 }

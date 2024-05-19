@@ -35,6 +35,7 @@ getHead(array('/css/style.css', '/css/table.css', '/css/navbar.css'), "Users");
                 <td class="button">
                     <?php if ($hasRequested) { ?>
                         <form action="<?= URLROOT ?>/admin/<?= $user['id'] ?>/promote-user-to-seller" method="POST">
+                            <?php getCSRFInput(); ?>
                             <button type="submit" class="promote-button">Accept Seller Request</button>
                         </form>
                     <?php } ?>
@@ -45,6 +46,7 @@ getHead(array('/css/style.css', '/css/table.css', '/css/navbar.css'), "Users");
                     <?php } ?>
                     <?php if (!$isAdmin) { ?>
                         <form action="<?= URLROOT ?>/admin/<?= $user['id'] ?>/promote-user-to-admin" method="POST">
+                            <?php getCSRFInput(); ?>
                             <button type="submit" class="promote-button">Promote to admin</button>
                         </form>
                     <?php } ?>
@@ -52,7 +54,7 @@ getHead(array('/css/style.css', '/css/table.css', '/css/navbar.css'), "Users");
             </tr>
         <?php } ?>
     </table>
-    <?php getScript('navbar.js');?>    
 </body>
-</html>
+<?php getScript('navbar.js'); ?>
 
+</html>

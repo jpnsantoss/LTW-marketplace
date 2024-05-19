@@ -23,8 +23,9 @@ class Inbox
         }
 
         $userId = $_SESSION['user']['id'];
-        $selling = $this->message->getChatsAsSeller($userId);
-        $buying = $this->message->getChatsAsBuyer($userId);
+
+        $selling = sanitize($this->message->getChatsAsSeller($userId));
+        $buying = sanitize($this->message->getChatsAsBuyer($userId));
 
         return view('Inbox/index', ['selling' => $selling, 'buying' => $buying]);
     }

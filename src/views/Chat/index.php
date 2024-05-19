@@ -1,6 +1,7 @@
 <?php
 require_once APPROOT . '/src/views/Common/common.php';
 getHead(array('/css/style.css', '/css/navbar.css', '/css/home.css', '/css/chat.css'), "Home");
+getCSRF();
 ?>
 
 <body>
@@ -16,6 +17,7 @@ getHead(array('/css/style.css', '/css/navbar.css', '/css/home.css', '/css/chat.c
                 <?php endforeach; ?>
             </div>
             <form action="<?= URLROOT ?>/chat/send" method="POST">
+                <?php getCSRFInput(); ?>
                 <input type="hidden" name="chat_id" value="<?= $data['chat']->id ?>">
                 <input type="text" name="content" placeholder="Type a message...">
                 <button type="submit">Send</button>

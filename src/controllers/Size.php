@@ -14,6 +14,7 @@ class Size
 
     public function create()
     {
+        checkCSRF();
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (!isLoggedIn() || !isAdmin()) {
                 header('location: ' . URLROOT . '/', true, 303);
@@ -31,6 +32,7 @@ class Size
 
     public function delete($params)
     {
+        checkCSRF();
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (!isLoggedIn() || !isAdmin()) {
                 header('location: ' . URLROOT . '/', true, 303);
