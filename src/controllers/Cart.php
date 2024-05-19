@@ -117,23 +117,20 @@ class Cart
 
     public function checkout($item)
     {
-        checkCSRF();
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $item_id = $item['id'];
+        $item_id = $item['id'];
 
-            if (isLoggedIn()) {
-                $userId = $_SESSION['user']['id'];
-                if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-                    $items = sanitize($this->cart->getItem($item_id, $userId));
-                    view('Checkout/index', ['items' => $items]);
-                } else if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                    $items = sanitize($this->cart->getCart($userId));
-                    view('Checkout/index', ['items' => $items]);
-                }
+        if (isLoggedIn()) {
+            $userId = $_SESSION['user']['id'];
+            if ($item_id != null) {
+                $items = sanitize($this->cart->getItem($item_id, $userId));
+                view('Checkout/index', ['items' => $items]);
             } else {
-                header('location: ' . URLROOT . '/login', true, 303);
-                die(UNAUTHORIZED_ACCESS);
+                $items = sanitize($this->cart->getCart($userId));
+                view('Checkout/index', ['items' => $items]);
             }
+        } else {
+            header('location: ' . URLROOT . '/login', true, 303);
+            die(UNAUTHORIZED_ACCESS);
         }
     }
 

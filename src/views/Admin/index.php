@@ -6,6 +6,7 @@ getHead(array('/css/style.css', '/css/form.css', '/css/navbar.css'), "Add Item C
 <!-- create item -->
 
 <body class="forms">
+    <?php getNavbar(); ?>
     <section>
         <!-- list items -->
         <h1>Items for sale:</h1>
@@ -116,9 +117,5 @@ getHead(array('/css/style.css', '/css/form.css', '/css/navbar.css'), "Add Item C
     </section>
     <?php getScript('navbar.js'); ?>
 </body>
-
-<?php
-getScript('navbar.js');
-?>
 
 </html>

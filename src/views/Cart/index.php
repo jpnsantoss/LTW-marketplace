@@ -29,13 +29,10 @@ getHead(array('/css/style.css', '/css/navbar.css', '/css/itemlist.css'), "Wish L
     if (sizeof($data['items']) === 0) { ?>
         <p class="empty">You have no items to checkout!</p>
     <?php } else { ?>
-        <form action="<?= URLROOT ?>/cart/checkout" method="post">
-            <?php getCSRFInput(); ?>
+        <form action="<?= URLROOT ?>/cart/checkout" method="get">
             <button type="submit" class="checkout">CHECKOUT ALL</button>
         </form>
     <?php } ?>
 
+    <?php getScript('navbar.js'); ?>
 </body>
-<?php
-getScript('navbar.js');
-?>

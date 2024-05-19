@@ -29,7 +29,7 @@ getHead(array('/css/style.css', '/css/table.css', '/css/navbar.css'), "Users");
                 <td><?= $user['full_name'] ?></td>
                 <td><?= $user['email'] ?></td>
                 <td><?= $user['hashed_password'] ?></td>
-                <td><?= $isSeller ?></td>
+                <td><?= $isSeller ? "Yes" : "No" ?></td>
                 <td><?= $user['created_at'] ?></td>
 
                 <td class="button">
@@ -54,7 +54,7 @@ getHead(array('/css/style.css', '/css/table.css', '/css/navbar.css'), "Users");
             </tr>
         <?php } ?>
     </table>
+    <?php getScript('navbar.js'); ?>
 </body>
-<?php getScript('navbar.js'); ?>
 
 </html>
