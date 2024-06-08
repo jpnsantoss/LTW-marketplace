@@ -1,10 +1,12 @@
 # LTW MarketPlace
 
-## Group ltw05g05
-
-- João Santos (up202205794) 33%
-- Marta Silva (up202208258) 33%
-- Sara Cortez (up202205636) 33%
+>**Project**
+><br />
+>Curricular Unit: [Linguagens e Tecnologias Web](https://sigarra.up.pt/feup/pt/ucurr_geral.ficha_uc_view?pv_ocorrencia_id=520324 "Web Technologies"), 2nd year
+><br />
+>Course: **Informatics and Computer Engineering**
+><br />
+> Faculty: **FEUP** (Faculty of Engineering of the University of Porto)
 
 ## Install Instructions
 
